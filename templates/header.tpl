@@ -14,16 +14,17 @@
     <header class="encabezado">
         <a href="#" ><img class="logoencabezado" src="images/logo.png" alt="zafiro"></a>
     </header>
+    <!--BARRA DE NAVEGACIÓN-->
+    <nav class="botoneratexto">
+        <ul class="menu">
+            <li class="botones"><a href="home">Tabla Producto</a></li>
+            <li class="botones"><a href="mark">Tabla Categorias</a></li>
+            <li class="botones"><a href="login">Login</a></li>
+        </ul>
+    </nav>
+     
     <!--BANNER-->
     <figure>
         <img class="banner" src="images/banner.jpg" alt="Banner">
     </figure>
-    <!--BARRA DE NAVEGACIÓN-->
-    <nav>
-        <ul class="navegacion">
-            <li><a href="home">Tabla Producto</a></li>
-            <li><a href="mark">Tabla Categorias</a></li>
-            <li><a href="login">Login</a></li>
-        </ul>
-    </nav>
     <!--CONTINUA LA TABLA-->
