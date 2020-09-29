@@ -6,6 +6,7 @@
     <title>Carrito de Compras</title>
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/carrito_de_compras.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="images/zafiro.png" type="image/x-icon">
 </head>
 <body>
@@ -17,4 +18,12 @@
     <figure>
         <img class="banner" src="images/banner.jpg" alt="Banner">
     </figure>
+    <!--BARRA DE NAVEGACIÓN-->
+    <nav>
+        <ul class="navegacion">
+            <li><a href="home">Tabla Producto</a></li>
+            <li><a href="mark">Tabla Categorias</a></li>
+            <li><a href="login">Login</a></li>
+        </ul>
+    </nav>
     <!--CONTINUA LA TABLA-->

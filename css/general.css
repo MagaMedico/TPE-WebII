@@ -77,6 +77,20 @@ body{
     justify-content: center;
     padding: 10px;
 }
+/*Navegación*/
+nav {
+    display: flex;
+    background-color: gainsboro;
+    margin-bottom: 5px;
+}
+
+.navegacion{
+    list-style: none;
+}
+
+.navegacion:hover{
+    background-color: grey;
+}
 
 @media only screen and (min-width: 600px){
     *{

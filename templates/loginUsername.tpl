@@ -1,5 +1,4 @@
 {include file="header.tpl"}
-<!--TABLA CON TODOS LOS PRODUCTOS-->
 <section class="contenedor_table">
     <table class="table">
         <caption class="titulo_table">{$titulo}</caption>
@@ -18,10 +17,12 @@
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>
                     <td>{$producto->descripcion}</td>
+                    <td class="excepcion"><button  type="button"><a href="edit/{$producto->id}">editar</a></button></td>
+                    <td class="excepcion"><button  type="button"><a href="delete/{$producto->id}">borrar</a></button></td>
                 </tr>   
             {/foreach}
         </tbody>
     </table>
-</section> 
-
+</section>  
+{include file="createProduct.tpl"}
 {include file="footer.tpl"}

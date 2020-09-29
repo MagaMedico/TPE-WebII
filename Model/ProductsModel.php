@@ -31,10 +31,15 @@ class ProductsModel{
     }
     //ACTUALIZA DATOS DE UN PRODUCTO
     function UpdateProduct($product_id,$product,$price,$stock,$description,$brand){
-        $sentencia = $this->db->prepare("UPDATE producto SET nombre=$product precio=$price stock=$stock descripcion=$description id_marca=$brand WHERE id=?");
-        $sentencia->execute(array($product_id));
+        $sentencia = $this->db->prepare("UPDATE producto SET nombre=$product, precio=$price, stock=$stock, descripcion=$description, id_marca=$brand WHERE id=?");
+        $sentencia->execute(array($product_id,$product,$price,$stock,$description,$brand));
     }
-
+    //BUSCO TODAS LAS MARCAS
+    function GetMarks(){
+        $sentencia = $this->db->prepare("SELECT * FROM marca");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 
 ?>

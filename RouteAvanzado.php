@@ -9,11 +9,13 @@
 
     // rutas
     $r->addRoute("home", "GET", "ProductsController", "Home");
+    $r->addRoute("login", "GET", "ProductsController", "Login");
+    $r->addRoute("username", "GET", "ProductsController", "LoginUsername");
     $r->addRoute("insert", "POST", "ProductsController", "InsertProduct");
     $r->addRoute("delete/:ID", "GET", "ProductsController", "DeleteProduct");
-
     $r->addRoute("edit/:ID", "GET", "ProductsController", "EditProduct");
-    $r->addRoute("update/:ID", "POST", "ProductsController", "UpdateProduct");
+    $r->addRoute("update/:ID", "GET", "ProductsController", "UpdateProduct");
+    $r->addRoute("mark", "GET", "ProductsController", "HomeMarks");
 
     //Ruta por defecto.
     $r->setDefaultRoute("ProductsController", "Home");
