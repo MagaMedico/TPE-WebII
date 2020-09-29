@@ -12,11 +12,17 @@ class ProductsView{
         $this->titleEdit = "Editar producto";
         $this->titleMark = "Tabla de marcas";
     }
+    //REDIRECCIONA LAS CONSTANTES PARA RUTEO AL HOME
+    function ShowHomeLocation(){
+        header("Location: ".BASE_URL."home");
+    }
     //MUESTRA EL HOME
-    function ShowHome($products){
+    function ShowHome($products, $marks, $mark_id){
         $smarty = new Smarty();
         $smarty->assign('titulo', $this->title);
         $smarty->assign('productos', $products);
+        $smarty->assign('marks', $marks);
+        $smarty->assign('marks_id', $mark_id);
         // muestro el template 
         $smarty->display('templates/products.tpl'); 
     }
@@ -26,25 +32,22 @@ class ProductsView{
         $smarty->display('templates/loginProduct.tpl'); 
     }
     //MUESTRA LA PAGINA PARA EL ADMIN
-    function ShowLoginUsername($products){
+    function ShowLoginUsername($products, $marks){
         $smarty = new Smarty();
         $smarty->assign('titulo', $this->title);
         $smarty->assign('productos', $products);
+        $smarty->assign('marks', $marks);
         // muestro el template 
         $smarty->display('templates/loginUsername.tpl'); 
     }
     //VISTA PARA EDITAR UN PRODUCTO
-    function ShowEditProduct($product){
+    function ShowEditProduct($product, $marks){
         $smarty = new Smarty();
-        //$smarty->assign('titulo', $this->titleEdit);
         $smarty->assign('producto', $product);
+        $smarty->assign('marks', $marks);
         // muestro el template 
         $smarty->display('templates/editProduct.tpl'); 
       
-    }
-    //REDIRECCIONA LAS CONSTANTES PARA RUTEO AL HOME
-    function ShowHomeLocation(){
-        header("Location: ".BASE_URL."home");
     }
     //MUESTRO LA TABLA DE MARCAS
     function ShowMarks($marks){
@@ -55,6 +58,4 @@ class ProductsView{
         $smarty->display('templates/marks.tpl');
     }
 }
-
-
 ?>

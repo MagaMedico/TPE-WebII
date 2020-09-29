@@ -14,9 +14,15 @@ class ProductsController{
     }
     //LLAMA AL HOME
     function Home(){
+        $marks = $this->model->GetMarks();
         $products = $this->model->GetProducts();
         //var_dump($products);
-        $this->view->ShowHome($products);
+        $this->view->ShowHome($products, $marks, $mark_id = null);
+    }
+    //LLAMA AL HOME DE MARCAS
+    function HomeMarks(){
+        $marks = $this->model->GetMarks();
+        $this->view->ShowMarks($marks);
     }
     //LLAMA AL LOGIN
     function Login(){
@@ -24,8 +30,9 @@ class ProductsController{
     }
     //MUESTRA LA PAGINA PARA EL ADMIN
     function LoginUsername(){
+        $marks = $this->model->GetMarks();
         $products = $this->model->GetProducts();
-        $this->view->ShowLoginUsername($products);
+        $this->view->ShowLoginUsername($products, $marks);
     }
     //INSERTA UN NUEVO PRODUCTO
     function InsertProduct(){
@@ -41,9 +48,10 @@ class ProductsController{
     //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
     function EditProduct($params = null){
         $product_id = $params[':ID'];
+        $marks = $this->model->GetMarks();
         $product = $this->model->GetProduct($product_id);
        // var_dump($product);
-       $this->view->ShowEditProduct($product); 
+       $this->view->ShowEditProduct($product, $marks); 
     }
     //LLAMA A ACTUALIZAR UN PRODUCTO
     function UpdateProduct($params = null){
@@ -51,10 +59,14 @@ class ProductsController{
         $this->model->UpdateProduct($product_id,$_POST['edit_product'],$_POST['edit_price'],$_POST['edit_stock'],$_POST['edit_description'],$_POST['select_brand']);
         $this->view->ShowLoginUsername();
     }
-    //LLAMA AL HOME DE MARCAS
-    function HomeMarks(){
-        $marks = $this->model->GetMarks();
-        $this->view->ShowMarks($marks);
+    //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
+    function FilterMark(){
+        if (isset($_GET['select_brand'])) {
+            $mark_id = $_GET['select_brand'];
+            $products = $this->model->GetProductsByMark($mark_id);
+            $marks = $this->model->GetMarks();
+            $this->view->ShowHome($products, $marks, $mark_id);
+        }
     }
 }
 

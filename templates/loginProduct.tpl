@@ -1,7 +1,7 @@
 {include file="header.tpl"}
     <div class="container">
     <h1>Login</h1>
-        <form action="username" method="get">
+        <form action="username" method="post">
             <!-- Username -->
             <label class="label" for="name">Username:</label>
             <input class="input" type="name" name="input_username" placeholder="username" required>

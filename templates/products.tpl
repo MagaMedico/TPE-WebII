@@ -1,4 +1,6 @@
 {include file="header.tpl"}
+<!--SELECTOR DE MARCA PARA FILTRAR-->
+{include file="select-mark.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
 <section class="contenedor_table">
     <table class="table">
@@ -20,8 +22,7 @@
                     <td>{$producto->descripcion}</td>
                 </tr>   
             {/foreach}
-        </tbody>
+        </tbody> 
     </table>
 </section> 
-
 {include file="footer.tpl"}

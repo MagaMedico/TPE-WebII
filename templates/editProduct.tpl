@@ -8,11 +8,11 @@
     <input class="input" type="text" name="edit_description" placeholder="descripción" value="{$producto->descripcion}" required>
 
     <select name="select_brand">
-        <option value="2">donadonna</option>
-        <option value="3">Lunera acero</option>
-        <option value="4">gtergood</option>
-        <option value="5">rapsodia</option>
+        {foreach from=$marks item=mark}
+            <option value="{$mark->id_marca}">{$mark->marca}</option>
+        {/foreach}
     </select>
+
     <button  type="submit"><a href="update/{$producto->id}">actualizar</a></button>
     <button class="btn" type="submit">actualizar</button>
 </form>

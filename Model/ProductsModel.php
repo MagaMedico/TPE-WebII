@@ -40,6 +40,12 @@ class ProductsModel{
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+    //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
+    function GetProductsByMark($mark_id){
+        $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_marca=?");
+        $sentencia->execute([$mark_id]);
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 
 ?>
