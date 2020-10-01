@@ -1,49 +1,51 @@
 <?php
 
     require_once "./View/ProductsView.php";
+    require_once "./View/MarksView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
 
     class MarksController{
 
-        private $view;
+        private $Productsview;
+        private $MarksView;
         private $productosModel;
         private $marksModel;
 
         function __construct(){
-            $this->view = new ProductsView();
-            //$this->productosModel = new ProductsModel();
+            $this->Productsview = new ProductsView();
+            $this->MarksView = new MarksView();
+            $this->productosModel = new ProductsModel();
             $this->marksModel = new MarksModel();
         }
         //LLAMA AL HOME DE MARCAS
         function HomeMarks(){
             $marks = $this->marksModel->GetMarks();
-            $this->view->ShowMarks($marks);
+            $this->MarksView->ShowMarks($marks);
         }
-        
         //INSERTA UNA NUEVA MARCA
         function InsertMark(){
             $this->marksModel->InsertMark($_POST['input_mark'],$_POST['input_category']);
             $marks = $this->marksModel->GetMarks();
-            $this->view->ShowHomeMarks();
+            $products = $this->productosModel->GetProducts();
+            $this->Productsview->ShowLoginUsername($products, $marks);
         }
         //ELIMINA UNA MARCA POR ID
         function DeleteMark($params = null){
             $mark_id = $params[':ID'];
             $this->marksModel->DeleteMark($mark_id);
-            $this->view->ShowHomeMarks();
-        }
-
-
-        //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
-        function EditMark($params = null){
-            $product_id = $params[':ID'];
             $marks = $this->marksModel->GetMarks();
-            $product = $this->productosModel->GetProduct($product_id);
-        // var_dump($product);
-        $this->view->ShowEditProduct($product, $marks); 
+            $products = $this->productosModel->GetProducts();
+            $this->Productsview->ShowLoginUsername($products, $marks);
         }
-        //LLAMA A ACTUALIZAR UN PRODUCTO
+        //LLAMA LA VISTA PARA EDITAR UNA MARCA POR ID
+        function EditMark($params = null){
+            $mark_id = $params[':ID'];
+            $marks = $this->marksModel->GetMarks($mark_id);
+            // var_dump($product);
+            $this->Productsview->ShowEditProduct($product, $marks); 
+        }
+        //LLAMA A ACTUALIZAR UNA MARCA
         function UpdateMark($params = null){
             $product_id = $params[':ID'];
             if ((isset($_GET['edit_product']) && isset($_GET['edit_price'])) && (isset($_GET['edit_stock']) && isset($_GET['edit_description'])) && isset($_GET['select_brand'])) {
@@ -52,11 +54,12 @@
                 $stock = $_GET['edit_stock'];
                 $description = $_GET['edit_description'];
                 $brand = $_GET['select_brand'];
-
-                $this->productosModel->UpdateProduct($product_id,$product,$price,$stock,$description,$brand);
-                //$this->model->UpdateProduct($product_id,$_GET['edit_product'],$_GET['edit_price'],$_GET['edit_stock'],$_GET['edit_description'],$_GET['select_brand']);
-                $this->view->ShowLoginUsername();
+                $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
             }
+            $marks = $this->marksModel->GetMarks();
+            $products = $this->model->GetProducts();
+            $this->Productsview->ShowLoginUsername($products, $marks);
         }
+
     }
 ?>

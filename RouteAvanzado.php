@@ -15,7 +15,7 @@
     $r->addRoute("username", "POST", "ProductsController", "LoginUsername");
     $r->addRoute("insert", "POST", "ProductsController", "InsertProduct");
     $r->addRoute("delete/:ID", "GET", "ProductsController", "DeleteProduct");
-    $r->addRoute("filterMark", "GET", "ProductsController", "FilterMark");
+    $r->addRoute("filterMark", "GET", "ProductsController", "FilterProductsByMark");
     //ARREGLAR, NO FUNCIONAN COMO DEBEN
     $r->addRoute("edit/:ID", "GET", "ProductsController", "EditProduct");
     $r->addRoute("update/:ID", "GET", "ProductsController", "UpdateProduct");

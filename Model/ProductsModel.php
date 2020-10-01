@@ -6,6 +6,7 @@
         //CREO LA CONEXIÓN CON LA BASE DE DATOS
         function __construct(){
             $this->db = new PDO('mysql:host=localhost;'.'dbname=carrito_de_compras;charset=utf8', 'root', '');
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         }
         //BUSCO TODOS LOS PRODUCTOS
         function GetProducts(){
@@ -14,7 +15,7 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO UN SOLO PRODUCTO POR ID
-        function GetProduct($product_id){
+        function GetProductById($product_id){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id=?");
             $sentencia->execute(array($product_id));
             return $sentencia->fetch(PDO::FETCH_OBJ);
@@ -30,9 +31,9 @@
             $sentencia->execute(array($product_id));
         }
         //ACTUALIZA DATOS DE UN PRODUCTO
-        function UpdateProduct($product_id,$product,$price,$stock,$description,$brand){
-            $sentencia = $this->db->prepare("UPDATE producto SET nombre=$product precio=$price stock=$stock descripcion=$description id_marca=$brand WHERE id=?");
-            $sentencia->execute(array($product_id));
+        function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
+            $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, id_marca=? WHERE producto.id=?");
+            $sentencia->execute(array($product,$price,$stock,$description,$brand,$product_id));
         }
         //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
         function GetProductsByMark($mark_id){
