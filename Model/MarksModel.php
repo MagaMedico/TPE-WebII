@@ -13,6 +13,12 @@
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
+        //BUSCO UNA MARCA POR ID
+        function GetMarkById($mark_id){
+            $sentencia = $this->db->prepare("SELECT * FROM marca WHERE id_marca=?");
+            $sentencia->execute(array($mark_id));
+            return $sentencia->fetch(PDO::FETCH_OBJ);
+        }
         //INSERTA UNA MARCA
         function InsertMark($mark,$category){
             $sentencia = $this->db->prepare("INSERT INTO marca(marca, categoria) VALUES(?,?)");
@@ -22,6 +28,11 @@
         function DeleteMark($mark_id){
             $sentencia = $this->db->prepare("DELETE FROM marca WHERE id_marca=?");
             $sentencia->execute(array($mark_id));
+        }
+        //ACTUALIZA DATOS DE UNA MARCA
+        function UpdateMark($mark,$categori,$mark_id){
+            $sentencia = $this->db->prepare("UPDATE marca SET marca=?, categoria=? WHERE marca.id_marca=?");
+            $sentencia->execute(array($mark,$categori,$mark_id));
         }
     }
 ?>

@@ -18,6 +18,12 @@
             $this->productosModel = new ProductsModel();
             $this->marksModel = new MarksModel();
         }
+        //  MUESTRA VISTA DE LA PAGINA EDITABLE DEL ADMINISTRADOR 
+        /*function ShowLoginUsername(){
+            $marks = $this->marksModel->GetMarks();
+            $products = $this->productosModel->GetProducts();
+            $this->Productsview->ShowLoginUsername($products, $marks);
+        }*/
         //LLAMA AL HOME DE MARCAS
         function HomeMarks(){
             $marks = $this->marksModel->GetMarks();
@@ -41,25 +47,20 @@
         //LLAMA LA VISTA PARA EDITAR UNA MARCA POR ID
         function EditMark($params = null){
             $mark_id = $params[':ID'];
-            $marks = $this->marksModel->GetMarks($mark_id);
-            // var_dump($product);
-            $this->Productsview->ShowEditProduct($product, $marks); 
+            $mark = $this->marksModel->GetMarkById($mark_id);
+            $this->MarksView->ShowEditMark($mark); 
         }
         //LLAMA A ACTUALIZAR UNA MARCA
         function UpdateMark($params = null){
-            $product_id = $params[':ID'];
-            if ((isset($_GET['edit_product']) && isset($_GET['edit_price'])) && (isset($_GET['edit_stock']) && isset($_GET['edit_description'])) && isset($_GET['select_brand'])) {
-                $product = $_GET['edit_product'];
-                $price = $_GET['edit_price'];
-                $stock = $_GET['edit_stock'];
-                $description = $_GET['edit_description'];
-                $brand = $_GET['select_brand'];
-                $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
+            $mark_id = $params[':ID'];
+            if (isset($_POST['edit_mark']) && isset($_POST['edit_category'])) {
+                $mark = $_POST['edit_mark'];
+                $category = $_POST['edit_category'];
+                $this->marksModel->UpdateMark($mark,$category,$mark_id);
             }
             $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
+            $products = $this->productosModel->GetProducts();
             $this->Productsview->ShowLoginUsername($products, $marks);
         }
-
     }
 ?>

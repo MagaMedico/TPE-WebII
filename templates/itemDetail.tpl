@@ -1,28 +1,41 @@
 {include file="header.tpl"}
-<!--SELECTOR DE MARCA PARA FILTRAR-->
-{include file="select-mark.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
 <section class="contenedor_table">
     <table class="table">
-        <caption class="titulo_table">{$titulo}</caption>
+        <caption class="titulo_table">detalle de producto</caption>
         <thead>
             <tr>
                 <th>producto</th>
                 <th>precio</th>
                 <th>stock</th>
                 <th>descripción</th>
+                <th>marca</th>
             </tr>
         </thead>
-        <tbody id="tabla">
-            {foreach from=$productos item=producto}
+        <tbody>
                 <tr>
                     <td>{$producto->nombre}</td>
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>
                     <td>{$producto->descripcion}</td>
-                    <td class="excepcion"><button type="button"><a href="itemDetail/{$producto->id}">ver más</a></button></td>
+                    <td>{$mark->marca}</td>
                 </tr>
-            {/foreach}
+        </tbody>
+    </table>
+    <!--TABLA DE LA MARCA DEL PRODUCTO-->
+     <table class="table">
+        <caption class="titulo_table">marca {$mark->marca}</caption>
+        <thead>
+            <tr>
+                <th>marca</th>
+                <th>categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{$mark->marca}</td>
+                    <td>{$mark->categoria}</td>
+                </tr>   
         </tbody>
     </table>
 </section> 

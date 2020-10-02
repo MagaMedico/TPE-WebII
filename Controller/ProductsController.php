@@ -19,7 +19,6 @@
         function Home(){
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            //var_dump($products);
             $this->view->ShowHome($products, $marks, $mark_id = null);
         }
         //LLAMA AL LOGIN
@@ -35,7 +34,6 @@
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
             $this->model->InsertProduct($_POST['input_product'],$_POST['input_price'],$_POST['input_stock'],$_POST['input_description'],$_POST['select_brand']);
-            //$this->view->ShowHomeLocation("home");
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
             $this->view->ShowLoginUsername($products, $marks);
@@ -54,18 +52,17 @@
             $product_id = $params[':ID'];
             $marks = $this->marksModel->GetMarks();
             $product = $this->model->GetProductById($product_id);
-            // var_dump($product);
             $this->view->ShowEditProduct($product, $marks); 
         }
         //LLAMA A ACTUALIZAR UN PRODUCTO
         function UpdateProduct($params = null){
             $product_id = $params[':ID'];
-            if ((isset($_GET['edit_product']) && isset($_GET['edit_price'])) && (isset($_GET['edit_stock']) && isset($_GET['edit_description'])) && isset($_GET['select_brand'])) {
-                $product = $_GET['edit_product'];
-                $price = $_GET['edit_price'];
-                $stock = $_GET['edit_stock'];
-                $description = $_GET['edit_description'];
-                $brand = $_GET['select_brand'];
+            if ((isset($_POST['edit_product']) && isset($_POST['edit_price'])) && (isset($_POST['edit_stock']) && isset($_POST['edit_description'])) && isset($_POST['select_brand'])) {
+                $product = $_POST['edit_product'];
+                $price = $_POST['edit_price'];
+                $stock = $_POST['edit_stock'];
+                $description = $_POST['edit_description'];
+                $brand = $_POST['select_brand'];
                 $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
             }
             $marks = $this->marksModel->GetMarks();
@@ -74,12 +71,20 @@
         }
         //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
         function FilterProductsByMark(){
-            if (isset($_GET['select_brand'])) {
-                $mark_id = $_GET['select_brand'];
+            if (isset($_POST['select_brand'])) {
+                $mark_id = $_POST['select_brand'];
                 $products = $this->model->GetProductsByMark($mark_id);
                 $marks = $this->marksModel->GetMarks();
                 $this->view->ShowHome($products, $marks, $mark_id);
             }
+        }
+        //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO
+        function ItemDetail($params = null){
+            $product_id = $params[':ID'];
+            $product = $this->model->GetProductById($product_id);
+            $mark_id = $product->id_marca;
+            $mark = $this->marksModel->GetMarkById($mark_id);
+            $this->view->ShowItemDetail($product, $mark); 
         }
     }
 ?>

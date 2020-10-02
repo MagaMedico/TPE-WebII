@@ -43,7 +43,7 @@ form{
     text-align: center;
 }
 
-input, button{
+button{
     padding: 1%;
     text-align: center;
     text-transform: capitalize;
@@ -53,6 +53,7 @@ input, button{
 .input{
     width: 80%;
     margin: 2%;
+    text-align: center;
 }
 
 select{
@@ -66,6 +67,7 @@ h1{
     color: rgb(85, 85, 85);
     background-image: url(../images/fondo.jpg);
     padding: 2%;
+    margin: 2% 0;
 }
 
 

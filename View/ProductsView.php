@@ -12,8 +12,8 @@
             $this->titleEdit = "Editar producto";
             $this->titleMark = "Tabla de marcas";
         }
-        //REDIRECCIONA LAS CONSTANTES PARA RUTEO AL HOME
-        function ShowHomeLocation($action){
+        //REDIRECCIONA LAS CONSTANTES PARA RUTEO 
+        function ShowLocation($action){
             header("Location: ".BASE_URL.$action);
         }
         //MUESTRA EL HOME
@@ -48,13 +48,14 @@
             // muestro el template 
             $smarty->display('templates/editProduct.tpl'); 
         }
-        //MUESTRO LA TABLA DE MARCAS
-        function ShowMarks($marks){
+        //VISTA DE UN PRODUCTO EN DETALLE - TABLA PRODUCTO Y TABLA DE LA MARCA
+        function ShowItemDetail($product, $mark){
             $smarty = new Smarty();
-            $smarty->assign('titulo', $this->titleMark);
-            $smarty->assign('marks', $marks);
+            $smarty->assign('titulo', $this->title);
+            $smarty->assign('producto', $product);
+            $smarty->assign('mark', $mark);
             // muestro el template 
-            $smarty->display('templates/marks.tpl');
+            $smarty->display('templates/itemDetail.tpl'); 
         }
     }
 ?>

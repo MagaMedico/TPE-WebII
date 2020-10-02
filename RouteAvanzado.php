@@ -15,18 +15,17 @@
     $r->addRoute("username", "POST", "ProductsController", "LoginUsername");
     $r->addRoute("insert", "POST", "ProductsController", "InsertProduct");
     $r->addRoute("delete/:ID", "GET", "ProductsController", "DeleteProduct");
-    $r->addRoute("filterMark", "GET", "ProductsController", "FilterProductsByMark");
-    //ARREGLAR, NO FUNCIONAN COMO DEBEN
+    $r->addRoute("filterMark", "POST", "ProductsController", "FilterProductsByMark");
+    $r->addRoute("itemDetail/:ID", "GET", "ProductsController", "ItemDetail");
     $r->addRoute("edit/:ID", "GET", "ProductsController", "EditProduct");
-    $r->addRoute("update/:ID", "GET", "ProductsController", "UpdateProduct");
+    $r->addRoute("update/:ID", "POST", "ProductsController", "UpdateProduct");
     //MARCAS 
     $r->addRoute("mark", "GET", "MarksController", "HomeMarks");
     //MARCAS LoginUsername
     $r->addRoute("insertMark", "POST", "MarksController", "InsertMark");
     $r->addRoute("deleteMark/:ID", "GET", "MarksController", "DeleteMark");
-    //FALTAN HACERLAS, ESTAN PLANTEADAS PERO NO HECHAS.
     $r->addRoute("editMark/:ID", "GET", "MarksController", "EditMark");
-    $r->addRoute("updateMark/:ID", "GET", "MarksController", "UpdateMark");
+    $r->addRoute("updateMark/:ID", "POST", "MarksController", "UpdateMark");
 
     //Ruta por defecto.
     $r->setDefaultRoute("ProductsController", "Home");
