@@ -50,4 +50,7 @@
 </section> 
 <!--FORMULARIO PARA INSERTAR UNA MARCA-->
 {include file="createMark.tpl"}
+<div>
+    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
+</div>
 {include file="footer.tpl"}

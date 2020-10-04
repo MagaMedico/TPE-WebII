@@ -34,6 +34,11 @@ th, td{
     margin: 1%;
 }
 
+.btn_logout{
+    margin: 1%;
+    margin-left: 45%;
+}
+
 button{
     margin: 0 2%;
 }

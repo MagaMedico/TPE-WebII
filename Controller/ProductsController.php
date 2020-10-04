@@ -1,6 +1,7 @@
 <?php
 
     require_once "./View/ProductsView.php";
+    require_once "./View/LoginView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
 
@@ -14,6 +15,7 @@
             $this->view = new ProductsView();
             $this->model = new ProductsModel();
             $this->marksModel = new MarksModel();
+            $this->loginView = new LoginView();
         }
         //LLAMA AL HOME
         function Home(){
@@ -21,22 +23,12 @@
             $products = $this->model->GetProducts();
             $this->view->ShowHome($products, $marks, $mark_id = null);
         }
-        //LLAMA AL LOGIN
-        function Login(){
-            $this->view->ShowLogin();
-        }
-        //MUESTRA LA PAGINA PARA EL ADMIN
-        function LoginUsername(){
-            $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
-            $this->view->ShowLoginUsername($products, $marks);
-        }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
             $this->model->InsertProduct($_POST['input_product'],$_POST['input_price'],$_POST['input_stock'],$_POST['input_description'],$_POST['select_brand']);
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            $this->view->ShowLoginUsername($products, $marks);
+            $this->loginView->ShowVerify($products, $marks);
         }
         //ELIMINA UN PRODUCTO POR ID
         function DeleteProduct($params = null){
@@ -45,7 +37,7 @@
 
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            $this->view->ShowLoginUsername($products, $marks);
+            $this->loginView->ShowVerify($products, $marks);
         }
         //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
         function EditProduct($params = null){
@@ -67,7 +59,7 @@
             }
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            $this->view->ShowLoginUsername($products, $marks);
+            $this->loginView->ShowVerify($products, $marks);
         }
         //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
         function FilterProductsByMark(){

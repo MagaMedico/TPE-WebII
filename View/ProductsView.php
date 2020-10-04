@@ -26,20 +26,6 @@
             // muestro el template 
             $smarty->display('templates/products.tpl'); 
         }
-        //MUESTRA EL LOGIN
-        function ShowLogin(){
-            $smarty = new Smarty();
-            $smarty->display('templates/loginProduct.tpl'); 
-        }
-        //MUESTRA LA PAGINA PARA EL ADMIN
-        function ShowLoginUsername($products, $marks){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', $this->title);
-            $smarty->assign('productos', $products);
-            $smarty->assign('marks', $marks);
-            // muestro el template 
-            $smarty->display('templates/loginUsername.tpl'); 
-        }
         //VISTA PARA EDITAR UN PRODUCTO
         function ShowEditProduct($product, $marks){
             $smarty = new Smarty();
