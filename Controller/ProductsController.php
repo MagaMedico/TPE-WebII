@@ -4,18 +4,22 @@
     require_once "./View/LoginView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
+    require_once "./Controller/LoginController.php";
 
     class ProductsController{
 
         private $view;
         private $model;
         private $marksModel;
+        private $loginView;
+        private $loginControl;
 
         function __construct(){
             $this->view = new ProductsView();
             $this->model = new ProductsModel();
             $this->marksModel = new MarksModel();
             $this->loginView = new LoginView();
+            $this->loginControl = new LoginController();
         }
         //LLAMA AL HOME
         function Home(){
@@ -25,41 +29,60 @@
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
-            $this->model->InsertProduct($_POST['input_product'],$_POST['input_price'],$_POST['input_stock'],$_POST['input_description'],$_POST['select_brand']);
-            $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
-            $this->loginView->ShowVerify($products, $marks);
+            $logeado = $this->loginControl->checkLoggedIn();
+            if($logeado){
+                $this->model->InsertProduct($_POST['input_product'],$_POST['input_price'],$_POST['input_stock'],$_POST['input_description'],$_POST['select_brand']);
+                $marks = $this->marksModel->GetMarks();
+                $products = $this->model->GetProducts();
+                $this->loginView->ShowVerify($products, $marks);
+            }else{
+                $this->loginView->Login();
+            }
         }
         //ELIMINA UN PRODUCTO POR ID
         function DeleteProduct($params = null){
+            $logeado = $this->loginControl->checkLoggedIn();
+            if($logeado){
             $product_id = $params[':ID'];
             $this->model->DeleteProduct($product_id);
-
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
             $this->loginView->ShowVerify($products, $marks);
+            }else{
+                $this->loginView->ShowLogin();
+            }
         }
         //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
         function EditProduct($params = null){
-            $product_id = $params[':ID'];
-            $marks = $this->marksModel->GetMarks();
-            $product = $this->model->GetProductById($product_id);
-            $this->view->ShowEditProduct($product, $marks); 
+            $logeado = $this->loginControl->checkLoggedIn();
+            if($logeado){
+                $product_id = $params[':ID'];
+                $marks = $this->marksModel->GetMarks();
+                $product = $this->model->GetProductById($product_id);
+                $this->view->ShowEditProduct($product, $marks); 
+            }else{
+                $this->loginView->ShowLogin();
+            }
         }
         //LLAMA A ACTUALIZAR UN PRODUCTO
         function UpdateProduct($params = null){
-            $product_id = $params[':ID'];
-            if ((isset($_POST['edit_product']) && isset($_POST['edit_price'])) && (isset($_POST['edit_stock']) && isset($_POST['edit_description'])) && isset($_POST['select_brand'])) {
-                $product = $_POST['edit_product'];
-                $price = $_POST['edit_price'];
-                $stock = $_POST['edit_stock'];
-                $description = $_POST['edit_description'];
-                $brand = $_POST['select_brand'];
-                $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
+            $logeado = $this->loginControl->checkLoggedIn();
+            if($logeado){
+                $product_id = $params[':ID'];
+                if ((isset($_POST['edit_product']) && isset($_POST['edit_price'])) && (isset($_POST['edit_stock']) && isset($_POST['edit_description'])) && isset($_POST['select_brand'])) {
+                    $product = $_POST['edit_product'];
+                    $price = $_POST['edit_price'];
+                    $stock = $_POST['edit_stock'];
+                    $description = $_POST['edit_description'];
+                    $brand = $_POST['select_brand'];
+                    $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
+                }
+                $marks = $this->marksModel->GetMarks();
+                $products = $this->model->GetProducts();
+                $this->loginView->ShowVerify($products, $marks);
+            }else{
+                $this->loginView->ShowLogin();
             }
-            $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
-            $this->loginView->ShowVerify($products, $marks);
         }
         //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
         function FilterProductsByMark(){

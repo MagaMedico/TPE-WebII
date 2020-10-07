@@ -16,7 +16,12 @@ class LoginController{
     }
     //LLAMA AL LOGIN
     function Login(){
-        $this->view->ShowLogin();
+        $logeado = $this->checkLoggedIn();
+        if($logeado){
+            $this->ShowAdmin();
+        } else {
+            $this->view->ShowLogin();
+        }
     }
     //LLAMO AL LOGOUT
     function Logout(){
@@ -24,7 +29,14 @@ class LoginController{
         session_destroy();
         header("Location: ".LOGIN);
 
-    }    
+    }
+    //VEO SI ESTA LOGGEADO
+    function checkLoggedIn(){
+        session_start();
+        if(!isset($_SESSION['EMAIL'])){
+            return false;
+        }else return true;
+    }  
     //VERIFICO MI USUARIO
     function VerifyUser(){
         $user = $_POST["input_username"];
@@ -36,14 +48,12 @@ class LoginController{
                 // Existe el usuario
                 if (password_verify($pass, $userFromDB->password)){
                     session_start();
-                    if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>10000)){
+                    if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>1000)){
                         header("Location: ".LOGOUT);
                     }
                     $_SESSION["EMAIL"] = $userFromDB->email;
                     $_SESSION['LAST_ACTIVITY'] = time();
-                    $marks = $this->marksModel->GetMarks();
-                    $products = $this->modelProducts->GetProducts();
-                    $this->view->ShowVerify($products, $marks);
+                    $this->ShowAdmin();
                 }else{
                     $this->view->ShowLogin("Contraseña incorrecta");
                 }
@@ -53,6 +63,12 @@ class LoginController{
                 $this->view->ShowLogin("El usuario no existe");
             }
         }
+    }
+
+    function ShowAdmin(){
+        $marks = $this->marksModel->GetMarks();
+        $products = $this->modelProducts->GetProducts();
+        $this->view->ShowVerify($products, $marks);
     }
 }
 ?>
