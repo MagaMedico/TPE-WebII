@@ -8,7 +8,7 @@ class LoginView{
         $this->title = "Editar producto";
     }
     //MUESTRA EL LOGIN
-    function ShowLogin($message = ""){
+    function ShowLogin($message = NULL){
         $smarty = new Smarty();
         $smarty->assign('message', $message);
         $smarty->display('templates/login.tpl');        

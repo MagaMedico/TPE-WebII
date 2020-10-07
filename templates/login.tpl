@@ -1,6 +1,10 @@
 {include file="header.tpl"}
     <div>
-        {$message}
+        {if empty($message)}
+            {$message}
+        {else}
+            <h1 class="ContraseñaIncorrecta">{$message}</h1>
+        {/if}
     </div>
     <div class="container">
     <h1>Login</h1>
