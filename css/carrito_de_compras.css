@@ -66,8 +66,9 @@ select{
 }
 
 /*MENSAJE DE CONTRASEÑA INCORRECTA*/
-h1.ContraseñaIncorrecta{
+h2{
     background-image: url(../images/fondomármolnegro.jpg);
+    background-repeat: no-repeat;
     color: white;
     font-weight: bold;
     font-size: 10px;
@@ -117,7 +118,7 @@ h1{
         font-size: 25px;
     }
     /*MENSAJE DE CONTRASEÑA INCORRECTA*/
-    h1.ContraseñaIncorrecta{
+    h2{
         font-size: 25px;
     }
 }

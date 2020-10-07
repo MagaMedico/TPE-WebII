@@ -3,7 +3,7 @@
         {if empty($message)}
             {$message}
         {else}
-            <h1 class="ContraseñaIncorrecta">{$message}</h1>
+            <h2 class="ContraseñaIncorrecta">{$message}</h2>
         {/if}
     </div>
     <div class="container">
