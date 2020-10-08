@@ -5,6 +5,7 @@
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
     require_once "./View/LoginView.php";
+    require_once "./Controller/LoginController.php";
 
     class MarksController{
 
@@ -13,6 +14,7 @@
         private $productosModel;
         private $marksModel;
         private $loginView;
+        private $loginControl;
 
         function __construct(){
             $this->Productsview = new ProductsView();
@@ -20,6 +22,7 @@
             $this->productosModel = new ProductsModel();
             $this->marksModel = new MarksModel();
             $this->loginView = new LoginView();
+            $this->loginControl = new LoginController();
         }
         //LLAMA AL HOME DE MARCAS
         function HomeMarks(){
@@ -42,6 +45,7 @@
         function DeleteMark($params = null){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
+                //echo "<script>alert('También se borrarán los productos relacionados a esta marca.');</script>"; 
                 $mark_id = $params[':ID'];
                 $this->marksModel->DeleteMark($mark_id);
                 $marks = $this->marksModel->GetMarks();

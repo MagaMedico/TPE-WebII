@@ -25,7 +25,7 @@
         function Home(){
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            $this->view->ShowHome($products, $marks, $mark_id = null);
+            $this->view->ShowHome($products, $marks);
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
@@ -90,7 +90,7 @@
                 $mark_id = $_POST['select_brand'];
                 $products = $this->model->GetProductsByMark($mark_id);
                 $marks = $this->marksModel->GetMarks();
-                $this->view->ShowHome($products, $marks, $mark_id);
+                $this->view->ShowHome($products, $marks);
             }
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO

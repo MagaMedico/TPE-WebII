@@ -1,6 +1,10 @@
 {include file="header.tpl"}
+<div>
+    <p class="cerarSesion">cerrar sesión</p>
+    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
+</div>
 <section class="contenedor_table">
-    <table class="table">
+    <table class="table_productos">
         <caption class="titulo_table">{$titulo}</caption>
         <thead>
             <tr>
@@ -17,8 +21,8 @@
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>
                     <td>{$producto->descripcion}</td>
-                    <td class="excepcion"><button  type="button"><a href="edit/{$producto->id}">editar</a></button></td>
-                    <td class="excepcion"><button  type="button"><a href="delete/{$producto->id}">borrar</a></button></td>
+                    <td class="excepcion"><button type="button"><a href="edit/{$producto->id}">editar</a></button></td>
+                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$producto->id}">borrar</a></button></td>
                 </tr>   
             {/foreach}
         </tbody>
@@ -30,7 +34,12 @@
 <section class="contenedor_table">
     <table class="table">
         <caption class="titulo_table">tabla de marcas</caption>
-        <thead>
+        <caption id="alert">al eliminar una marca también se eliminarán los productos relacionados a esta
+            <button id="btn_alert" type="button" class="sowAlert">
+                <span>&times;</span>
+            </button>
+        </caption>
+        <thead> 
             <tr>
                 <th>marca</th>
                 <th>categoria</th>
@@ -50,7 +59,5 @@
 </section> 
 <!--FORMULARIO PARA INSERTAR UNA MARCA-->
 {include file="createMark.tpl"}
-<div>
-    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
-</div>
+
 {include file="footer.tpl"}

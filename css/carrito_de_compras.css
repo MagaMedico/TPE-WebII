@@ -11,6 +11,16 @@
     justify-content: space-between;
 }
 
+.table_productos{
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto 15% auto auto;
+    margin-bottom: 4%;
+    justify-content: space-between;
+}
+
+
 .titulo_table{
     padding: 2% 0;
     margin: 2% 0;
@@ -33,10 +43,16 @@ th, td{
 .btn{
     margin: 1%;
 }
-
+/*TITULO LOGOUT*/
+.cerarSesion{
+    margin: 2% 0 0 87%;
+    text-transform: uppercase;
+    color: grey;
+}
+/*BOTON LOGOUT*/
 .btn_logout{
-    margin: 1%;
-    margin-left: 45%;
+    float: right;
+    margin: 1% 5% 0 0;
 }
 
 button{
@@ -63,6 +79,31 @@ button{
 
 select{
     height: 33px;
+}
+
+/*MENSAJE DE ALERTA DE ELIMINADO DE UNA MARCA*/
+.close {
+    display: none;
+}
+
+#alert{
+    background-color: rgb(243, 193, 193);
+    padding: 2%;
+    margin: 2% 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(155, 17, 17);
+}
+
+.sowAlert{
+    width: 20px;
+    font-size: 20px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    color: rgb(155, 17, 17);
 }
 
 /*MENSAJE DE CONTRASEÑA INCORRECTA*/
