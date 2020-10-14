@@ -31,10 +31,15 @@
         function InsertProduct(){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
-                $this->model->InsertProduct($_POST['input_product'],$_POST['input_price'],$_POST['input_stock'],$_POST['input_description'],$_POST['select_brand']);
-                $marks = $this->marksModel->GetMarks();
-                $products = $this->model->GetProducts();
-                $this->loginView->ShowVerify($products, $marks);
+                if ((isset($_POST['input_product']) && isset($_POST['input_price'])) && (isset($_POST['input_stock']) && isset($_POST['input_description'])) && isset($_POST['select_brand'])) {
+                    $product = $_POST['input_product'];
+                    $price = $_POST['input_price'];
+                    $stock = $_POST['input_stock'];
+                    $description = $_POST['input_description'];
+                    $brand =  $_POST['select_brand'];
+                $this->model->InsertProduct($product,$price,$stock,$description,$brand);
+                }
+                $this->view->ShowLocation('admin');
             }else{
                 $this->loginView->Login();
             }
@@ -43,11 +48,9 @@
         function DeleteProduct($params = null){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
-            $product_id = $params[':ID'];
-            $this->model->DeleteProduct($product_id);
-            $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
-            $this->loginView->ShowVerify($products, $marks);
+                $product_id = $params[':ID'];
+                $this->model->DeleteProduct($product_id);
+                $this->view->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -77,9 +80,7 @@
                     $brand = $_POST['select_brand'];
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
                 }
-                $marks = $this->marksModel->GetMarks();
-                $products = $this->model->GetProducts();
-                $this->loginView->ShowVerify($products, $marks);
+                $this->view->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();
             }

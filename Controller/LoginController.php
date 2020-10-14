@@ -1,24 +1,30 @@
 <?php
 require_once "./View/LoginView.php";
+require_once "./View/ProductsView.php";
 require_once "./Model/LoginModel.php";
 require_once "./Model/MarksModel.php";
 require_once "./Model/ProductsModel.php";
 
 class LoginController{
+
     private $view;
+    private $productView;
     private $model;
+    private $modelProducts;
+    private $marksModel;
 
     function __construct(){
         $this->view= new LoginView();
+        $this->productView = new ProductsView();
         $this->model= new LoginModel();
         $this->modelProducts = new ProductsModel();
-        $this->marksModel = new MarksModel();
+        $this->marksModel = new MarksModel();;
     }
     //LLAMA AL LOGIN
     function Login(){
         $logeado = $this->checkLoggedIn();
         if($logeado){
-            $this->ShowAdmin();
+            $this->productView->ShowLocation('admin');
         } else {
             $this->view->ShowLogin();
         }
@@ -53,7 +59,7 @@ class LoginController{
                     }
                     $_SESSION["EMAIL"] = $userFromDB->email;
                     $_SESSION['LAST_ACTIVITY'] = time();
-                    $this->ShowAdmin();
+                    $this->productView->ShowLocation('admin');
                 }else{
                     $this->view->ShowLogin("Contraseña incorrecta");
                 }
@@ -64,11 +70,16 @@ class LoginController{
             }
         }
     }
-
+    //MUESTRA LA PAGUINA DONDE SE PUEDE MODIFICAR LOS PRODUCTOS Y MARCAS(esta función es llamada action 'admin';)
     function ShowAdmin(){
-        $marks = $this->marksModel->GetMarks();
-        $products = $this->modelProducts->GetProducts();
-        $this->view->ShowVerify($products, $marks);
+        $logeado = $this->checkLoggedIn();
+        if($logeado){
+            $marks = $this->marksModel->GetMarks();
+            $products = $this->modelProducts->GetProducts();
+            $this->view->ShowVerify($products, $marks);
+        }else{
+            $this->view->ShowLogin();
+        }
     }
 }
 ?>

@@ -9,16 +9,16 @@
 
     class MarksController{
 
-        private $Productsview;
-        private $MarksView;
+        private $productsView;
+        private $marksView;
         private $productosModel;
         private $marksModel;
         private $loginView;
         private $loginControl;
 
         function __construct(){
-            $this->Productsview = new ProductsView();
-            $this->MarksView = new MarksView();
+            $this->productsView = new ProductsView();
+            $this->marksView = new MarksView();
             $this->productosModel = new ProductsModel();
             $this->marksModel = new MarksModel();
             $this->loginView = new LoginView();
@@ -27,16 +27,18 @@
         //LLAMA AL HOME DE MARCAS
         function HomeMarks(){
             $marks = $this->marksModel->GetMarks();
-            $this->MarksView->ShowMarks($marks);
+            $this->marksView->ShowMarks($marks);
         }
         //INSERTA UNA NUEVA MARCA
         function InsertMark(){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
-                $this->marksModel->InsertMark($_POST['input_mark'],$_POST['input_category']);
-                $marks = $this->marksModel->GetMarks();
-                $products = $this->productosModel->GetProducts();
-                $this->loginView->ShowVerify($products, $marks);
+                if (isset($_POST['input_mark']) && isset($_POST['input_category'])) {
+                    $mark = $_POST['input_mark'];
+                    $category = $_POST['input_category'];
+                    $this->marksModel->InsertMark($mark, $category);
+                }
+                $this->productsView->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -45,12 +47,9 @@
         function DeleteMark($params = null){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
-                //echo "<script>alert('También se borrarán los productos relacionados a esta marca.');</script>"; 
                 $mark_id = $params[':ID'];
                 $this->marksModel->DeleteMark($mark_id);
-                $marks = $this->marksModel->GetMarks();
-                $products = $this->productosModel->GetProducts();
-                $this->loginView->ShowVerify($products, $marks);
+                $this->productsView->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -61,7 +60,7 @@
             if($logeado){
                 $mark_id = $params[':ID'];
                 $mark = $this->marksModel->GetMarkById($mark_id);
-                $this->MarksView->ShowEditMark($mark);
+                $this->marksView->ShowEditMark($mark);
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -76,9 +75,7 @@
                     $category = $_POST['edit_category'];
                     $this->marksModel->UpdateMark($mark,$category,$mark_id);
                 }
-                $marks = $this->marksModel->GetMarks();
-                $products = $this->productosModel->GetProducts();
-                $this->loginView->ShowVerify($products, $marks);
+                $this->productsView->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();
             }

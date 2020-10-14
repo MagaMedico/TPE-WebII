@@ -20,6 +20,7 @@
     //LOGIN
     $r->addRoute("login", "GET", "LoginController", "Login");
     $r->addRoute("verify", "POST", "LoginController", "VerifyUser");
+    $r->addRoute("admin", "GET", "LoginController", "ShowAdmin");
     $r->addRoute("logout", "GET", "LoginController", "Logout");
     //PRODUCTOS
     $r->addRoute("insert", "POST", "ProductsController", "InsertProduct");
