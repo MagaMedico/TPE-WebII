@@ -106,8 +106,7 @@ ALTER TABLE `marca`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_comprador` (`id_marca`),
-  ADD KEY `id_comprador_2` (`id_marca`);
+  ADD KEY `id_marca` (`id_marca`);
 
 --
 -- Indices de la tabla `usuario`
