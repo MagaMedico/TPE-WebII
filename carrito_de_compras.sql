@@ -38,10 +38,10 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id_marca`, `marca`, `categoria`) VALUES
-(2, 'donadonna', 'Bijouterie Online'),
-(3, 'Lunera acero', 'bijouterie mayorista'),
-(4, 'gotergood', 'pulseras y brazaletes para hombres'),
-(5, 'rapsodia', 'variedad de accesorios');
+(1, 'donadonna', 'Bijouterie Online'),
+(2, 'Lunera acero', 'bijouterie mayorista'),
+(3, 'gotergood', 'pulseras y brazaletes para hombres'),
+(4, 'rapsodia', 'variedad de accesorios');
 
 -- --------------------------------------------------------
 
@@ -63,14 +63,14 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `id_marca`) VALUES
-(8, 'pulsera', 205, 23, 'pulsera elegante', 2),
-(9, 'aros', 100, 20, 'aros perfecto para fiesta de noche', 2),
-(10, 'pulsera de cuentas', 200, 15, 'colores bien brillantes', 2),
-(11, 'colita fringes', 100, 8, 'ajuste delicado', 4),
-(12, 'aros square', 300, 5, 'ideal para ir a una quinta', 2),
-(13, 'mix choker+colgante', 300, 3, 'oferta imperdible', 2),
-(14, 'collar bull', 300, 5, 'genial para todos los dias', 2),
-(22, 'Collar zafiro', 240, 23, 'el colla de la marca', 2);
+(1, 'pulsera', 205, 23, 'pulsera elegante', 1),
+(2, 'aros', 100, 20, 'aros perfecto para fiesta de noche', 2),
+(3, 'pulsera de cuentas', 200, 15, 'colores bien brillantes', 3),
+(4, 'colita fringes', 100, 8, 'ajuste delicado', 4),
+(5, 'aros square', 300, 5, 'ideal para ir a una quinta', 1),
+(6, 'mix choker+colgante', 300, 3, 'oferta imperdible', 2),
+(7, 'collar bull', 300, 5, 'genial para todos los dias', 3),
+(8, 'Collar zafiro', 240, 23, 'el colla de la marca', 4);
 
 -- --------------------------------------------------------
 
@@ -123,13 +123,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
