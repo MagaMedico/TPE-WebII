@@ -5,7 +5,7 @@ class LoginView{
     private $title;
 
     function __construct(){
-        $this->title = "Editar producto";
+        $this->title = "Tabla de productos";
     }
     //MUESTRA EL LOGIN
     function ShowLogin($message = NULL){
