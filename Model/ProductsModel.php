@@ -21,9 +21,14 @@
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
         //INSERTO UN PRODUCTO
-        function InsertProduct($product,$price,$stock,$description,$brand){
-            $sentencia = $this->db->prepare("INSERT INTO producto(nombre, precio, stock, descripcion, id_marca) VALUES(?,?,?,?,?)");
-            $sentencia->execute(array($product,$price,$stock,$description,$brand));
+        function InsertProduct($product,$price,$stock,$description,$fileTemp=null,$brand){
+            $name = basename($_FILES["input_file"]["name"]);
+            $filepath = "img/". $name;
+
+            move_uploaded_file($fileTemp, $filepath);
+
+            $sentencia = $this->db->prepare("INSERT INTO producto(nombre, precio, stock, descripcion, imagen, id_marca) VALUES(?,?,?,?,?,?)");
+            $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand));
         }
         //ELIMINO UN PRODUCTO
         function DeleteProduct($product_id){
@@ -31,9 +36,14 @@
             $sentencia->execute(array($product_id));
         }
         //ACTUALIZA DATOS DE UN PRODUCTO
-        function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
-            $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, id_marca=? WHERE producto.id=?");
-            $sentencia->execute(array($product,$price,$stock,$description,$brand,$product_id));
+        function UpdateProduct($product,$price,$stock,$description,$fileTemp=null,$brand,$product_id){
+            $name = basename($_FILES["edit_file"]["name"]);
+            $filepath = "img/". $name;
+
+            move_uploaded_file($fileTemp, $filepath);
+
+            $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, imagen=?, id_marca=? WHERE producto.id=?");
+            $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand,$product_id));
         }
         //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
         function GetProductsByMark($mark_id){

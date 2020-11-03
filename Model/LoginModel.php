@@ -11,5 +11,11 @@ class LoginModel{
         $sentencia->execute(array($user));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+
+    function CreateUser($user, $password_hash, $admin){
+        $sentencia = $this->db->prepare("INSERT INTO usuario (email, password, admin) VALUES(?,?,?)");
+        $sentencia->execute(array($user,$password_hash,$admin));
+    }
+    
 }
 ?>

@@ -18,7 +18,7 @@ class LoginController{
         $this->productView = new ProductsView();
         $this->model= new LoginModel();
         $this->modelProducts = new ProductsModel();
-        $this->marksModel = new MarksModel();;
+        $this->marksModel = new MarksModel();
     }
     //LLAMA AL LOGIN
     function Login(){
@@ -27,6 +27,31 @@ class LoginController{
             $this->productView->ShowLocation('admin');
         } else {
             $this->view->ShowLogin();
+        }
+    }
+    function Register(){
+        $logeado = $this->checkLoggedIn();
+        if($logeado){
+            $this->productView->ShowLocation('admin');
+        } else {
+            $this->view->ShowRegister();
+        }
+    }
+    //GENERA UN NUEVO USUARIO
+    function NewUser(){
+        if(!empty($_POST['input_username']) && !empty($_POST['input_password']) && !empty($_POST['repeat_password'])){
+            $user = $_POST['input_username'];
+            $password = $_POST['input_username'];
+            $admin = 0;
+            if($password = $_POST['repeat_password']){
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                $this->model->CreateUser($user, $password_hash, $admin);
+                $this->productView->ShowLocation('home');
+            }else{
+                $this->view->ShowRegister('Las contraseñas no coinciden');
+            }
+        }else{
+            $this->view->ShowRegister('Complete todos los campos');
         }
     }
     //LLAMO AL LOGOUT
@@ -39,9 +64,11 @@ class LoginController{
     //VEO SI ESTA LOGGEADO
     function checkLoggedIn(){
         session_start();
-        if(!isset($_SESSION['EMAIL'])){
+        if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 1){
+            return true;
+        }else{
             return false;
-        }else return true;
+        }
     }  
     //VERIFICO MI USUARIO
     function VerifyUser(){
@@ -58,8 +85,14 @@ class LoginController{
                         header("Location: ".LOGOUT);
                     }
                     $_SESSION["EMAIL"] = $userFromDB->email;
+                    $_SESSION["ADMIN"] = $userFromDB->admin;
                     $_SESSION['LAST_ACTIVITY'] = time();
-                    $this->productView->ShowLocation('admin');
+                    if($userFromDB->admin == 1){
+                        $this->productView->ShowLocation('admin');
+                    }else{
+                        $this->productView->ShowLocation('home');
+                    }
+                   
                 }else{
                     $this->view->ShowLogin("Contraseña incorrecta");
                 }

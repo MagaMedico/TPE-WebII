@@ -1,4 +1,13 @@
 {include file="header.tpl"}
+
+ <!--BARRA DE NAVEGACIÓN ADMINISTRADOR-->
+    <nav class="botoneratexto">
+        <ul class="menu">
+            <li class="botones_admin"><a href="admin">Producto</a></li>
+            <li class="botones_admin"><a href="adminUsers">Usuarios</a></li>
+        </ul>
+    </nav>
+
 <div>
     <p class="cerarSesion">cerrar sesión</p>
     <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
@@ -8,6 +17,7 @@
         <caption class="titulo_table">{$titulo}</caption>
         <thead>
             <tr>
+                <th>imagen</th>
                 <th>producto</th>
                 <th>precio</th>
                 <th>stock</th>
@@ -17,6 +27,7 @@
         <tbody id="tabla">
             {foreach from=$productos item=producto}
                 <tr>
+                    <td><img class="img" src="{$producto->imagen}"></td>
                     <td>{$producto->nombre}</td>
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>

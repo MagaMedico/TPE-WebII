@@ -31,15 +31,22 @@
         function InsertProduct(){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
-                if ((isset($_POST['input_product']) && isset($_POST['input_price'])) && (isset($_POST['input_stock']) && isset($_POST['input_description'])) && isset($_POST['select_brand'])) {
+                if (isset($_POST['input_product']) && isset($_POST['input_price']) && 
+                    isset($_POST['input_stock']) && isset($_POST['input_description']) && isset($_POST['select_brand']) && 
+                    ($_FILES['input_file']['type'] == "image/jpg" || $_FILES['input_file']['type'] == "image/jpeg" || $_FILES['input_file']['type'] == "image/png")) {
                     $product = $_POST['input_product'];
                     $price = $_POST['input_price'];
                     $stock = $_POST['input_stock'];
                     $description = $_POST['input_description'];
                     $brand =  $_POST['select_brand'];
-                $this->model->InsertProduct($product,$price,$stock,$description,$brand);
+                    $fileTemp = $_FILES['input_file']['tmp_name'];
+                    $this->model->InsertProduct($product,$price,$stock,$description,$fileTemp,$brand);
                 }
-                $this->view->ShowLocation('admin');
+                else{
+                    $this->model->InsertProduct($product,$price,$stock,$description,$brand);
+                }
+                $this->view->ShowLocation('admin'); 
+
             }else{
                 $this->loginView->Login();
             }
@@ -72,12 +79,17 @@
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
                 $product_id = $params[':ID'];
-                if ((isset($_POST['edit_product']) && isset($_POST['edit_price'])) && (isset($_POST['edit_stock']) && isset($_POST['edit_description'])) && isset($_POST['select_brand'])) {
+                if (isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand']) && 
+                ($_FILES['edit_file']['type'] == "image/jpg" || $_FILES['edit_file']['type'] == "image/jpeg" || $_FILES['edit_file']['type'] == "image/png")) {
                     $product = $_POST['edit_product'];
                     $price = $_POST['edit_price'];
                     $stock = $_POST['edit_stock'];
                     $description = $_POST['edit_description'];
                     $brand = $_POST['select_brand'];
+                    $fileTemp = $_FILES['edit_file']['tmp_name'];
+                    $this->model->UpdateProduct($product,$price,$stock,$description,$fileTemp,$brand,$product_id);
+                }
+                else{
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
                 }
                 $this->view->ShowLocation('admin');

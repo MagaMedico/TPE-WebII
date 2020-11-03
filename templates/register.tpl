@@ -8,17 +8,18 @@
     </div>
     <div class="container">
     <h1>Login</h1>
-        <form action="verify" method="post">
+        <form action="newUser" method="post">
             <!-- Username -->
             <label class="label" for="name">Username:</label>
             <input class="input" type="name" name="input_username" placeholder="username" required>
             <!-- Password -->
-            <label class="label" for="username">Password:</label>       
+            <label class="label" for="username">Password:</label>
             <input class="input" type="password" name="input_password" placeholder="password" required>
-            <p class="label"><a href="#">Forgot your password?</a></p>
-            <p class="label"><a href="register">REGISTER</a></p>
+            <label class="label" for="username">Repeat Password:</label>
+            <input class="input" type="password" name="repeat_password" placeholder="password" required>  
+            
             <!-- Submit Button -->
-            <button class="btn" type="submit">Login</button>
+            <button class="btn" type="submit">register</button>
         </form>       
     </div>
 {include file="footer.tpl"}
