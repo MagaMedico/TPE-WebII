@@ -36,7 +36,7 @@
     $r->addRoute("editMark/:ID", "GET", "MarksController", "EditMark");
     $r->addRoute("updateMark/:ID", "POST", "MarksController", "UpdateMark");
     //ADMIN USER
-    $r->addRoute("adminUsers", "GET", "UserController", "SowUsers");
+    $r->addRoute("adminUsers", "GET", "UserController", "ShowUsers");
     $r->addRoute("editUser/:ID", "GET", "UserController", "EditUser");
     $r->addRoute("updateUser/:ID", "POST", "UserController", "UpdateUser");
     $r->addRoute("deleteUser/:ID", "GET", "UserController", "DeleteUser");

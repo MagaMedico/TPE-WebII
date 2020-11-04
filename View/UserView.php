@@ -13,5 +13,10 @@ class UserView{
         $this->smarty->assign('usuarios', $users);
         $this->smarty->display('templates/users.tpl');        
     }
+    //MUESTRA LA PANTALLA DE EDITAR USUARIO
+    function ShowEdit($user){
+        $this->smarty->assign('usuario', $user);
+        $this->smarty->display('templates/editUser.tpl');
+    }
 }
 ?>
