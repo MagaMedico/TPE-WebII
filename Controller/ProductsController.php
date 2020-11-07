@@ -25,7 +25,26 @@
         function Home(){
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            $this->view->ShowHome($products, $marks);
+            //PAGINACIÓN
+            $productoPorPagina = 3;
+
+            if(isset($_GET['pagina'])){
+                $pagina =$_GET['pagina'];
+            }else{
+                $pagina = 1;
+            }
+            
+            $filas = count($products);
+            $totalPaginas = ceil($filas/$productoPorPagina);
+            $desde = ($pagina-1)*$productoPorPagina;
+            $productLimit= $this->model->GetProductsByLimit($desde, $productoPorPagina);
+            
+            $paginacion = [];
+            for ($i = 1; $i <= $totalPaginas; $i++){
+                array_push($paginacion, $i);
+            }
+
+            $this->view->ShowHome($productLimit, $marks, $paginacion);
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){

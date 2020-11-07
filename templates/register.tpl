@@ -11,7 +11,7 @@
         <form action="newUser" method="post">
             <!-- Username -->
             <label class="label" for="name">Username:</label>
-            <input class="input" type="name" name="input_username" placeholder="username" required>
+            <input class="input" type="name" name="input_username" placeholder="username" value="{$usuario}" required>
             <!-- Password -->
             <label class="label" for="username">Password:</label>
             <input class="input" type="password" name="input_password" placeholder="password" required>

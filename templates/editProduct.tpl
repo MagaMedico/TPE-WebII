@@ -13,7 +13,7 @@
     <select name="select_brand">
         {foreach from=$marks item=mark}
             {if $mark->id_marca == $producto->id_marca}
-                <option selected="{$mark->id_marca}">{$mark->marca}</option>
+                <option selected="{$mark->id_marca}" value="{$mark->id_marca}">{$mark->marca}</option>
             {else}
                 <option value="{$mark->id_marca}">{$mark->marca}</option>
             {/if}

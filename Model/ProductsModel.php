@@ -41,7 +41,7 @@
             $filepath = "img/". $name;
 
             move_uploaded_file($fileTemp, $filepath);
-
+            
             $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, imagen=?, id_marca=? WHERE producto.id=?");
             $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand,$product_id));
         }
@@ -49,6 +49,12 @@
         function GetProductsByMark($mark_id){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_marca=?");
             $sentencia->execute([$mark_id]);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+        //BUSCA PRODUCTOS CON UN LIMITE DESDE QUE PRODUCTO Y CUANTOS RESULTADOS
+        function GetProductsByLimit($desde, $productoPorPagina){
+            $sentencia = $this->db->prepare("SELECT * FROM producto LIMIT $desde,$productoPorPagina");
+            $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
     }

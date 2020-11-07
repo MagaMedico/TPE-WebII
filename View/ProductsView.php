@@ -17,11 +17,12 @@
             header("Location: ".BASE_URL.$action);
         }
         //MUESTRA EL HOME
-        function ShowHome($products, $marks){
+        function ShowHome($products, $marks, $paginacion){
             $smarty = new Smarty();
             $smarty->assign('titulo', $this->title);
             $smarty->assign('productos', $products);
             $smarty->assign('marks', $marks);
+            $smarty->assign('paginacion', $paginacion);
             // muestro el template 
             $smarty->display('templates/products.tpl'); 
         }

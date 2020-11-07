@@ -15,8 +15,9 @@ class LoginView{
         $this->smarty->display('templates/login.tpl');        
     }
     //MUESTRA EL FORMULARIO DE REGISTRO
-    function ShowRegister($message = NULL){
+    function ShowRegister($message = NULL, $user = NULL){
         $this->smarty->assign('message', $message);
+        $this->smarty->assign('usuario', $user);
         $this->smarty->display('templates/register.tpl');        
     }
     //MUESTRA LA PAGINA PARA EL ADMIN
