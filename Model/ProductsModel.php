@@ -36,7 +36,7 @@
             $sentencia->execute(array($product_id));
         }
         //ACTUALIZA DATOS DE UN PRODUCTO
-        function UpdateProduct($product,$price,$stock,$description,$fileTemp=null,$brand,$product_id){
+        function UpdateProductImg($product,$price,$stock,$description,$fileTemp=null,$brand,$product_id){
             $name = basename($_FILES["edit_file"]["name"]);
             $filepath = "img/". $name;
 
@@ -44,6 +44,11 @@
             
             $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, imagen=?, id_marca=? WHERE producto.id=?");
             $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand,$product_id));
+        }
+          //ACTUALIZA DATOS DE UN PRODUCTO SIN IMAGEN
+          function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
+            $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, id_marca=? WHERE producto.id=?");
+            $sentencia->execute(array($product,$price,$stock,$description,$brand,$product_id));
         }
         //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
         function GetProductsByMark($mark_id){
@@ -56,6 +61,11 @@
             $sentencia = $this->db->prepare("SELECT * FROM producto LIMIT $desde,$productoPorPagina");
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+        //BORRA LA IMAGEN
+        function DeleteImg($filepath, $product_id){
+            $sentencia = $this->db->prepare("UPDATE producto SET imagen=? WHERE id=?");
+            $sentencia->execute(array($filepath,$product_id));
         }
     }
 ?>

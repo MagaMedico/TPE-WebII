@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/login.css">
     <script src="js/btn_alert.js" defer></script>
     <link rel="shortcut icon" href="images/zafiro.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/dae53e07cf.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!--ENCABEZADO-->

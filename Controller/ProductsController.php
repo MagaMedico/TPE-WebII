@@ -22,14 +22,14 @@
             $this->loginControl = new LoginController();
         }
         //LLAMA AL HOME
-        function Home(){
+        function Home($params = null){
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
             //PAGINACIÓN
             $productoPorPagina = 3;
 
-            if(isset($_GET['pagina'])){
-                $pagina =$_GET['pagina'];
+            if(isset($params[':ID'])){
+                $pagina = $params[':ID'];
             }else{
                 $pagina = 1;
             }
@@ -44,7 +44,7 @@
                 array_push($paginacion, $i);
             }
 
-            $this->view->ShowHome($productLimit, $marks, $paginacion);
+            $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
@@ -106,9 +106,14 @@
                     $description = $_POST['edit_description'];
                     $brand = $_POST['select_brand'];
                     $fileTemp = $_FILES['edit_file']['tmp_name'];
-                    $this->model->UpdateProduct($product,$price,$stock,$description,$fileTemp,$brand,$product_id);
+                    $this->model->UpdateProductImg($product,$price,$stock,$description,$fileTemp,$brand,$product_id);
                 }
-                else{
+                else if(isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand'])){
+                    $product = $_POST['edit_product'];
+                    $price = $_POST['edit_price'];
+                    $stock = $_POST['edit_stock'];
+                    $description = $_POST['edit_description'];
+                    $brand = $_POST['select_brand'];
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
                 }
                 $this->view->ShowLocation('admin');
@@ -132,6 +137,26 @@
             $mark_id = $product->id_marca;
             $mark = $this->marksModel->GetMarkById($mark_id);
             $this->view->ShowItemDetail($product, $mark); 
+        }
+
+        function DeleteImg($params = null){
+            $logeado = $this->loginControl->checkLoggedIn();
+            if($logeado){
+                $product_id = $params[':ID'];
+                $filepath ="";
+                $this->model->DeleteImg($filepath, $product_id);
+                $this->view->ShowLocation('admin');
+            }else{
+                $this->loginView->ShowLogin();
+            }
+
+        }
+
+        function SearchItem(){
+            if(isset($_POST["input_search"])){
+                $search = $_POST["input_search"];
+                $products= $this->model->SearchItem($search);
+            }
         }
     }
 ?>

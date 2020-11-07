@@ -1,6 +1,8 @@
 {include file="header.tpl"}
 <!--SELECTOR DE MARCA PARA FILTRAR-->
 {include file="select-mark.tpl"}
+<!--BUSCADOR-->
+{include file="search.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
 <section class="contenedor_table">
     <table class="table">
@@ -38,7 +40,11 @@
 <ul class="navCompaginacion">
     {foreach from=$paginacion item=indice}
         <li class="liCompagnacion">
-            <a class="linkCompaginacion" href="?pagina={$indice}">{$indice}</a>
+           {if $indice == $pagina}
+                <a class="linkCompaginacion marcado" href="home/{$indice}">{$indice}</a>
+            {else}
+                <a class="linkCompaginacion" href="home/{$indice}">{$indice}</a>
+            {/if}
         </li>
     {/foreach}    
 </ul>

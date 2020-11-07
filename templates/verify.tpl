@@ -27,7 +27,12 @@
         <tbody id="tabla">
             {foreach from=$productos item=producto}
                 <tr>
-                    <td><img class="img" src="{$producto->imagen}"></td>
+                    <td>
+                        <img class="img" src="{$producto->imagen}">
+                        {if $producto->imagen}
+                            <button  type="button"><a href="deleteImg/{$producto->id}"><i class="fas fa-trash"></i></a></button>
+                        {/if}
+                    </td>
                     <td>{$producto->nombre}</td>
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>

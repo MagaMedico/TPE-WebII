@@ -152,4 +152,8 @@ body{
     .linkCompaginacion{
        color: black;
     }
+
+    .marcado{
+        color: blue;
+    }
 }
