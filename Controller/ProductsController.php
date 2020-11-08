@@ -138,7 +138,7 @@
             $mark = $this->marksModel->GetMarkById($mark_id);
             $this->view->ShowItemDetail($product, $mark); 
         }
-
+        //BORRA UNA IMAGEN
         function DeleteImg($params = null){
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado){
@@ -151,7 +151,7 @@
             }
 
         }
-
+        //BUSCA ITEMS
         function SearchItem(){
             if(!empty($_POST["input_name"])){
                 $search = $_POST["input_name"];

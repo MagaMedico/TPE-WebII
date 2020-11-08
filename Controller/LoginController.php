@@ -29,6 +29,7 @@ class LoginController{
             $this->view->ShowLogin();
         }
     }
+    //LLAMA A LA VISTA DEL REGISTRO DE UN NUEVO USUARIO
     function Register(){
         $logeado = $this->checkLoggedIn();
         if($logeado){
