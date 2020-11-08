@@ -127,7 +127,7 @@
                 $mark_id = $_POST['select_brand'];
                 $products = $this->model->GetProductsByMark($mark_id);
                 $marks = $this->marksModel->GetMarks();
-                $this->view->ShowHome($products, $marks);
+                $this->view->ShowSearch($products, $marks);
             }
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO
@@ -153,10 +153,19 @@
         }
 
         function SearchItem(){
-            if(isset($_POST["input_search"])){
-                $search = $_POST["input_search"];
-                $products= $this->model->SearchItem($search);
+            if(!empty($_POST["input_name"])){
+                $search = $_POST["input_name"];
+                $products= $this->model->SearchItemByName($search);
+            } else if(!empty($_POST["input_price"])){
+                $search = $_POST["input_price"];
+                $products= $this->model->SearchItemByPrice($search);
+            } else if(!empty($_POST["input_name"])&&!empty($_POST["input_price"])){
+                $name = $_POST["input_name"];
+                $price = $_POST["input_price"];
+                $products= $this->model->SearchItem($name, $price);
             }
+            $marks = $this->marksModel->GetMarks();
+            $this->view->ShowSearch($products, $marks);
         }
     }
 ?>

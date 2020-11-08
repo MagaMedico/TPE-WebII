@@ -67,5 +67,23 @@
             $sentencia = $this->db->prepare("UPDATE producto SET imagen=? WHERE id=?");
             $sentencia->execute(array($filepath,$product_id));
         }
+        //BUSCO ITEMS SEGÚN UN NOMBRE
+        function SearchItemByName($search){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=?");
+            $sentencia->execute([$search]);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+        //BUSCO ITEMS SEGÚN UN PRECIO
+        function SearchItemByPrice($search){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio=?");
+            $sentencia->execute([$search]);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+        //BUSCO ITEMS SEGÚN UN NOMBRE Y UN PRECIO
+        function SearchItem($name, $price){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio=?");
+            $sentencia->execute([$name, $price]);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
     }
 ?>

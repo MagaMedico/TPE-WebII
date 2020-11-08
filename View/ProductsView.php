@@ -6,11 +6,13 @@
 
         private $title;
         private $titleEdit;
+        private $smarty;
         
         function __construct(){
             $this->title = "Tabla de productos";
             $this->titleEdit = "Editar producto";
             $this->titleMark = "Tabla de marcas";
+            $this->smarty = new Smarty();
         }
         //REDIRECCIONA LAS CONSTANTES PARA RUTEO 
         function ShowLocation($action){
@@ -18,31 +20,36 @@
         }
         //MUESTRA EL HOME
         function ShowHome($products, $marks, $paginacion, $pagina){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', $this->title);
-            $smarty->assign('productos', $products);
-            $smarty->assign('marks', $marks);
-            $smarty->assign('paginacion', $paginacion);
-            $smarty->assign('pagina', $pagina);
+            $this->smarty->assign('titulo', $this->title);
+            $this->smarty->assign('productos', $products);
+            $this->smarty->assign('marks', $marks);
+            $this->smarty->assign('paginacion', $paginacion);
+            $this->smarty->assign('pagina', $pagina);
             // muestro el template 
-            $smarty->display('templates/products.tpl'); 
+            $this->smarty->display('templates/products.tpl'); 
         }
         //VISTA PARA EDITAR UN PRODUCTO
         function ShowEditProduct($product, $marks){
-            $smarty = new Smarty();
-            $smarty->assign('producto', $product);
-            $smarty->assign('marks', $marks);
+            $this->smarty->assign('producto', $product);
+            $this->smarty->assign('marks', $marks);
             // muestro el template 
-            $smarty->display('templates/editProduct.tpl'); 
+            $this->smarty->display('templates/editProduct.tpl'); 
         }
         //VISTA DE UN PRODUCTO EN DETALLE - TABLA PRODUCTO Y TABLA DE LA MARCA
         function ShowItemDetail($product, $mark){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', $this->title);
-            $smarty->assign('producto', $product);
-            $smarty->assign('mark', $mark);
+            $this->smarty->assign('titulo', $this->title);
+            $this->smarty->assign('producto', $product);
+            $this->smarty->assign('mark', $mark);
             // muestro el template 
-            $smarty->display('templates/itemDetail.tpl'); 
+            $this->smarty->display('templates/itemDetail.tpl'); 
         }
+        //VEO LO BUSCADO
+        function ShowSearch($products, $marks){
+            $this->smarty->assign('titulo', $this->title);
+            $this->smarty->assign('productos', $products);
+            $this->smarty->assign('marks', $marks);
+            $this->smarty->display('templates/showSearch.tpl'); 
+        }
+
     }
 ?>
