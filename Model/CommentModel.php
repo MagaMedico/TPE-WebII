@@ -14,3 +14,4 @@ class CommentModel{
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+}

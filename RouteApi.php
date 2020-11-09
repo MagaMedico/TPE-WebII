@@ -1,6 +1,6 @@
 <?php
     require_once 'RouterClass.php';
-    require_once 'Api/ApiCommentController.php';
+    require_once 'api/ApiCommentController.php';
 
     // instacio el router
     $router = new Router();

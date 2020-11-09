@@ -11,8 +11,8 @@ class ApiCommentController extends ApiController {
     }
 
     public function GetComments($params = null) {
-       // $comments = $this->model->GetComments();
-        //$this->view->response($comments, 200);
+        $comments = $this->model->GetComments();
+        $this->view->response($comments, 200);
     }
 
     
