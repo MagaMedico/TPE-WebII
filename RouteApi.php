@@ -7,13 +7,10 @@
 
     // armo la tabla de ruteo de la API REST
     $router->addRoute('comments', 'GET', 'ApiCommentController', 'GetComments');
+    $router->addRoute('comments', 'POST', 'ApiCommentController', 'InsertComment');
+    $router->addRoute('comments/:ID', 'DELETE', 'ApiCommentController', 'DeleteComment');
     /*
     $router->addRoute('comments/:ID', 'GET', 'ApiCommentController', 'GetComment');
-    $router->addRoute('comments/:ID', 'DELETE', 'ApiCommentController', 'DeleteComment');
-
-    $router->addRoute('comments', 'POST', 'ApiCommentController', 'InsertComment');
-
-
     $router->addRoute('comments/:ID', 'PUT', 'ApiCommentController', 'UpdateComment'); */
     
     //run

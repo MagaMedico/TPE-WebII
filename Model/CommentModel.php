@@ -14,4 +14,21 @@ class CommentModel{
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function GetComment($id_comentario){
+        $sentencia=$this->db->prepare("SELECT * FROM comentario WHERE id_comentario=?");
+        $sentencia->execute(array($id_comentario));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
+    function InsertComment($comentario, $valoracion, $id_usuario, $id_producto){
+        $sentencia = $this->db->prepare("INSERT INTO comentario(comentario, valoracion, id_usuario, id_producto) VALUES(?,?,?,?)");
+        $sentencia->execute(array($comentario, $valoracion, $id_usuario, $id_producto));
+        return $this->db->lastInsertId();
+    }
+
+    function DeleteComment($id_comentario){
+        $sentencia = $this->db->prepare("DELETE FROM comentario WHERE id_comentario=?");
+        $sentencia->execute(array($id_comentario));
+    }
 }

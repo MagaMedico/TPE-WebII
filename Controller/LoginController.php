@@ -60,7 +60,6 @@ class LoginController{
         session_start();
         session_destroy();
         header("Location: ".LOGIN);
-
     }
     //VEO SI ESTA LOGGEADO
     function checkLoggedIn(){

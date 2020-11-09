@@ -53,7 +53,7 @@
         //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
         function GetProductsByMark($mark_id){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_marca=?");
-            $sentencia->execute([$mark_id]);
+            $sentencia->execute(array($mark_id));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCA PRODUCTOS CON UN LIMITE DESDE QUE PRODUCTO Y CUANTOS RESULTADOS
@@ -70,19 +70,19 @@
         //BUSCO ITEMS SEGÚN UN NOMBRE
         function SearchItemByName($search){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=?");
-            $sentencia->execute([$search]);
+            $sentencia->execute(array($search));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN PRECIO
         function SearchItemByPrice($search){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio=?");
-            $sentencia->execute([$search]);
+            $sentencia->execute(array($search));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE Y UN PRECIO
         function SearchItem($name, $price){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio=?");
-            $sentencia->execute([$name, $price]);
+            $sentencia->execute(array($name, $price));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
     }

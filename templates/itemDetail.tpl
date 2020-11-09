@@ -39,4 +39,5 @@
         </tbody>
     </table>
 </section> 
+{include file="comment.tpl"}
 {include file="footer.tpl"}
