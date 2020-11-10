@@ -1,9 +1,9 @@
 {include file="header.tpl"}
  <!--BARRA DE NAVEGACIÓN ADMINISTRADOR-->
-    <nav class="botoneratexto">
-        <ul class="menu">
-            <li class="botones_admin"><a href="admin">Producto</a></li>
-            <li class="botones_admin"><a href="adminUsers">Usuarios</a></li>
+   <nav class="botoneratexto">
+        <ul class="menu botones_admin">
+            <li class="botones"><a class="link" href="admin">Producto</a></li>
+            <li class="botones"><a class="link" href="adminUsers">Usuarios</a></li>
         </ul>
     </nav>
 

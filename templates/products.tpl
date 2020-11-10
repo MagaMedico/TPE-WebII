@@ -25,11 +25,12 @@
                     <td>{$producto->precio}</td>
                     <td>{$producto->stock}</td>
                     <td>{$producto->descripcion}</td>
-                    {foreach from=$marks item=mark}
+                    <!--{foreach from=$marks item=mark}
                         {if $mark->id_marca == $producto->id_marca}
                             <td>{$mark->marca}</td>
                         {/if}
-                    {/foreach}
+                    {/foreach}-->
+                    <td>{$producto->marca}</td>
                     <td class="excepcion"><button type="button"><a href="itemDetail/{$producto->id}">ver más</a></button></td>
                 </tr>
             {/foreach}

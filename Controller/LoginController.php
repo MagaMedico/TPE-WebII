@@ -42,14 +42,15 @@ class LoginController{
     function NewUser(){
         if(!empty($_POST['input_username']) && !empty($_POST['input_password']) && !empty($_POST['repeat_password'])){
             $user = $_POST['input_username'];
-            $password = $_POST['input_username'];
+            $password = $_POST['input_password'];
             $admin = 0;
-            if($password = $_POST['repeat_password']){
+            if($password == $_POST['repeat_password']){
                 $password_hash = password_hash($password, PASSWORD_DEFAULT);
                 $this->model->CreateUser($user, $password_hash, $admin);
                 $this->productView->ShowLocation('home');
             }else{
-                $this->view->ShowRegister('Las contraseñas no coinciden');
+                $user = $_POST['input_username'];
+                $this->view->ShowRegister('Las contraseñas no coinciden', $user);
             }
         }else{
             $this->view->ShowRegister('Complete todos los campos');

@@ -58,7 +58,7 @@
         }
         //BUSCA PRODUCTOS CON UN LIMITE DESDE QUE PRODUCTO Y CUANTOS RESULTADOS
         function GetProductsByLimit($desde, $productoPorPagina){
-            $sentencia = $this->db->prepare("SELECT * FROM producto LIMIT $desde,$productoPorPagina");
+            $sentencia = $this->db->prepare("SELECT * FROM producto INNER JOIN marca ON producto.id_marca = marca.id_marca LIMIT $desde,$productoPorPagina");
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }

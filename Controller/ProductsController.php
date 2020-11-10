@@ -25,26 +25,34 @@
         function Home($params = null){
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
-            //PAGINACIÓN
-            $productoPorPagina = 3;
 
+            $datos_paginacion = $this->Paginacion($products, $params);
+            
+            $productLimit = $datos_paginacion[0];
+            $paginacion = $datos_paginacion[1];
+            $pagina = $datos_paginacion[2];
+
+            $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
+        }
+        //PAGINACIÓN
+        function Paginacion($products, $params){
+            $datos_paginacion = [];
+            $productoPorPagina = 3;
             if(isset($params[':ID'])){
                 $pagina = $params[':ID'];
             }else{
                 $pagina = 1;
             }
-            
             $filas = count($products);
             $totalPaginas = ceil($filas/$productoPorPagina);
             $desde = ($pagina-1)*$productoPorPagina;
             $productLimit= $this->model->GetProductsByLimit($desde, $productoPorPagina);
-            
             $paginacion = [];
             for ($i = 1; $i <= $totalPaginas; $i++){
                 array_push($paginacion, $i);
             }
-
-            $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
+            array_push($datos_paginacion, $productLimit, $paginacion, $pagina);
+            return $datos_paginacion;
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
