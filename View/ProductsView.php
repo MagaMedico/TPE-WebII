@@ -37,11 +37,12 @@
             $this->smarty->display('templates/editProduct.tpl'); 
         }
         //VISTA DE UN PRODUCTO EN DETALLE - TABLA PRODUCTO Y TABLA DE LA MARCA
-        function ShowItemDetail($product, $mark, $user = null){
+        function ShowItemDetail($product, $mark, $user = null, $Iduser = null){
             $this->smarty->assign('titulo', $this->title);
             $this->smarty->assign('producto', $product);
             $this->smarty->assign('mark', $mark);
             $this->smarty->assign('usuario', $user);
+            $this->smarty->assign('Iduser', $Iduser);
             // muestro el template 
             $this->smarty->display('templates/itemDetail.tpl'); 
         }

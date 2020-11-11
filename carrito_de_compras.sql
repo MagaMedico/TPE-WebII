@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2020 a las 19:22:50
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 11-11-2020 a las 21:59:24
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comentario` (
-  `id_comentario` int(50) NOT NULL,
+  `id_comentario` int(11) NOT NULL,
   `comentario` varchar(200) NOT NULL,
-  `id_usuario` int(50) NOT NULL,
-  `id_producto` int(50) NOT NULL
+  `valoracion` int(1) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `comentario`, `valoracion`, `id_usuario`, `id_producto`) VALUES
+(2, 'insertado desde postman', 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -83,7 +91,6 @@ INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `image
 (3, 'pulsera de cuentas', 200, 15, 'colores bien brillantes', 'img/pulsera4.jpg', 5),
 (4, 'colita fringes', 100, 8, 'ajuste delicado', '', 4),
 (5, 'aros square', 300, 5, 'ideal para ir a una quinta', '', 1),
-(6, 'mix choker+colgante', 300, 3, 'oferta imperdible', '', 2),
 (7, 'collar bull', 300, 5, 'genial para todos los dias', 'img/pulsera7.jpg', 1),
 (8, 'Collar zafiro', 240, 23, 'el colla de la marca', '', 4),
 (9, 'aros hanna', 12122, 12, 'agregado desde la pagina', '', 5);
@@ -107,8 +114,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `email`, `password`, `admin`) VALUES
 (1, 'magamedico@gmail.com', '$2y$10$zJCL282zDJdwSfggMMHSNuikf0hxDZiwz9KckRW/G8D/ACxo8buq2', 1),
-(2, 'usuario@publico', '$2y$10$zJCL282zDJdwSfggMMHSNuikf0hxDZiwz9KckRW/G8D/ACxo8buq2', 0),
-(3, 'nuevo@publico', '$2y$10$2zE98Ld1qoyvldSyucCKYOda2CcVVvUAYUIBJyeyMZlzg8f.haE8i', 0);
+(3, 'nuevo@publico', '$2y$10$2zE98Ld1qoyvldSyucCKYOda2CcVVvUAYUIBJyeyMZlzg8f.haE8i', 0),
+(4, 'usuario@publico', '$2y$10$tAs6KneNjG6.v4Pz1O/93eiPxZZhWeszzHM5zBPz13ZHpu1R9RnGu', 0);
 
 --
 -- Índices para tablas volcadas
@@ -149,7 +156,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -167,7 +174,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -177,8 +184,8 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

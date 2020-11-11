@@ -95,6 +95,7 @@ class LoginController{
                         header("Location: ".LOGOUT);
                     }
                     $_SESSION["EMAIL"] = $userFromDB->email;
+                    $_SESSION["ID"] = $userFromDB->id;
                     $_SESSION["ADMIN"] = $userFromDB->admin;
                     $_SESSION['LAST_ACTIVITY'] = time();
                     if($userFromDB->admin == 1){

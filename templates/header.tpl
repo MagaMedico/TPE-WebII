@@ -11,6 +11,8 @@
     <script src="js/btn_alert.js" defer></script>
     <link rel="shortcut icon" href="images/zafiro.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/dae53e07cf.js" crossorigin="anonymous"></script>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
     <!--ENCABEZADO-->
