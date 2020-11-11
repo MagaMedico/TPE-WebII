@@ -23,6 +23,7 @@
         }
         //LLAMA AL HOME
         function Home($params = null){
+            $logeado = $this->loginControl->checkLoggedInUser();
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
 
@@ -31,8 +32,13 @@
             $productLimit = $datos_paginacion[0];
             $paginacion = $datos_paginacion[1];
             $pagina = $datos_paginacion[2];
-
-            $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
+            if($logeado){
+                $user = $_SESSION['EMAIL'];
+                $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina, $user);
+            }else{
+                $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
+            }
+            
         }
         //PAGINACIÓN
         function Paginacion($products, $params){
@@ -140,11 +146,17 @@
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO
         function ItemDetail($params = null){
+            $logeado = $this->loginControl->checkLoggedInUser();
             $product_id = $params[':ID'];
             $product = $this->model->GetProductById($product_id);
             $mark_id = $product->id_marca;
             $mark = $this->marksModel->GetMarkById($mark_id);
-            $this->view->ShowItemDetail($product, $mark); 
+            if($logeado){
+                $user = $_SESSION['EMAIL'];
+                $this->view->ShowItemDetail($product, $mark, $user);
+            }else{
+                $this->view->ShowItemDetail($product, $mark);
+            }
         }
         //BORRA UNA IMAGEN
         function DeleteImg($params = null){

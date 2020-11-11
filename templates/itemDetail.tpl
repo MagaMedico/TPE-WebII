@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
+<h3>{$usuario}</h3>
 <section class="contenedor_table">
     <table class="table">
         <caption class="titulo_table">detalle de producto</caption>
@@ -38,6 +39,13 @@
                 </tr>   
         </tbody>
     </table>
-</section> 
-{include file="comment.tpl"}
+</section>
+{if $usuario}
+    {include file="comment.tpl"}
+{/if}
+
+<div>
+    {include file="vue/comments.vue"}
+</div>
+<script src="../js/comments.js"></script>
 {include file="footer.tpl"}

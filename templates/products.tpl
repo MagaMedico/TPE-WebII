@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 <!--SELECTOR DE MARCA PARA FILTRAR-->
+<h3>{$usuario}</h3>
 {include file="select-mark.tpl"}
 <!--BUSCADOR-->
 {include file="search.tpl"}
