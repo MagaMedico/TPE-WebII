@@ -1,6 +1,12 @@
 {include file="header.tpl"}
 <!--SELECTOR DE MARCA PARA FILTRAR-->
+{if $usuario}
 <h3>{$usuario}</h3>
+<div>
+    <p class="cerarSesion">cerrar sesión</p>
+    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
+</div>
+{/if}
 {include file="select-mark.tpl"}
 <!--BUSCADOR-->
 {include file="search.tpl"}

@@ -52,7 +52,7 @@ class UserController{
     }
 
     function DeleteUser($params = null){
-        $logeado = $this->loginControl->checkLoggedIn();
+        $logeado = $this->loginControl->CheckLoggedIn();
         if($logeado){
             $id = $params[':ID'];
             $this->model->DeleteUser($id);

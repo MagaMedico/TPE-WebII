@@ -31,7 +31,7 @@
         }
         //INSERTA UNA NUEVA MARCA
         function InsertMark(){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 if (isset($_POST['input_mark']) && isset($_POST['input_category'])) {
                     $mark = $_POST['input_mark'];
@@ -45,7 +45,7 @@
         }
         //ELIMINA UNA MARCA POR ID
         function DeleteMark($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $mark_id = $params[':ID'];
                 $this->marksModel->DeleteMark($mark_id);
@@ -56,7 +56,7 @@
         }
         //LLAMA LA VISTA PARA EDITAR UNA MARCA POR ID
         function EditMark($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $mark_id = $params[':ID'];
                 $mark = $this->marksModel->GetMarkById($mark_id);
@@ -67,7 +67,7 @@
         }
         //LLAMA A ACTUALIZAR UNA MARCA
         function UpdateMark($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $mark_id = $params[':ID'];
                 if (isset($_POST['edit_mark']) && isset($_POST['edit_category'])) {

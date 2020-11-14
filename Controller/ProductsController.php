@@ -23,7 +23,7 @@
         }
         //LLAMA AL HOME
         function Home($params = null){
-            $logeado = $this->loginControl->checkLoggedInUser();
+            $logeado = $this->loginControl->CheckLoggedInUser();
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
 
@@ -62,7 +62,7 @@
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 if (isset($_POST['input_product']) && isset($_POST['input_price']) && 
                     isset($_POST['input_stock']) && isset($_POST['input_description']) && isset($_POST['select_brand']) && 
@@ -86,7 +86,7 @@
         }
         //ELIMINA UN PRODUCTO POR ID
         function DeleteProduct($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $product_id = $params[':ID'];
                 $this->model->DeleteProduct($product_id);
@@ -109,7 +109,7 @@
         }
         //LLAMA A ACTUALIZAR UN PRODUCTO
         function UpdateProduct($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $product_id = $params[':ID'];
                 if (isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand']) && 
@@ -146,7 +146,7 @@
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO
         function ItemDetail($params = null){
-            $logeado = $this->loginControl->checkLoggedInUser();
+            $logeado = $this->loginControl->CheckLoggedInUser();
             $product_id = $params[':ID'];
             $product = $this->model->GetProductById($product_id);
             $mark_id = $product->id_marca;
@@ -161,7 +161,7 @@
         }
         //BORRA UNA IMAGEN
         function DeleteImg($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado){
                 $product_id = $params[':ID'];
                 $filepath ="";

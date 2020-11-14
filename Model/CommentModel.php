@@ -9,9 +9,15 @@ class CommentModel{
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
-    function GetComments(){
+    /*function GetComments(){
         $sentencia=$this->db->prepare("SELECT * FROM comentario");
         $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }*/
+
+    function GetCommentByProduct($id_producto){
+        $sentencia=$this->db->prepare("SELECT * FROM comentario WHERE id_producto=?");
+        $sentencia->execute(array($id_producto));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 

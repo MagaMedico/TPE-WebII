@@ -22,7 +22,7 @@ class LoginController{
     }
     //LLAMA AL LOGIN
     function Login(){
-        $logeado = $this->checkLoggedIn();
+        $logeado = $this->CheckLoggedIn();
         if($logeado){
             $this->productView->ShowLocation('admin');
         } else {
@@ -44,13 +44,18 @@ class LoginController{
             $user = $_POST['input_username'];
             $password = $_POST['input_password'];
             $admin = 0;
-            if($password == $_POST['repeat_password']){
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                $this->model->CreateUser($user, $password_hash, $admin);
-                $this->productView->ShowLocation('home');
-            }else{
-                $user = $_POST['input_username'];
-                $this->view->ShowRegister('Las contraseñas no coinciden', $user);
+            $exists = $this->model->GetUser($user);
+            if(!$exists){
+                if($password == $_POST['repeat_password']){
+                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                    $this->model->CreateUser($user, $password_hash, $admin);
+                    $this->VerifyUser();
+                }else{
+                    $user = $_POST['input_username'];
+                    $this->view->ShowRegister('Las contraseñas no coinciden', $user);
+                }
+            } else {
+                $this->view->ShowRegister('Este usuario ya existe');
             }
         }else{
             $this->view->ShowRegister('Complete todos los campos');
@@ -63,7 +68,7 @@ class LoginController{
         header("Location: ".LOGIN);
     }
     //VEO SI ESTA LOGGEADO Y ES ADMINISTRADOR
-    function checkLoggedIn(){
+    function CheckLoggedIn(){
         session_start();
         if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 1){
             return true;
@@ -72,7 +77,7 @@ class LoginController{
         }
     }
     //VEO SI ESTA LOGGEADO Y ES USUARIO
-    function checkLoggedInUser(){
+    function CheckLoggedInUser(){
         session_start();
         if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 0){
             return true;
@@ -83,13 +88,13 @@ class LoginController{
     //VERIFICO MI USUARIO
     function VerifyUser(){
         $user = $_POST["input_username"];
-        $pass = $_POST["input_password"];
+        $password = $_POST["input_password"];
 
         if(isset($user)){
             $userFromDB = $this->model->GetUser($user);
             if(isset($userFromDB) && $userFromDB){
                 // Existe el usuario
-                if (password_verify($pass, $userFromDB->password)){
+                if (password_verify($password, $userFromDB->password)){
                     session_start();
                     if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>1000)){
                         header("Location: ".LOGOUT);
@@ -116,7 +121,7 @@ class LoginController{
     }
     //MUESTRA LA PAGUINA DONDE SE PUEDE MODIFICAR LOS PRODUCTOS Y MARCAS(esta función es llamada action 'admin';)
     function ShowAdmin(){
-        $logeado = $this->checkLoggedIn();
+        $logeado = $this->CheckLoggedIn();
         if($logeado){
             $marks = $this->marksModel->GetMarks();
             $products = $this->modelProducts->GetProducts();

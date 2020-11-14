@@ -7,6 +7,8 @@ let app = new Vue({
     }
 });
 
+let id_producto = document.querySelector('#input_IdProducto').value;
+
 document.addEventListener("DOMContentLoaded", function(){
     
     getComments();
@@ -18,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 function getComments() {
-    fetch('api/comments')
+    fetch('api/comments/' + id_producto)
     .then(response => response.json())
     .then(comments => app.comments = comments)
     .catch(error => console.log(error));
