@@ -22,8 +22,8 @@
     <!--BARRA DE NAVEGACIÓN-->
     <nav class="botoneratexto">
         <ul class="menu">
-            <li class="botones"><a class="link" href="home">Tabla Producto</a></li>
-            <li class="botones"><a class="link" href="mark">Tabla Categorias</a></li>
+            <li class="botones"><a class="link" href="home">Productos</a></li>
+            <li class="botones"><a class="link" href="mark">Marcas</a></li>
             <li class="botones"><a class="link" href="login">Login</a></li>
         </ul>
     </nav>

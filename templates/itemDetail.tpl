@@ -1,11 +1,13 @@
 {include file="header.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
 {if $usuario}
-<h3>{$usuario}</h3>
-<div>
-    <p class="cerarSesion">cerrar sesión</p>
-    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
-</div>
+    <div class="contenedor_logout_user">
+        <h3>{$usuario}</h3>
+        <div>
+            <p class="cerar_sesion_user">cerrar sesión</p>
+            <button class="btn_logout_user" type="button"><a href="logout"> Logout</a></button>
+        </div>
+    </div>
 {/if}
 <section class="contenedor_table">
     <table class="table">

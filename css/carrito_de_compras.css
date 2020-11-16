@@ -45,7 +45,7 @@ th, td{
 .btn{
     margin: 1%;
 }
-/*TITULO LOGOUT*/
+/*LOGOUT*/
 .cerarSesion{
     margin: 2% 0 0 87%;
     text-transform: uppercase;
@@ -55,6 +55,20 @@ th, td{
 .btn_logout{
     float: right;
     margin: 1% 5% 0 0;
+}
+/*LOGOUT USER*/
+.contenedor_logout_user{
+    display: flex;
+}
+
+.contenedor_logout_user div{
+    text-align: center;
+    width: 20%;
+}
+.cerar_sesion_user{
+    text-transform: uppercase;
+    color: grey;
+    margin: 5% auto;
 }
 
 button{
@@ -145,6 +159,58 @@ h1{
     background-image: url(../images/fondo.jpg);
     padding: 2%;
     margin: 2% 0;
+}
+
+h3{
+    width: 80%;
+    text-align: center;
+    margin: 2% auto 0 16%;
+}
+
+/*FORMULARIO DE COMENTARIOS*/
+.form_comentarios{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea_commet{
+    width: 60%;
+    margin: 2% auto;
+}
+
+.valoracion{
+    text-align: center;
+}
+
+/*VISTA DE OS COMENTARIOS*/
+
+h4{
+    text-align: center;
+    background-image: url(../images/fondo.jpg);
+    width: 60%;
+    margin: auto;
+    color: rgb(85, 85, 85);
+    padding: 1% 0;
+}
+
+#vue-comments{
+    width: 60%;
+    margin: 2% auto;
+}
+
+/*/.list-group{
+    background-image: url(../images/fondo.jpg);
+    padding: 2% 0;
+}*/
+
+.list-group-item{
+    list-style: none;
+    padding: 2%;
+    text-transform: initial;
+    border: solid 10px transparent;
+    border-image:url(../images/fondo.jpg) 90 stretch;
+    
 }
 
 @media only screen and (min-width: 600px){

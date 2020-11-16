@@ -112,7 +112,6 @@ class LoginController{
                 }else{
                     $this->view->ShowLogin("Contraseña incorrecta");
                 }
-
             }else{
                 // No existe el user en la DB
                 $this->view->ShowLogin("El usuario no existe");
