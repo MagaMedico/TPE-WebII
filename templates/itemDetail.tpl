@@ -48,9 +48,9 @@
         </tbody>
     </table>
 </section>
-{if $usuario}
+
     {include file="comment.tpl"}
-{/if}
+
 
 <div>
     {include file="vue/comments.vue"}
