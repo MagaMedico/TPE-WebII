@@ -70,13 +70,13 @@
         //VEO SI ESTA LOGGEADO Y ES ADMINISTRADOR
         function CheckLoggedIn(){
             session_start();
-            if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 1){
+            if(isset($_SESSION['EMAIL'])){
                 return true;
             }else{
                 return false;
             }
         }
-        //VEO SI ESTA LOGGEADO Y ES USUARIO
+        /*VEO SI ESTA LOGGEADO Y ES USUARIO
         function CheckLoggedInUser(){
             session_start();
             if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 0){
@@ -84,7 +84,7 @@
             }else{
                 return false;
             }
-        } 
+        } */
         //VERIFICO MI USUARIO
         function VerifyUser(){
             $user = $_POST["input_username"];
@@ -108,7 +108,6 @@
                         }else{
                             $this->productView->ShowLocation('home');
                         }
-                    
                     }else{
                         $this->view->ShowLogin("Contraseña incorrecta");
                     }

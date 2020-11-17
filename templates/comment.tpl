@@ -2,6 +2,7 @@
 <form>
     <input type="hidden" id="input_IdProducto" value="{$product->id}">
     <input type="hidden" id="input_IdUsuario" value="{$Iduser}">
+    <input type="hidden" id="input_Admin" value="{$admin}">
 </form>
 <!--AGREGAR UN COMENTARIO-->
 {if $user}

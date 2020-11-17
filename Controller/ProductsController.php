@@ -23,7 +23,7 @@
         }
         //LLAMA AL HOME
         function Home($params = null){
-            $logeado = $this->loginControl->CheckLoggedInUser();
+            $logeado = $this->loginControl->CheckLoggedIn();
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
 
@@ -63,7 +63,7 @@
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){
             $logeado = $this->loginControl->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 if (isset($_POST['input_product']) && isset($_POST['input_price']) && 
                     isset($_POST['input_stock']) && isset($_POST['input_description']) && isset($_POST['select_brand']) && 
                     ($_FILES['input_file']['type'] == "image/jpg" || $_FILES['input_file']['type'] == "image/jpeg" || $_FILES['input_file']['type'] == "image/png")) {
@@ -87,7 +87,7 @@
         //ELIMINA UN PRODUCTO POR ID
         function DeleteProduct($params = null){
             $logeado = $this->loginControl->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
                 $this->model->DeleteProduct($product_id);
                 $this->view->ShowLocation('admin');
@@ -98,7 +98,7 @@
         //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
         function EditProduct($params = null){
             $logeado = $this->loginControl->checkLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
                 $marks = $this->marksModel->GetMarks();
                 $product = $this->model->GetProductById($product_id);
@@ -110,7 +110,7 @@
         //LLAMA A ACTUALIZAR UN PRODUCTO
         function UpdateProduct($params = null){
             $logeado = $this->loginControl->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
                 if (isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand']) && 
                 ($_FILES['edit_file']['type'] == "image/jpg" || $_FILES['edit_file']['type'] == "image/jpeg" || $_FILES['edit_file']['type'] == "image/png")) {
@@ -146,7 +146,7 @@
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO
         function ItemDetail($params = null){
-            $logeado = $this->loginControl->CheckLoggedInUser();
+            $logeado = $this->loginControl->CheckLoggedIn();
             $product_id = $params[':ID'];
             $product = $this->model->GetProductById($product_id);
             $mark_id = $product->id_marca;
@@ -154,7 +154,8 @@
             if($logeado){
                 $user = $_SESSION['EMAIL'];
                 $Iduser = $_SESSION['ID'];
-                $this->view->ShowItemDetail($product, $mark, $user, $Iduser);
+                $admin = $_SESSION['ADMIN'];
+                $this->view->ShowItemDetail($product, $mark, $user, $Iduser, $admin);
             }else{
                 $this->view->ShowItemDetail($product, $mark);
             }
@@ -162,7 +163,7 @@
         //BORRA UNA IMAGEN
         function DeleteImg($params = null){
             $logeado = $this->loginControl->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
                 $filepath ="";
                 $this->model->DeleteImg($filepath, $product_id);

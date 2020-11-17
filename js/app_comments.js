@@ -4,9 +4,23 @@ let app = new Vue({
     el: '#vue-comments',
     data: {
         comments: []  
+    },
+    method : {
+        deleteComment : function(id){
+            this.$delete(comments, id);
+        }
+    }
+});
+/**
+let admin = new Vue({
+    el: '#vue-admin',
+    data: {
+        admin: ''
     }
 });
 
+admin.admin = document.querySelector('#input_Admin').value;
+ */
 document.addEventListener("DOMContentLoaded", function(){
     
     getComments();
@@ -42,5 +56,12 @@ function addComment(){
     })
     .then(response => response.json())
     .then(comment => app.comments.push(comment))
+    .catch(error => console.log(error));
+}
+
+function deleteComment(id){
+    fetch('api/comments/' + id, {
+        "method": "DELETE",
+    })
     .catch(error => console.log(error));
 }
