@@ -45,8 +45,8 @@
             $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, imagen=?, id_marca=? WHERE producto.id=?");
             $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand,$product_id));
         }
-          //ACTUALIZA DATOS DE UN PRODUCTO SIN IMAGEN
-          function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
+        //ACTUALIZA DATOS DE UN PRODUCTO SIN IMAGEN
+        function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
             $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, id_marca=? WHERE producto.id=?");
             $sentencia->execute(array($product,$price,$stock,$description,$brand,$product_id));
         }

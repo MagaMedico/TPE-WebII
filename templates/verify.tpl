@@ -14,7 +14,7 @@
 </div>
 <section class="contenedor_table">
     <table class="table_productos">
-        <caption class="titulo_table">{$titulo}</caption>
+        <caption class="titulo_table">{$title}</caption>
         <thead>
             <tr>
                 <th>imagen</th>
@@ -25,20 +25,20 @@
             </tr>
         </thead>
         <tbody id="tabla">
-            {foreach from=$productos item=producto}
+            {foreach from=$products item=product}
                 <tr>
                     <td>
-                        <img class="img" src="{$producto->imagen}">
-                        {if $producto->imagen}
-                            <button  type="button"><a href="deleteImg/{$producto->id}"><i class="fas fa-trash"></i></a></button>
+                        <img class="img" src="{$product->imagen}">
+                        {if $product->imagen}
+                            <button  type="button"><a href="deleteImg/{$product->id}"><i class="fas fa-trash"></i></a></button>
                         {/if}
                     </td>
-                    <td>{$producto->nombre}</td>
-                    <td>{$producto->precio}</td>
-                    <td>{$producto->stock}</td>
-                    <td>{$producto->descripcion}</td>
-                    <td class="excepcion"><button type="button"><a href="edit/{$producto->id}">editar</a></button></td>
-                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$producto->id}">borrar</a></button></td>
+                    <td>{$product->nombre}</td>
+                    <td>{$product->precio}</td>
+                    <td>{$product->stock}</td>
+                    <td>{$product->descripcion}</td>
+                    <td class="excepcion"><button type="button"><a href="edit/{$product->id}">editar</a></button></td>
+                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$product->id}">borrar</a></button></td>
                 </tr>   
             {/foreach}
         </tbody>

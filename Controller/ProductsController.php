@@ -27,38 +27,38 @@
             $marks = $this->marksModel->GetMarks();
             $products = $this->model->GetProducts();
 
-            $datos_paginacion = $this->Paginacion($products, $params);
+            $data_pagination = $this->pagination($products, $params);
             
-            $productLimit = $datos_paginacion[0];
-            $paginacion = $datos_paginacion[1];
-            $pagina = $datos_paginacion[2];
+            $productLimit = $data_pagination[0];
+            $pagination = $data_pagination[1];
+            $page = $data_pagination[2];
             if($logeado){
                 $user = $_SESSION['EMAIL'];
-                $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina, $user);
+                $this->view->ShowHome($productLimit, $marks, $pagination, $page, $user);
             }else{
-                $this->view->ShowHome($productLimit, $marks, $paginacion, $pagina);
+                $this->view->ShowHome($productLimit, $marks, $pagination, $page);
             }
             
         }
         //PAGINACIÓN
-        function Paginacion($products, $params){
-            $datos_paginacion = [];
-            $productoPorPagina = 3;
+        function pagination($products, $params){
+            $data_pagination = [];
+            $productByPage = 3;
             if(isset($params[':ID'])){
-                $pagina = $params[':ID'];
+                $page = $params[':ID'];
             }else{
-                $pagina = 1;
+                $page = 1;
             }
-            $filas = count($products);
-            $totalPaginas = ceil($filas/$productoPorPagina);
-            $desde = ($pagina-1)*$productoPorPagina;
-            $productLimit= $this->model->GetProductsByLimit($desde, $productoPorPagina);
-            $paginacion = [];
-            for ($i = 1; $i <= $totalPaginas; $i++){
-                array_push($paginacion, $i);
+            $rows = count($products);
+            $totalPage = ceil($rows/$productByPage);
+            $since = ($page-1)*$productByPage;
+            $productLimit= $this->model->GetProductsByLimit($since, $productByPage);
+            $pagination = [];
+            for ($i = 1; $i <= $totalPage; $i++){
+                array_push($pagination, $i);
             }
-            array_push($datos_paginacion, $productLimit, $paginacion, $pagina);
-            return $datos_paginacion;
+            array_push($data_pagination, $productLimit, $pagination, $page);
+            return $data_pagination;
         }
         //INSERTA UN NUEVO PRODUCTO
         function InsertProduct(){

@@ -1,8 +1,9 @@
 {include file="header.tpl"}
 <!--SELECTOR DE MARCA PARA FILTRAR-->
-{if $usuario}
+{if $user}
     <div class="contenedor_logout_user">
-        <h3>{$usuario}</h3>
+        <h3>{$user}</h3>
+        <!--BOTON DE CERRAR SESIÓN-->
         <div>
             <p class="cerar_sesion_user">cerrar sesión</p>
             <button class="btn_logout_user" type="button"><a href="logout"> Logout</a></button>
@@ -15,7 +16,7 @@
 <!--TABLA CON TODOS LOS PRODUCTOS-->
 <section class="contenedor_table">
     <table class="table">
-        <caption class="titulo_table">{$titulo}</caption>
+        <caption class="titulo_table">{$title}</caption>
         <thead>
             <tr>
                 <th class="excepcion"></th>
@@ -27,20 +28,20 @@
             </tr>
         </thead>
         <tbody id="tabla">
-            {foreach from=$productos item=producto}
+            {foreach from=$products item=product}
                 <tr>
-                    <td class="td_imag excepcion"><img class="img" src="{$producto->imagen}"></td>
-                    <td>{$producto->nombre}</td>
-                    <td>{$producto->precio}</td>
-                    <td>{$producto->stock}</td>
-                    <td>{$producto->descripcion}</td>
+                    <td class="td_imag excepcion"><img class="img" src="{$product->imagen}"></td>
+                    <td>{$product->nombre}</td>
+                    <td>{$product->precio}</td>
+                    <td>{$product->stock}</td>
+                    <td>{$product->descripcion}</td>
                     <!--{foreach from=$marks item=mark}
                         {if $mark->id_marca == $producto->id_marca}
                             <td>{$mark->marca}</td>
                         {/if}
                     {/foreach}-->
-                    <td>{$producto->marca}</td>
-                    <td class="excepcion"><button type="button"><a href="itemDetail/{$producto->id}">ver más</a></button></td>
+                    <td>{$product->marca}</td>
+                    <td class="excepcion"><button type="button"><a href="itemDetail/{$product->id}">ver más</a></button></td>
                 </tr>
             {/foreach}
         </tbody>
@@ -48,12 +49,12 @@
 </section>
 <nav >
 <ul class="navCompaginacion">
-    {foreach from=$paginacion item=indice}
+    {foreach from=$pagination item=index}
         <li class="liCompagnacion">
-           {if $indice == $pagina}
-                <a class="linkCompaginacion marcado" href="home/{$indice}">{$indice}</a>
+           {if $index == $page}
+                <a class="linkCompaginacion marcado" href="home/{$index}">{$index}</a>
             {else}
-                <a class="linkCompaginacion" href="home/{$indice}">{$indice}</a>
+                <a class="linkCompaginacion" href="home/{$index}">{$index}</a>
             {/if}
         </li>
     {/foreach}    

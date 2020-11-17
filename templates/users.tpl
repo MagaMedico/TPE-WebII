@@ -6,11 +6,12 @@
             <li class="botones"><a class="link" href="adminUsers">Usuarios</a></li>
         </ul>
     </nav>
-
+<!--BOTON DE CERRAR SESIÓN-->
 <div>
     <p class="cerarSesion">cerrar sesión</p>
     <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
 </div>
+<!--TABLA DE USUARIOS-->
 <section class="contenedor_table">
     <table class="table_productos">
         <caption class="titulo_table">Tabla de usuarios</caption>
@@ -21,16 +22,16 @@
             </tr>
         </thead>
         <tbody id="tabla">
-            {foreach from=$usuarios item=usuario}
+            {foreach from=$users item=user}
                 <tr>
-                    <td>{$usuario->email}</td>
-                    {if $usuario->admin == 1}
+                    <td>{$user->email}</td>
+                    {if $user->admin == 1}
                         <td>Si</td>
                     {else}
                         <td>No</td>
                     {/if}
-                    <td class="excepcion"><button type="button"><a href="editUser/{$usuario->id}">editar</a></button></td>
-                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="deleteUser/{$usuario->id}">borrar</a></button></td>
+                    <td class="excepcion"><button type="button"><a href="editUser/{$user->id}">editar</a></button></td>
+                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="deleteUser/{$user->id}">borrar</a></button></td>
                 </tr>   
             {/foreach}
         </tbody>

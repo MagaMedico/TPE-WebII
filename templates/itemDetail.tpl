@@ -1,8 +1,9 @@
 {include file="header.tpl"}
 <!--TABLA CON TODOS LOS PRODUCTOS-->
-{if $usuario}
+{if $user}
     <div class="contenedor_logout_user">
-        <h3>{$usuario}</h3>
+        <h3>{$user}</h3>
+        <!--BOTON QUE CIERRA LA SESIÓN-->
         <div>
             <p class="cerar_sesion_user">cerrar sesión</p>
             <button class="btn_logout_user" type="button"><a href="logout"> Logout</a></button>
@@ -23,10 +24,10 @@
         </thead>
         <tbody>
                 <tr>
-                    <td>{$producto->nombre}</td>
-                    <td>{$producto->precio}</td>
-                    <td>{$producto->stock}</td>
-                    <td>{$producto->descripcion}</td>
+                    <td>{$product->nombre}</td>
+                    <td>{$product->precio}</td>
+                    <td>{$product->stock}</td>
+                    <td>{$product->descripcion}</td>
                     <td>{$mark->marca}</td>
                 </tr>
         </tbody>
@@ -48,12 +49,12 @@
         </tbody>
     </table>
 </section>
-
-    {include file="comment.tpl"}
-
-
+<!--FORMULARIO PARA AGREGAR UN COMENTARIO-->
+{include file="comment.tpl"}
+<!--COMENTARIOS-->
 <div>
     {include file="vue/comments.vue"}
 </div>
+
 <script src="js/app_comments.js"></script>
 {include file="footer.tpl"}
