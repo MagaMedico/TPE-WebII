@@ -76,4 +76,5 @@
 <!--FORMULARIO PARA INSERTAR UNA MARCA-->
 {include file="createMark.tpl"}
 
+<script src="js/btn_alert.js"></script>
 {include file="footer.tpl"}

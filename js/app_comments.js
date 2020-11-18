@@ -5,9 +5,17 @@ let app = new Vue({
     data: {
         comments: []  
     },
-    method : {
-        deleteComment : function(id){
+    methods : {
+        /*
+        eliminarComment : function(id){
             this.$delete(comments, id);
+        },*/
+        deleteComment(id, comments, key){
+            fetch('api/comments/' + id, {
+                "method": "DELETE",
+            })
+            .catch(error => console.log(error));
+            this.$delete(comments, key);
         }
     }
 });
@@ -59,9 +67,9 @@ function addComment(){
     .catch(error => console.log(error));
 }
 
-function deleteComment(id){
+/*function deleteComment(id){
     fetch('api/comments/' + id, {
         "method": "DELETE",
     })
     .catch(error => console.log(error));
-}
+}*/
