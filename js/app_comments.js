@@ -36,9 +36,19 @@ function getComments() {
 
 function addComment(){
 
+    let valoracion = 0;
+    let input_radio =  document.getElementsByName("estrellas");
+
+    for (var i = 0; i < input_radio.length; i++) {
+        if (input_radio[i].checked == true) {
+            valoracion = input_radio[i].value;
+        }
+    }
+
     const comment = {
         comentario: document.querySelector('#input_comentario').value,
-        valoracion: document.querySelector('#input_valoracion').value,
+        //valoracion: document.querySelector('#input_valoracion').value,
+        valoracion: valoracion,        
         id_usuario: document.querySelector('#input_IdUsuario').value,
         id_producto: document.querySelector('#input_IdProducto').value
     }

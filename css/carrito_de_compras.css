@@ -1,3 +1,27 @@
+/*VALORACION POR ESTRELLAS*/
+.clasificacion{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+.label_star{
+    color: grey;
+    font-size: 26px;
+}
+
+.input_star{
+    display: none;
+}
+
+.label_star:hover, .label_star:hover ~ label {
+  color: orange;
+}
+
+.input_star:checked ~ label {
+  color: orange;
+}
+
+/**/
 .contenedor_table{
     width: 100%;
 }

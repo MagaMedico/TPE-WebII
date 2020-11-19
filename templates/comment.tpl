@@ -9,7 +9,21 @@
     <h1>Agregar un comentario: </h1>
     <form class="form_comentarios">
         <textarea class="textarea_commet" id="input_comentario" placeholder="Escriba su comentario" rows="10" cols="50" required></textarea>
-        <input class="valoracion" type="number" id="input_valoracion" placeholder="valoración" value="3" min="1" max="5" required>
+        <!--<input class="valoracion" type="number" id="input_valoracion" placeholder="valoración" required>-->
+
+        <div class="clasificacion">
+            <p>Valora el producto</p>
+            <input class="input_star" id="radio1" type="radio" name="estrellas" value="5">
+            <label class="label_star" for="radio1">★</label>
+            <input class="input_star" id="radio2" type="radio" name="estrellas" value="4">
+            <label class="label_star" for="radio2">★</label>
+            <input class="input_star" id="radio3" type="radio" name="estrellas" value="3">
+            <label class="label_star" for="radio3">★</label>
+            <input class="input_star" id="radio4" type="radio" name="estrellas" value="2">
+            <label class="label_star" for="radio4">★</label>
+            <input class="input_star" id="radio5" type="radio" name="estrellas" value="1">
+            <label class="label_star" for="radio5">★</label>
+        </div>
 
         <button id="btn_comment" class="btn" type="submit">Comentar</button>
     </form>
