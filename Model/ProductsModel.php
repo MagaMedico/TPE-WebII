@@ -76,15 +76,15 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN PRECIO
-        function SearchItemByPrice($search){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio=?");
-            $sentencia->execute(array($search));
+        function SearchItemByPrice($precioMinimo, $precioMaximo){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio BETWEEN $precioMinimo AND $precioMaximo");
+            $sentencia->execute(array($precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE Y UN PRECIO
         function SearchItem($name, $price){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio=?");
-            $sentencia->execute(array($name, $price));
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio BETWEEN $precioMinimo AND $precioMaximo");
+            $sentencia->execute(array($name, $precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
     }

@@ -53,6 +53,5 @@
             $this->smarty->assign('marks', $marks);
             $this->smarty->display('templates/showSearch.tpl'); 
         }
-
     }
 ?>
