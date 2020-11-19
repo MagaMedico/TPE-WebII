@@ -2,6 +2,7 @@
     <p>Escribi un nombre y/o precio:
         <input type="text" name="input_name" placeholder="Nombre de producto">
         <select name="select_price">
+            <option> </option>
             <option>0-200</option>
             <option>201-400</option>
             <option>401-600</option>

@@ -77,13 +77,13 @@
         }
         //BUSCO ITEMS SEGÚN UN PRECIO
         function SearchItemByPrice($precioMinimo, $precioMaximo){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio BETWEEN $precioMinimo AND $precioMaximo");
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE precio BETWEEN ? AND ?");
             $sentencia->execute(array($precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE Y UN PRECIO
-        function SearchItem($name, $price){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio BETWEEN $precioMinimo AND $precioMaximo");
+        function SearchItem($name, $precioMinimo, $precioMaximo){
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio BETWEEN ? AND ?");
             $sentencia->execute(array($name, $precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }

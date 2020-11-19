@@ -175,22 +175,22 @@
         }
         //BUSCA ITEMS
         function SearchItem(){
-            if(!empty($_POST["input_name"])){
-                $search = $_POST["input_name"];
-                $products= $this->model->SearchItemByName($search);
-            } else if(!empty($_POST["select_price"])){
-                $rangoPrecio = $_POST["select_price"];
-                $precioSeparado = explode("-", $rangoPrecio);
-                $precioMinimo = $precioSeparado[0];
-                $precioMaximo = $precioSeparado[1];
-                $products= $this->model->SearchItemByPrice($precioMinimo, $precioMaximo);
-            } else if(!empty($_POST["input_name"])&&!empty($_POST["select_price"])){//NO ENTRA A ESTA FUNCIÓN
+            if(!empty($_POST["input_name"])&&!empty($_POST["select_price"])){
                 $name = $_POST["input_name"];
                 $rangoPrecio = $_POST["select_price"];
                 $precioSeparado = explode("-", $rangoPrecio);
                 $precioMinimo = $precioSeparado[0];
                 $precioMaximo = $precioSeparado[1];
                 $products= $this->model->SearchItem($name, $precioMinimo, $precioMaximo);
+            } else if(!empty($_POST["select_price"])){
+                $rangoPrecio = $_POST["select_price"];
+                $precioSeparado = explode("-", $rangoPrecio);
+                $precioMinimo = $precioSeparado[0];
+                $precioMaximo = $precioSeparado[1];
+                $products= $this->model->SearchItemByPrice($precioMinimo, $precioMaximo);
+            } else if(!empty($_POST["input_name"])){
+                $search = $_POST["input_name"];
+                $products= $this->model->SearchItemByName($search);
             }
             $marks = $this->marksModel->GetMarks();
             $this->view->ShowSearch($products, $marks);

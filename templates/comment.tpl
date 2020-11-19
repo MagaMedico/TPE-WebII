@@ -8,8 +8,7 @@
 {if $user}
     <h1>Agregar un comentario: </h1>
     <form class="form_comentarios">
-        <textarea class="textarea_commet" id="input_comentario" placeholder="Escriba su comentario" rows="10" cols="50" required></textarea>
-        <!--<input class="valoracion" type="number" id="input_valoracion" placeholder="valoración" required>-->
+        <textarea class="textarea_commet" id="input_comentario" placeholder="Escriba su comentario" rows="10" cols="50"></textarea>
 
         <div class="clasificacion">
             <p>Valora el producto</p>

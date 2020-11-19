@@ -55,5 +55,4 @@
     {/foreach}    
 </ul>
 </nav>
-
 {include file="footer.tpl"}

@@ -15,6 +15,7 @@ let app = new Vue({
         }
     }
 });
+
 document.addEventListener("DOMContentLoaded", function(){
     
     getComments();
