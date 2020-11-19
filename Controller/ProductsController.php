@@ -165,8 +165,9 @@
             $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
-                $filepath ="";
-                $this->model->DeleteImg($filepath, $product_id);
+                $filepath = $this->model->SearchFilepath($product_id);
+                unlink($filepath->imagen);
+                $this->model->DeleteImg($product_id);
                 $this->view->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();

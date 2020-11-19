@@ -23,7 +23,7 @@
         //LLAMA AL LOGIN
         function Login(){
             $logeado = $this->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $this->productView->ShowLocation('admin');
             } else {
                 $this->view->ShowLogin();

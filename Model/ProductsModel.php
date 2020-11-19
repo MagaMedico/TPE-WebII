@@ -24,9 +24,7 @@
         function InsertProduct($product,$price,$stock,$description,$fileTemp=null,$brand){
             $name = basename($_FILES["input_file"]["name"]);
             $filepath = "img/". $name;
-
             move_uploaded_file($fileTemp, $filepath);
-
             $sentencia = $this->db->prepare("INSERT INTO producto(nombre, precio, stock, descripcion, imagen, id_marca) VALUES(?,?,?,?,?,?)");
             $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand));
         }
@@ -35,13 +33,11 @@
             $sentencia = $this->db->prepare("DELETE FROM producto WHERE id=?");
             $sentencia->execute(array($product_id));
         }
-        //ACTUALIZA DATOS DE UN PRODUCTO
-        function UpdateProductImg($product,$price,$stock,$description,$fileTemp=null,$brand,$product_id){
+        //ACTUALIZA DATOS DE UN PRODUCTO CON IMAGEN
+        function UpdateProductImg($product,$price,$stock,$description,$fileTemp,$brand,$product_id){
             $name = basename($_FILES["edit_file"]["name"]);
             $filepath = "img/". $name;
-
             move_uploaded_file($fileTemp, $filepath);
-            
             $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, imagen=?, id_marca=? WHERE producto.id=?");
             $sentencia->execute(array($product,$price,$stock,$description,$filepath,$brand,$product_id));
         }
@@ -63,9 +59,15 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
         //BORRA LA IMAGEN
-        function DeleteImg($filepath, $product_id){
-            $sentencia = $this->db->prepare("UPDATE producto SET imagen=? WHERE id=?");
-            $sentencia->execute(array($filepath,$product_id));
+        function DeleteImg($product_id){
+            $sentencia = $this->db->prepare("UPDATE producto SET imagen = NULL WHERE id=?");
+            $sentencia->execute(array($product_id));
+        }
+        //BUSCA FILEPATH DE IMAGEN PARA LUEGO ELIMINARLA DEL SERVIDOR
+        function SearchFilepath($product_id){
+            $sentencia = $this->db->prepare("SELECT imagen FROM producto WHERE id=?");
+            $sentencia->execute(array($product_id));
+            return $sentencia->fetch(PDO::FETCH_OBJ);
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE
         function SearchItemByName($search){

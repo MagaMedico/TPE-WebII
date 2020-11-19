@@ -38,8 +38,6 @@ class ApiCommentController extends ApiController {
 
         if($result > 0) {
             $this->view->response("El comentario con el id=$id fue eliminada", 200);
-        } else {
-            $this->view->response("El comentario con el id=$id no existe", 404);
         }
     }
 }

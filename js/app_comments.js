@@ -6,10 +6,6 @@ let app = new Vue({
         comments: []  
     },
     methods : {
-        /*
-        eliminarComment : function(id){
-            this.$delete(comments, id);
-        },*/
         deleteComment(id, comments, key){
             fetch('api/comments/' + id, {
                 "method": "DELETE",
@@ -19,16 +15,6 @@ let app = new Vue({
         }
     }
 });
-/**
-let admin = new Vue({
-    el: '#vue-admin',
-    data: {
-        admin: ''
-    }
-});
-
-admin.admin = document.querySelector('#input_Admin').value;
- */
 document.addEventListener("DOMContentLoaded", function(){
     
     getComments();
@@ -66,10 +52,3 @@ function addComment(){
     .then(comment => app.comments.push(comment))
     .catch(error => console.log(error));
 }
-
-/*function deleteComment(id){
-    fetch('api/comments/' + id, {
-        "method": "DELETE",
-    })
-    .catch(error => console.log(error));
-}*/
