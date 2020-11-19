@@ -12,6 +12,13 @@ let app = new Vue({
             })
             .catch(error => console.log(error));
             this.$delete(comments, key);
+        },
+        stars(valoracion){
+            let stars = [];
+            for(let i= 0; i < valoracion; i++){
+                stars[i] = i+1;
+            }
+            return stars;
         }
     }
 });
@@ -48,8 +55,7 @@ function addComment(){
 
     const comment = {
         comentario: document.querySelector('#input_comentario').value,
-        //valoracion: document.querySelector('#input_valoracion').value,
-        valoracion: valoracion,        
+        valoracion: parseInt(valoracion),        
         id_usuario: document.querySelector('#input_IdUsuario').value,
         id_producto: document.querySelector('#input_IdProducto').value
     }

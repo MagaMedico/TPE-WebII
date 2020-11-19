@@ -20,6 +20,40 @@
 .input_star:checked ~ label {
   color: orange;
 }
+/*VISTA DE ESTRELLAS EN LOS COMENTARIOS*/
+.list-group-item{
+    list-style: none;
+    padding: 2%;
+    text-transform: initial;
+    border: solid 10px transparent;
+    border-image:url(../images/fondo.jpg) 90 stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.valoracion{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.stars{
+    width: 20px;
+    display: flex;
+    color: orange;
+    font-size: 20px;
+}
+
+.btn_delet_comment{
+    float: right;
+    margin-left: auto;
+}
+
+.text_comment{
+    word-break: break-all;
+    hyphens: auto;
+}
 
 /**/
 .contenedor_table{
@@ -260,17 +294,4 @@ h4{
 #vue-comments{
     width: 60%;
     margin: 2% auto;
-}
-
-/*/.list-group{
-    background-image: url(../images/fondo.jpg);
-    padding: 2% 0;
-}*/
-
-.list-group-item{
-    list-style: none;
-    padding: 2%;
-    text-transform: initial;
-    border: solid 10px transparent;
-    border-image:url(../images/fondo.jpg) 90 stretch;
 }
