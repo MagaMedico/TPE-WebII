@@ -22,13 +22,14 @@ class ApiCommentController extends ApiController {
 
     public function InsertComment($params = null){
         $body = $this->getData();
+        if($body->comentario && $body->valoracion){
+            $idComment = $this->model->InsertComment($body->comentario,$body->valoracion,$body->id_usuario,$body->id_producto);
 
-        $idComment = $this->model->InsertComment($body->comentario,$body->valoracion,$body->id_usuario,$body->id_producto);
-
-        if (!empty($idComment)) {
-            $this->view->response($this->model->GetComment($idComment), 201);
-        } else {
-            $this->view->response("El comentario no se pudo insertar", 404);
+            if (!empty($idComment)) {
+                $this->view->response($this->model->GetComment($idComment), 201);
+            } else {
+                $this->view->response("El comentario no se pudo insertar", 404);
+            }
         }
     }
 

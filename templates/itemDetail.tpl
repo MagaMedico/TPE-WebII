@@ -59,5 +59,4 @@
 </div>
 
 <script src="js/app_comments.js"></script>
-<script src="js/form.js"></script>
 {include file="footer.tpl"}

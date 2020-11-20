@@ -10,7 +10,7 @@
 }
 
 .input_star{
-    display: none;
+   display: none;
 }
 
 .label_star:hover, .label_star:hover ~ label {

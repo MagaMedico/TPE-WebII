@@ -7,9 +7,9 @@
 <!--AGREGAR UN COMENTARIO-->
 {if $user}
     <h1>Agregar un comentario: </h1>
-    <form class="form_comentarios" id="form">
+    <form class="form_comentarios">
         <textarea class="textarea_commet" id="input_comentario" placeholder="Escriba su comentario" rows="10" cols="50" maxlength="200"></textarea>
-
+        
         <div class="clasificacion">
             <p>Valora el producto</p>
             <input class="input_star" id="radio1" type="radio" name="estrellas" value="5">
