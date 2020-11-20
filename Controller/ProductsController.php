@@ -172,8 +172,12 @@
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
                 $filepath = $this->model->SearchFilepath($product_id);
-                unlink($filepath->imagen);
                 $this->model->DeleteImg($product_id);
+                //busco si otro producto tiene esta misma imagen
+                $imageInUse = $this->model->SearchImageInUse($filepath->imagen);
+                if(!$imageInUse){
+                    unlink($filepath->imagen);
+                }
                 $this->view->ShowLocation('admin');
             }else{
                 $this->loginView->ShowLogin();

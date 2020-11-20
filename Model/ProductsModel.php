@@ -87,5 +87,11 @@
             $sentencia->execute(array($name, $precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
+        //BUSCA SI ESTE FILEPATH ESTA EN USO
+        function SearchImageInUse($filepath){
+            $sentencia = $this->db->prepare("SELECT imagen FROM producto WHERE imagen=?");
+            $sentencia->execute(array($filepath));
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
     }
 ?>
