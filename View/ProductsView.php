@@ -47,10 +47,11 @@
             $this->smarty->display('templates/itemDetail.tpl'); 
         }
         //VEO LO BUSCADO
-        function ShowSearch($products, $marks){
+        function ShowSearch($products, $marks, $user=null){
             $this->smarty->assign('title', $this->title);
             $this->smarty->assign('products', $products);
             $this->smarty->assign('marks', $marks);
+            $this->smarty->assign('user', $user);
             $this->smarty->display('templates/showSearch.tpl'); 
         }
     }

@@ -23,7 +23,7 @@
         <ul class="menu">
             <li class="botones"><a class="link" href="home">Productos</a></li>
             <li class="botones"><a class="link" href="mark">Marcas</a></li>
-            <li class="botones"><a class="link" href="login">Login</a></li>
+            <li class="botones"><a class="link" href="login"><i class="fa fa-user-o"></i></a></li>
         </ul>
     </nav>
      

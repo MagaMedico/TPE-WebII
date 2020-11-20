@@ -31,12 +31,7 @@
         }
         //LLAMA A LA VISTA DEL REGISTRO DE UN NUEVO USUARIO
         function Register(){
-            $logeado = $this->checkLoggedIn();
-            if($logeado){
-                $this->productView->ShowLocation('admin');
-            } else {
-                $this->view->ShowRegister();
-            }
+            $this->view->ShowRegister();
         }
         //GENERA UN NUEVO USUARIO
         function NewUser(){

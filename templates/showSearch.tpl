@@ -1,4 +1,15 @@
 {include file="header.tpl"}
+<!--SI ES USUARIO-->
+{if $user}
+    <div class="contenedor_logout_user">
+        <h3>{$user}</h3>
+        <!--BOTON DE CERRAR SESIÓN-->
+        <div>
+            <p class="cerar_sesion_user">cerrar sesión</p>
+            <button class="btn_logout_user" type="button"><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+        </div>
+    </div>
+{/if}
 <!--SELECTOR DE MARCA PARA FILTRAR-->
 {include file="select-mark.tpl"}
 <!--BUSCADOR-->

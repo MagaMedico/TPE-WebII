@@ -6,7 +6,7 @@
         <!--BOTON QUE CIERRA LA SESIÓN-->
         <div>
             <p class="cerar_sesion_user">cerrar sesión</p>
-            <button class="btn_logout_user" type="button"><a href="logout"> Logout</a></button>
+            <button class="btn_logout_user" type="button"><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
         </div>
     </div>
 {/if}
@@ -15,6 +15,7 @@
         <caption class="titulo_table">detalle de producto</caption>
         <thead>
             <tr>
+                <th class="excepcion"></th>
                 <th>producto</th>
                 <th>precio</th>
                 <th>stock</th>
@@ -24,6 +25,7 @@
         </thead>
         <tbody>
                 <tr>
+                    <td class="td_imag excepcion"><img class="img" src="{$product->imagen}"></td>
                     <td>{$product->nombre}</td>
                     <td>{$product->precio}</td>
                     <td>{$product->stock}</td>

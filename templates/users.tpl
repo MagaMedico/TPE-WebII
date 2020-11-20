@@ -9,7 +9,7 @@
 <!--BOTON DE CERRAR SESIÓN-->
 <div>
     <p class="cerarSesion">cerrar sesión</p>
-    <button class="btn_logout" type="button"><a href="logout"> Logout</a></button>
+    <button class="btn_logout" type="button"><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
 </div>
 <!--TABLA DE USUARIOS-->
 <section class="contenedor_table">

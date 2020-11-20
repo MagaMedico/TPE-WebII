@@ -175,6 +175,7 @@
         }
         //BUSCA ITEMS
         function SearchItem(){
+            $products=null;
             if(!empty($_POST["input_name"])&&!empty($_POST["select_price"])){
                 $name = $_POST["input_name"];
                 $rangoPrecio = $_POST["select_price"];
@@ -192,8 +193,14 @@
                 $search = $_POST["input_name"];
                 $products= $this->model->SearchItemByName($search);
             }
+            $logeado = $this->loginControl->CheckLoggedIn();
             $marks = $this->marksModel->GetMarks();
-            $this->view->ShowSearch($products, $marks);
+            if($logeado){
+                $user = $_SESSION['EMAIL'];
+                $this->view->ShowSearch($products, $marks, $user);
+            } else{
+                $this->view->ShowSearch($products, $marks);
+            }
         }
     }
 ?>
