@@ -13,6 +13,7 @@
         private $marksModel;
         private $loginView;
         private $loginControl;
+        private $userModel;
 
         function __construct(){
             $this->view = new ProductsView();
@@ -20,6 +21,7 @@
             $this->marksModel = new MarksModel();
             $this->loginView = new LoginView();
             $this->loginControl = new LoginController();
+            $this->userModel = new UserModel();
         }
         //LLAMA AL HOME
         function Home($params = null){
@@ -159,7 +161,8 @@
             }
             if($logeado){
                 $user = $_SESSION['EMAIL'];
-                $Iduser = $_SESSION['ID'];
+                $usuario = $this->userModel->GetUser($user);
+                $Iduser = $usuario->id;
                 $admin = $_SESSION['ADMIN'];
                 $this->view->ShowItemDetail($product, $mark, $stars, $user, $Iduser, $admin);
             }else{

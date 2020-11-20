@@ -71,15 +71,6 @@
                 return false;
             }
         }
-        /*VEO SI ESTA LOGGEADO Y ES USUARIO
-        function CheckLoggedInUser(){
-            session_start();
-            if(isset($_SESSION['EMAIL']) && $_SESSION['ADMIN'] == 0){
-                return true;
-            }else{
-                return false;
-            }
-        } */
         //VERIFICO MI USUARIO
         function VerifyUser(){
             $user = $_POST["input_username"];
@@ -91,13 +82,12 @@
                     // Existe el usuario
                     if (password_verify($password, $userFromDB->password)){
                         session_start();
-                        if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>1000)){
+                        /*if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>1000)){
                             header("Location: ".LOGOUT);
-                        }
+                        }*/
                         $_SESSION["EMAIL"] = $userFromDB->email;
-                        $_SESSION["ID"] = $userFromDB->id;
-                        $_SESSION["ADMIN"] = $userFromDB->admin;
-                        $_SESSION['LAST_ACTIVITY'] = time();
+                        $_SESSION['ADMIN'] = $userFromDB->admin;
+                        //$_SESSION['LAST_ACTIVITY'] = time();
                         if($userFromDB->admin == 1){
                             $this->productView->ShowLocation('admin');
                         }else{
