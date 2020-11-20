@@ -11,6 +11,9 @@
     <p class="cerarSesion">cerrar sesión</p>
     <button class="btn_logout" type="button"><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
 </div>
+{if $message}
+    <h2>{$message}</h2>
+{/if}
 <!--TABLA DE USUARIOS-->
 <section class="contenedor_table">
     <table class="table_productos">

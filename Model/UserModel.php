@@ -41,5 +41,11 @@
             $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id=?");
             $sentencia->execute(array($id));
         }
+        //BUSCA SI TODABIA EXISTE ALMENOS UN ADMINISTRADOR
+        function ExistsAdmin(){
+            $sentencia = $this->db->prepare("SELECT admin FROM usuario WHERE admin=?");
+            $sentencia->execute(array(1));
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
     }
 ?>

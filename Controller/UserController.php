@@ -1,5 +1,6 @@
 <?php
     require_once "./View/UserView.php";
+    require_once "./View/ProductsView.php";
     require_once "./Model/UserModel.php";
 
     class UserController{
@@ -41,11 +42,31 @@
             $logeado = $this->loginControl->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
-                if(isset($_POST['selectAdmin'])){
-                    $admin = $_POST['selectAdmin'];
-                    $this->model->UpdateUser($admin, $id);
-                    header("Location: ".BASE_URL.adminUsers);
+                $typeOfUser = $this->model->GetUserById($id);
+                if($typeOfUser->admin == 0){
+                    if(isset($_POST['selectAdmin'])){
+                        $admin = $_POST['selectAdmin'];
+                        $this->model->UpdateUser($admin, $id);
+                        header("Location: ".BASE_URL.adminUsers);
+                    }
+                }else{
+                    $existsAdmin = $this->model->ExistsAdmin();
+                    $numberOfAdmin = 0;
+                    foreach($existsAdmin as $admin){
+                        $numberOfAdmin++;
+                    }
+                    if($numberOfAdmin != 1 && $numberOfAdmin != 0){
+                        if(isset($_POST['selectAdmin'])){
+                            $admin = $_POST['selectAdmin'];
+                            $this->model->UpdateUser($admin, $id);
+                            header("Location: ".BASE_URL.adminUsers);
+                        }
+                    }else{
+                        $user = $this->model->GetUserById($id);
+                        $this->view->ShowEdit($user, "No se pueden quitar permisos ya que es el ultimo administrador del sistema.");
+                    }
                 }
+                
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -55,8 +76,24 @@
             $logeado = $this->loginControl->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
-                $this->model->DeleteUser($id);
-                header("Location: ".BASE_URL.adminUsers);
+                $typeOfUser = $this->model->GetUserById($id);
+                if($typeOfUser->admin == 0){
+                    $this->model->DeleteUser($id);
+                    header("Location: ".BASE_URL.adminUsers);
+                }else{
+                    $existsAdmin = $this->model->ExistsAdmin();
+                    $numberOfAdmin = 0;
+                    foreach($existsAdmin as $admin){
+                        $numberOfAdmin++;
+                    }
+                    if($numberOfAdmin != 1 && $numberOfAdmin != 0){
+                        $this->model->DeleteUser($id);
+                        header("Location: ".BASE_URL.adminUsers);
+                    }else{
+                        $users = $this->model->GetUsers();
+                        $this->view->ShowUsers($users, "No se puede eliminar este usuario ya que es el ultimo administrador del sistema.");
+                    }
+                }
             }else{
                 $this->loginView->ShowLogin();
             }
