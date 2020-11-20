@@ -11,17 +11,11 @@
         <textarea class="textarea_commet" id="input_comentario" placeholder="Escriba su comentario" rows="10" cols="50" maxlength="200"></textarea>
         
         <div class="clasificacion">
-            <p>Valora el producto</p>
-            <input class="input_star" id="radio1" type="radio" name="estrellas" value="5">
-            <label class="label_star" for="radio1">★</label>
-            <input class="input_star" id="radio2" type="radio" name="estrellas" value="4">
-            <label class="label_star" for="radio2">★</label>
-            <input class="input_star" id="radio3" type="radio" name="estrellas" value="3">
-            <label class="label_star" for="radio3">★</label>
-            <input class="input_star" id="radio4" type="radio" name="estrellas" value="2">
-            <label class="label_star" for="radio4">★</label>
-            <input class="input_star" id="radio5" type="radio" name="estrellas" value="1">
-            <label class="label_star" for="radio5">★</label>
+            <p>Valora el producto</p> 
+            {foreach from=$stars item=star}
+                <input class="input_star" id="radio{$star}" type="radio" name="estrellas" value="{$star}">
+                <label class="label_star" for="radio{$star}">★</label>
+            {/foreach}
         </div>
 
         <button id="btn_comment" class="btn" type="submit">Comentar</button>

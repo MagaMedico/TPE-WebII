@@ -115,7 +115,7 @@
         //MUESTRA LA PAGUINA DONDE SE PUEDE MODIFICAR LOS PRODUCTOS Y MARCAS(esta función es llamada action 'admin';)
         function ShowAdmin(){
             $logeado = $this->CheckLoggedIn();
-            if($logeado){
+            if($logeado && $_SESSION['ADMIN'] == 1){
                 $marks = $this->marksModel->GetMarks();
                 $products = $this->productsModel->GetProducts();
                 $this->view->ShowVerify($products, $marks);

@@ -151,11 +151,17 @@
             $product = $this->model->GetProductById($product_id);
             $mark_id = $product->id_marca;
             $mark = $this->marksModel->GetMarkById($mark_id);
+            //prepara rango de valoracion de productos.
+            $starRank = 5;
+            $stars = [];
+            for ($i = $starRank; $i >= 1; $i--){
+                array_push($stars, $i);
+            }
             if($logeado){
                 $user = $_SESSION['EMAIL'];
                 $Iduser = $_SESSION['ID'];
                 $admin = $_SESSION['ADMIN'];
-                $this->view->ShowItemDetail($product, $mark, $user, $Iduser, $admin);
+                $this->view->ShowItemDetail($product, $mark, $stars, $user, $Iduser, $admin);
             }else{
                 $this->view->ShowItemDetail($product, $mark);
             }
