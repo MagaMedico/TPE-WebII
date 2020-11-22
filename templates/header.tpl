@@ -26,7 +26,6 @@
             <li class="botones"><a class="link" href="login"><i class="fa fa-user-o"></i></a></li>
         </ul>
     </nav>
-     
     <!--BANNER-->
     <figure>
         <img class="banner" src="images/banner.jpg" alt="Banner">
