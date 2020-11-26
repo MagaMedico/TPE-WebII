@@ -34,6 +34,9 @@
                 </tr>
         </tbody>
     </table>
+    <div id="promedio">
+        <p>El promedio de valoración de este producto es: {$average->promedio|truncate:3:"":true}</p>
+    </div>
     <!--TABLA DE LA MARCA DEL PRODUCTO-->
      <table class="table">
         <caption class="titulo_table">marca {$mark->marca}</caption>

@@ -6,7 +6,7 @@
     $router = new Router();
 
     // armo la tabla de ruteo de la API REST
-    $router->addRoute('comments/:ID', 'GET', 'ApiCommentController', 'GetComments');
+    $router->addRoute('product/:ID/comments', 'GET', 'ApiCommentController', 'GetComments');
     $router->addRoute('comments', 'POST', 'ApiCommentController', 'InsertComment');
     $router->addRoute('comments/:ID', 'DELETE', 'ApiCommentController', 'DeleteComment');
     

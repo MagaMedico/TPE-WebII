@@ -2,23 +2,22 @@
     require_once "./View/UserView.php";
     require_once "./View/ProductsView.php";
     require_once "./Model/UserModel.php";
+    require_once "Helper.php";
 
-    class UserController{
+    class UserController extends Helper {
 
         private $view;
         private $model;
         private $loginView;
-        private $loginControl;
 
         function __construct(){
             $this->view= new UserView();
             $this->model= new UserModel();
             $this->loginView = new LoginView();
-            $this->loginControl = new LoginController();
         }
         //VISTA PARA EL ADMINISTRADOR DE LOS USUARIOS
         function ShowUsers(){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $users = $this->model->GetUsers();
                 $this->view->ShowUsers($users);
@@ -28,7 +27,7 @@
         }
         //LLAMA A LA VISTA PARA EDITAR UN USUARIO (SOLO PARA ADMINISTRADORES)
         function EditUser($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
                 $user = $this->model->GetUserById($id);
@@ -39,7 +38,7 @@
         }
         //ACTUALIZA LOS DATOS DE UN USUARIO (SOLO PARA ADMINISTRADORES)
         function UpdateUser($params = null){
-            $logeado = $this->loginControl->checkLoggedIn();
+            $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
                 $typeOfUser = $this->model->GetUserById($id);
@@ -73,7 +72,7 @@
         }
         //ELIMINA UN USUARIO (SOLO PARA ADMINISTRADORES)
         function DeleteUser($params = null){
-            $logeado = $this->loginControl->CheckLoggedIn();
+            $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
                 $typeOfUser = $this->model->GetUserById($id);

@@ -4,8 +4,9 @@
     require_once "./View/ProductsView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
+    require_once "Helper.php";
 
-    class LoginController{
+    class LoginController extends Helper {
 
         private $view;
         private $model;
@@ -61,15 +62,6 @@
             session_start();
             session_destroy();
             header("Location: ".LOGIN);
-        }
-        //VEO SI ESTA LOGGEADO Y ES ADMINISTRADOR
-        function CheckLoggedIn(){
-            session_start();
-            if(isset($_SESSION['EMAIL'])){
-                return true;
-            }else{
-                return false;
-            }
         }
         //VERIFICO MI USUARIO
         function VerifyUser(){

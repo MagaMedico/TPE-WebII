@@ -36,10 +36,27 @@ document.addEventListener("DOMContentLoaded", function(){
 let id_producto = document.querySelector('#input_IdProducto').value;
 
 function getComments() {
-    fetch('api/comments/' + id_producto)
+    fetch('api/product/' + id_producto + '/comments')
     .then(response => response.json())
-    .then(comments => app.comments = comments)
+    .then(comments => app.comments = comments,
+        //console.log(comments),
+        //getAverage()
+        )
     .catch(error => console.log(error));
+}
+
+function getAverage(){
+    let average = document.querySelector("#promedio");
+    let total = 0;
+    for (let i = 0; i < app.comments.length; i++){
+        total+=app.comments[i].valoracion;
+    }
+    //console.log(app.comments);
+    //console.log(app.comments.length);
+    //console.log(total);
+    let parrafo = document.createElement("p");
+    parrafo.textContent = parseInt(total/app.comments.length);
+    average.appendChild(parrafo);
 }
 
 function addComment(){
