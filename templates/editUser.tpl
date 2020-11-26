@@ -18,15 +18,15 @@
     <h2>{$message}</h2>
 {/if}
 <form action="updateUser/{$user->id}" method="post">
-    <p>Seleccione permiso: 
+    <p>Seleccione permiso:
         <select name="selectAdmin">
             <option selected="{$user->admin}">
                 {if $user->admin == 0}
                     No
                 {else}
                     Si
-                {/if}  
-            </option>   
+                {/if}
+            </option>
             <option value="
                 {if $user->admin == 1}
                     0
@@ -37,8 +37,8 @@
                     No
                 {else}
                     Si
-                {/if} 
-            </option>       
+                {/if}
+            </option>
         </select>
     </p>
     <button class="btn" type="submit">Cambiar</button>

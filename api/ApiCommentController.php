@@ -4,7 +4,6 @@ require_once 'ApiController.php';
 
 class ApiCommentController extends ApiController {
 
-  
     function __construct() {
         parent::__construct();
         $this->model = new CommentModel();

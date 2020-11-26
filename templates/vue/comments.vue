@@ -1,4 +1,3 @@
-
 {literal}
     <h4>Comentarios</h4>
     <div id="vue-comments">
@@ -8,8 +7,7 @@
                 <div class="valoracion">
                     <samp class="stars" v-for="star in stars(comment.valoracion)">★</samp>
                 </div>
-               
-{/literal}  
+{/literal}
             {if $admin == 1}
                 <button class="btn_delet_comment" @click="deleteComment(comment.id_comentario, comments, key)"><i class="fas fa-trash"></i></button>
             {/if}

@@ -4,7 +4,7 @@
     require_once 'Controller/LoginController.php';
     require_once 'Controller/UserController.php';
     require_once 'RouterClass.php';
-    
+
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
     define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
@@ -27,10 +27,10 @@
     $r->addRoute("logout", "GET", "LoginController", "Logout");
     //PRODUCTOS
     $r->addRoute("insert", "POST", "ProductsController", "InsertProduct");
-    $r->addRoute("delete/:ID", "GET", "ProductsController", "DeleteProduct"); 
+    $r->addRoute("delete/:ID", "GET", "ProductsController", "DeleteProduct");
     $r->addRoute("edit/:ID", "GET", "ProductsController", "EditProduct");
     $r->addRoute("update/:ID", "POST", "ProductsController", "UpdateProduct");
-    //MARCAS   
+    //MARCAS
     $r->addRoute("insertMark", "POST", "MarksController", "InsertMark");
     $r->addRoute("deleteMark/:ID", "GET", "MarksController", "DeleteMark");
     $r->addRoute("editMark/:ID", "GET", "MarksController", "EditMark");
@@ -40,11 +40,11 @@
     $r->addRoute("editUser/:ID", "GET", "UserController", "EditUser");
     $r->addRoute("updateUser/:ID", "POST", "UserController", "UpdateUser");
     $r->addRoute("deleteUser/:ID", "GET", "UserController", "DeleteUser");
-    //ELIMINA IMAGEN 
+    //ELIMINA IMAGEN
     $r->addRoute("deleteImg/:ID", "GET", "ProductsController", "DeleteImg");
     //Ruta por defecto.
     $r->setDefaultRoute("ProductsController", "Home");
 
     //run
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
+    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 ?>

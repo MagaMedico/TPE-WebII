@@ -39,11 +39,11 @@
                     <td>{$product->descripcion}</td>
                     <td class="excepcion"><button type="button"><a href="edit/{$product->id}">editar</a></button></td>
                     <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$product->id}">borrar</a></button></td>
-                </tr>   
+                </tr>
             {/foreach}
         </tbody>
     </table>
-</section>  
+</section>
 <!--FORMULARIO PARA INSERTAR PRODUCTO-->
 {include file="createProduct.tpl"}
 <!--TABLA DE MARCAS-->
@@ -55,7 +55,7 @@
                 <span>&times;</span>
             </button>
         </caption>
-        <thead> 
+        <thead>
             <tr>
                 <th>marca</th>
                 <th>categoria</th>
@@ -68,11 +68,11 @@
                     <td>{$mark->categoria}</td>
                     <td class="excepcion"><button  type="button"><a href="editMark/{$mark->id_marca}">editar</a></button></td>
                     <td class="excepcion"><button  type="button"><a href="deleteMark/{$mark->id_marca}">borrar</a></button></td>
-                </tr>   
+                </tr>
             {/foreach}
         </tbody>
     </table>
-</section> 
+</section>
 <!--FORMULARIO PARA INSERTAR UNA MARCA-->
 {include file="createMark.tpl"}
 

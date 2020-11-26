@@ -35,9 +35,9 @@
                     {/if}
                     <td class="excepcion"><button type="button"><a href="editUser/{$user->id}">editar</a></button></td>
                     <td class="excepcion"><button id="btn_borrar" type="button"><a href="deleteUser/{$user->id}">borrar</a></button></td>
-                </tr>   
+                </tr>
             {/foreach}
         </tbody>
     </table>
-</section> 
+</section>
 {include file="footer.tpl"}

@@ -3,7 +3,7 @@
 let app = new Vue({
     el: '#vue-comments',
     data: {
-        comments: []  
+        comments: []
     },
     methods : {
         deleteComment(id, comments, key){
@@ -23,8 +23,31 @@ let app = new Vue({
     }
 });
 
+let average = new Vue({
+    el: '#vue-average',
+    methods: {
+        average() {
+            let total = 0;
+            for (let i = 0; i < app.comments.length; i++) {
+                total += parseInt(app.comments[i].valoracion);
+            }
+            return (total / app.comments.length).toFixed(1);
+        },
+        starsAverage() {
+            //maraco el total de estrellas para decir que 5 es mi 100%, ya que la valoracion va del 1 al 5.
+            const starsTotal = 5;
+            //saco cuanto porcentaje es la valoración sobre mi 100% y limito su resultado para que devuelva un digito despues del punto.
+            let percentage = ((this.average() / starsTotal) * 100).toFixed(1);
+            //Genero escritura de porcentage para que luego sea leida por css.
+            let starPercentage = percentage + '%';
+            //seleciono del html donde se va a aplicar el nuevo porcentaje de width.
+            document.querySelector('.stars-inner').style.width = starPercentage;
+        }
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function(){
-    
+
     getComments();
 
     document.querySelector("#btn_comment").addEventListener('click', function(e){
@@ -38,25 +61,8 @@ let id_producto = document.querySelector('#input_IdProducto').value;
 function getComments() {
     fetch('api/product/' + id_producto + '/comments')
     .then(response => response.json())
-    .then(comments => app.comments = comments,
-        //console.log(comments),
-        //getAverage()
-        )
+    .then(comments => app.comments = comments)
     .catch(error => console.log(error));
-}
-
-function getAverage(){
-    let average = document.querySelector("#promedio");
-    let total = 0;
-    for (let i = 0; i < app.comments.length; i++){
-        total+=app.comments[i].valoracion;
-    }
-    //console.log(app.comments);
-    //console.log(app.comments.length);
-    //console.log(total);
-    let parrafo = document.createElement("p");
-    parrafo.textContent = parseInt(total/app.comments.length);
-    average.appendChild(parrafo);
 }
 
 function addComment(){
@@ -76,7 +82,7 @@ function addComment(){
 
         const comment = {
             comentario: document.querySelector('#input_comentario').value,
-            valoracion: parseInt(valoracion),        
+            valoracion: parseInt(valoracion),
             id_usuario: document.querySelector('#input_IdUsuario').value,
             id_producto: document.querySelector('#input_IdProducto').value
         }
@@ -111,7 +117,7 @@ function validarFormulario(){
         alert('No has escrito un comentario');
         return false;
     } else if(!seleccionado) {
-        alert('No se ha seleccionado la valoracion');
+        alert('No se ha seleccionado la valoración');
         return false;
     }else{
         return true;

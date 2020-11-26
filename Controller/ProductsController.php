@@ -12,7 +12,7 @@
         private $view;
         private $model;
         private $marksModel;
-        private $loginView;  
+        private $loginView;
         private $userModel;
         private $commentModel;
 
@@ -31,7 +31,7 @@
             $products = $this->model->GetProducts();
 
             $data_pagination = $this->pagination($products, $params);
-            
+
             $productLimit = $data_pagination[0];
             $pagination = $data_pagination[1];
             $page = $data_pagination[2];
@@ -41,7 +41,7 @@
             }else{
                 $this->view->ShowHome($productLimit, $marks, $pagination, $page);
             }
-            
+
         }
         //PAGINACIÓN
         function pagination($products, $params){
@@ -67,8 +67,8 @@
         function InsertProduct(){
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
-                if (isset($_POST['input_product']) && isset($_POST['input_price']) && 
-                    isset($_POST['input_stock']) && isset($_POST['input_description']) && isset($_POST['select_brand']) && 
+                if (isset($_POST['input_product']) && isset($_POST['input_price']) &&
+                    isset($_POST['input_stock']) && isset($_POST['input_description']) && isset($_POST['select_brand']) &&
                     ($_FILES['input_file']['type'] == "image/jpg" || $_FILES['input_file']['type'] == "image/jpeg" || $_FILES['input_file']['type'] == "image/png")) {
                     $product = $_POST['input_product'];
                     $price = $_POST['input_price'];
@@ -81,7 +81,7 @@
                 else{
                     $this->model->InsertProduct($product,$price,$stock,$description,$brand);
                 }
-                $this->view->ShowLocation('admin'); 
+                $this->view->ShowLocation('admin');
 
             }else{
                 $this->loginView->Login();
@@ -105,7 +105,7 @@
                 $product_id = $params[':ID'];
                 $marks = $this->marksModel->GetMarks();
                 $product = $this->model->GetProductById($product_id);
-                $this->view->ShowEditProduct($product, $marks); 
+                $this->view->ShowEditProduct($product, $marks);
             }else{
                 $this->loginView->ShowLogin();
             }
@@ -115,7 +115,7 @@
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
-                if (isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand']) && 
+                if (isset($_POST['edit_product']) && isset($_POST['edit_price']) && isset($_POST['edit_stock']) && isset($_POST['edit_description']) && isset($_POST['select_brand']) &&
                 ($_FILES['edit_file']['type'] == "image/jpg" || $_FILES['edit_file']['type'] == "image/jpeg" || $_FILES['edit_file']['type'] == "image/png")) {
                     $product = $_POST['edit_product'];
                     $price = $_POST['edit_price'];

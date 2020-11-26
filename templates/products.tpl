@@ -52,7 +52,7 @@
                 <a class="linkCompaginacion" href="home/{$index}">{$index}</a>
             {/if}
         </li>
-    {/foreach}    
+    {/foreach}
 </ul>
 </nav>
 {include file="footer.tpl"}

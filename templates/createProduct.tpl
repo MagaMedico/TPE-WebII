@@ -7,12 +7,11 @@
 
     <input class="input" type="file" name="input_file" id="imageToUpload"  required>
 
-
     <select name="select_brand">
         {foreach from=$marks item=mark}
             <option value="{$mark->id_marca}">{$mark->marca}</option>
         {/foreach}
     </select>
-    
+
     <button class="btn" type="submit">agregar</button>
 </form>

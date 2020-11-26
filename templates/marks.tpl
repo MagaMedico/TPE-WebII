@@ -14,9 +14,9 @@
                 <tr>
                     <td>{$mark->marca}</td>
                     <td>{$mark->categoria}</td>
-                </tr>   
+                </tr>
             {/foreach}
         </tbody>
     </table>
-</section> 
+</section>
 {include file="footer.tpl"}

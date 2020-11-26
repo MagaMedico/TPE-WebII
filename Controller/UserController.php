@@ -65,7 +65,6 @@
                         $this->view->ShowEdit($user, "No se pueden quitar permisos ya que es el ultimo administrador del sistema.");
                     }
                 }
-                
             }else{
                 $this->loginView->ShowLogin();
             }

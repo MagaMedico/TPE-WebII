@@ -34,8 +34,9 @@
                 </tr>
         </tbody>
     </table>
-    <div id="promedio">
-        <p>El promedio de valoración de este producto es: {$average->promedio|truncate:3:"":true}</p>
+    <!--PROMEDIO DE VALORACIÓN-->
+    <div>
+        {include file="vue/average.vue"}
     </div>
     <!--TABLA DE LA MARCA DEL PRODUCTO-->
      <table class="table">
@@ -50,7 +51,7 @@
                 <tr>
                     <td>{$mark->marca}</td>
                     <td>{$mark->categoria}</td>
-                </tr>   
+                </tr>
         </tbody>
     </table>
 </section>

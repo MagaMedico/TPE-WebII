@@ -8,10 +8,9 @@
 
     class MarksController extends Helper{
 
-      
         private $marksView;
         private $marksModel;
-        private $loginView; 
+        private $loginView;
         private $productsView;
 
         function __construct(){

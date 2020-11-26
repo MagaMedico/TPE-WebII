@@ -1,66 +1,106 @@
+/*PROMEDIO POR ESTRELLAS*/
+
+.div_average {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.average {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+}
+
+.average::before {
+    content: "\★ \★ \★ \★ \★ ";
+    color: grey;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-inner::before {
+    content: "\★ \★ \★ \★ \★ ";
+    color: orange;
+}
+
+
 /*VALORACION POR ESTRELLAS*/
-.clasificacion{
+
+.clasificacion {
     direction: rtl;
     unicode-bidi: bidi-override;
 }
 
-.label_star{
+.label_star {
     color: grey;
     font-size: 26px;
 }
 
-.input_star{
-   display: none;
+.input_star {
+    display: none;
 }
 
-.label_star:hover, .label_star:hover ~ label {
-  color: orange;
+.label_star:hover, .label_star:hover~label {
+    color: orange;
 }
 
-.input_star:checked ~ label {
-  color: orange;
+.input_star:checked~label {
+    color: orange;
 }
+
+
 /*VISTA DE ESTRELLAS EN LOS COMENTARIOS*/
-.list-group-item{
+
+.list-group-item {
     list-style: none;
     padding: 2%;
     text-transform: initial;
     border: solid 10px transparent;
-    border-image:url(../images/fondo.jpg) 90 stretch;
+    border-image: url(../images/fondo.jpg) 90 stretch;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.valoracion{
+.valoracion {
     display: flex;
     flex-direction: row;
     margin-left: 10px;
 }
 
-.stars{
+.stars {
     width: 20px;
     display: flex;
     color: orange;
     font-size: 20px;
 }
 
-.btn_delet_comment{
+.btn_delet_comment {
     float: right;
     margin-left: auto;
 }
 
-.text_comment{
+.text_comment {
     word-break: break-all;
     hyphens: auto;
 }
 
+
 /**/
-.contenedor_table{
+
+.contenedor_table {
     width: 100%;
 }
 
-.table{
+.table {
     border-collapse: collapse;
     text-align: center;
     margin: auto;
@@ -69,7 +109,7 @@
     width: 70%;
 }
 
-.table_productos{
+.table_productos {
     width: 70%;
     border-collapse: collapse;
     text-align: center;
@@ -78,7 +118,7 @@
     justify-content: space-between;
 }
 
-.titulo_table{
+.titulo_table {
     padding: 2% 0;
     margin: 2% 0;
     text-transform: uppercase;
@@ -86,7 +126,7 @@
     font-size: 20px;
 }
 
-th, td{
+th, td {
     padding: 2%;
     min-width: 50px;
     font-size: 14px;
@@ -95,78 +135,83 @@ th, td{
     text-transform: capitalize;
 }
 
-.excepcion{ 
+.excepcion {
     border: inset 0pt;
     padding: 0;
 }
 
-.btn{
+.btn {
     margin: 1%;
     height: 10%;
 }
 
+
 /*LOGOUT*/
-.div_logout{
+
+.div_logout {
     margin: 2% 2% 2% auto;
     text-align: center;
     width: 10%;
 }
 
-.cerarSesion{
+.cerarSesion {
     text-transform: uppercase;
     color: grey;
     margin-bottom: 5%;
 }
 
+
 /*LOGOUT USER*/
-.contenedor_logout_user{
+
+.contenedor_logout_user {
     display: flex;
 }
 
-.contenedor_logout_user div{
+.contenedor_logout_user div {
     text-align: center;
     width: 20%;
 }
 
-.cerar_sesion_user{
+.cerar_sesion_user {
     text-transform: uppercase;
     color: grey;
     margin: 5% auto;
 }
 
-button{
+button {
     margin: 0 2%;
 }
 
+
 /*BOTON DE LA TABLA (EDITAR Y BORRAR)*/
-td.excepcion button{
+
+td.excepcion button {
     width: 80px;
     height: 35px;
     background-color: rgb(241, 239, 239);
     border: solid 1px rgb(230, 230, 230);
-
 }
 
-button a{
+button a {
     text-decoration: none;
     color: rgb(87, 87, 87);
     font-weight: normal;
     text-transform: uppercase;
 }
 
-button{
+button {
     padding: 1%;
     text-align: center;
     text-transform: capitalize;
     font-size: 10px;
 }
 
-form{
+form {
     margin: 2% 0;
     text-align: center;
 }
 
-.form_edit_product{
+.form_edit_product {
     margin: 2% 0;
     text-align: center;
     display: flex;
@@ -174,48 +219,56 @@ form{
     padding-left: 10px;
 }
 
-.input{
+.input {
     text-align: center;
     width: 10%;
     height: 20%;
     margin: auto 1%;
 }
 
-input, button{
+input, button {
     padding: 0.5%;
     font-size: 14px;
 }
 
-select{
+select {
     height: 33px;
 }
 
+
 /*CONTENEDOR DE FILE*/
-.cont_file{
+
+.cont_file {
     margin: 0;
     width: 150px;
     justify-items: center;
 }
 
+
 /*BOTON DE SELECIONAR UNA IMAGEN*/
-.btn_file{
+
+.btn_file {
     width: 132px;
     padding: 10px;
     font-size: 14px;
     text-align: center;
 }
 
+
 /*IMAGEN DE EDITAR PRODUCTO*/
-.edit_img{
+
+.edit_img {
     margin: 0 10px;
 }
 
+
 /*MENSAJE DE ALERTA DE ELIMINADO DE UNA MARCA*/
+
 .close {
     display: none;
 }
 
-#alert{
+#alert {
     background-color: rgb(243, 193, 193);
     padding: 2%;
     margin: 2% 0;
@@ -224,19 +277,21 @@ select{
     color: rgb(155, 17, 17);
 }
 
-.sowAlert{
+.sowAlert {
     width: 20px;
     font-size: 20px;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
     color: rgb(155, 17, 17);
 }
 
+
 /*MENSAJE DE CONTRASEÑA INCORRECTA*/
-h2{
+
+h2 {
     background-image: url(../images/fondomármolnegro.jpg);
     background-repeat: no-repeat;
     color: white;
@@ -248,7 +303,7 @@ h2{
     margin: 2% 0;
 }
 
-h1{
+h1 {
     font-size: 25px;
     text-align: center;
     text-transform: uppercase;
@@ -258,31 +313,34 @@ h1{
     margin: 2% 0;
 }
 
-h3{
+h3 {
     width: 80%;
     text-align: center;
     margin: 2% auto 0 16%;
 }
 
+
 /*FORMULARIO DE COMENTARIOS*/
-.form_comentarios{
+
+.form_comentarios {
     align-items: center;
     display: flex;
     flex-direction: column;
 }
 
-.textarea_commet{
+.textarea_commet {
     width: 60%;
     margin: 2% auto;
 }
 
-.valoracion{
+.valoracion {
     text-align: center;
 }
 
+
 /*VISTA DE OS COMENTARIOS*/
 
-h4{
+h4 {
     text-align: center;
     background-image: url(../images/fondo.jpg);
     width: 60%;
@@ -291,7 +349,7 @@ h4{
     padding: 1% 0;
 }
 
-#vue-comments{
+#vue-comments {
     width: 60%;
     margin: 2% auto;
 }

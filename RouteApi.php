@@ -9,6 +9,6 @@
     $router->addRoute('product/:ID/comments', 'GET', 'ApiCommentController', 'GetComments');
     $router->addRoute('comments', 'POST', 'ApiCommentController', 'InsertComment');
     $router->addRoute('comments/:ID', 'DELETE', 'ApiCommentController', 'DeleteComment');
-    
+
     //run
-    $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 
+    $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
