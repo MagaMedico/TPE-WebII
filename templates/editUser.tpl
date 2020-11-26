@@ -1,13 +1,13 @@
 {include file="header.tpl"}
 <!--BARRA DE NAVEGACIÓN ADMINISTRADOR-->
-   <nav class="botoneratexto">
-        <ul class="menu botones_admin">
-            <li class="botones"><a class="link" href="admin">Producto</a></li>
-            <li class="botones"><a class="link" href="adminUsers">Usuarios</a></li>
-        </ul>
-    </nav>
+<nav class="botoneratexto">
+    <ul class="menu botones_admin">
+        <li class="botones"><a class="link" href="admin">Productos</a></li>
+        <li class="botones"><a class="link" href="adminUsers">Usuarios</a></li>
+    </ul>
+</nav>
 <!--BOTON DE CERRAR SESIÓN-->
-<div>
+<div class="div_logout">
     <p class="cerarSesion">cerrar sesión</p>
     <button class="btn_logout" type="button"><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
 </div>

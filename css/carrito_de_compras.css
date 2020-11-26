@@ -106,16 +106,16 @@ th, td{
 }
 
 /*LOGOUT*/
-.cerarSesion{
-    margin: 2% 0 0 87%;
-    text-transform: uppercase;
-    color: grey;
+.div_logout{
+    margin: 2% 2% 2% auto;
+    text-align: center;
+    width: 10%;
 }
 
-/*BOTON LOGOUT*/
-.btn_logout{
-    float: right;
-    margin: 1% 5% 0 0;
+.cerarSesion{
+    text-transform: uppercase;
+    color: grey;
+    margin-bottom: 5%;
 }
 
 /*LOGOUT USER*/
