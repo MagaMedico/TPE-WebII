@@ -140,11 +140,15 @@ th, td {
     padding: 0;
 }
 
+.td_imag{
+    border: inset 0pt;
+}
+
+
 .btn {
     margin: 1%;
     height: 10%;
 }
-
 
 /*LOGOUT*/
 

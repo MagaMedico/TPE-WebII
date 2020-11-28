@@ -55,10 +55,15 @@
                         $numberOfAdmin++;
                     }
                     if($numberOfAdmin != 1 && $numberOfAdmin != 0){
-                        if(isset($_POST['selectAdmin'])){
-                            $admin = $_POST['selectAdmin'];
-                            $this->model->UpdateUser($admin, $id);
-                            header("Location: ".BASE_URL.adminUsers);
+                        $user = $this->model->GetUserById($id);
+                        if($user->email != $_SESSION['EMAIL']){
+                           if(isset($_POST['selectAdmin'])){
+                                $admin = $_POST['selectAdmin'];
+                                $this->model->UpdateUser($admin, $id);
+                                header("Location: ".BASE_URL.adminUsers);
+                            }
+                        }else{
+                            $this->view->ShowEdit($user, "No se pueden cambiar permisos, ya que estás haciendo uso de este administrador.");
                         }
                     }else{
                         $user = $this->model->GetUserById($id);

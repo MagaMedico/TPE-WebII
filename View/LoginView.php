@@ -12,21 +12,22 @@ class LoginView{
     //MUESTRA EL LOGIN
     function ShowLogin($message = NULL){
         $this->smarty->assign('message', $message);
-        $this->smarty->display('templates/login.tpl');        
+        $this->smarty->display('templates/login.tpl');
     }
     //MUESTRA EL FORMULARIO DE REGISTRO
     function ShowRegister($message = NULL, $user = NULL){
         $this->smarty->assign('message', $message);
         $this->smarty->assign('user', $user);
-        $this->smarty->display('templates/register.tpl');        
+        $this->smarty->display('templates/register.tpl');
     }
     //MUESTRA LA PAGINA PARA EL ADMIN
-    function ShowVerify($products, $marks){
+    function ShowVerify($products, $marks, $images = null){
         $this->smarty->assign('title', $this->title);
         $this->smarty->assign('products', $products);
         $this->smarty->assign('marks', $marks);
-        // muestro el template 
-        $this->smarty->display('templates/verify.tpl'); 
+        $this->smarty->assign('images', $images);
+        // muestro el template
+        $this->smarty->display('templates/verify.tpl');
     }
 }
 ?>

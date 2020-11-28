@@ -1,18 +1,19 @@
 <?php
     require_once "./View/LoginView.php";
-    require_once "./Model/UserModel.php";
     require_once "./View/ProductsView.php";
+    require_once "./Model/UserModel.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
+    require_once "./Model/ImageModel.php";
     require_once "Helper.php";
 
     class LoginController extends Helper {
 
         private $view;
         private $model;
-        private $productView;
         private $productsModel;
         private $marksModel;
+        private $imageModel;
 
         function __construct(){
             $this->view= new LoginView();
@@ -20,6 +21,7 @@
             $this->productView = new ProductsView();
             $this->productsModel = new ProductsModel();
             $this->marksModel = new MarksModel();
+            $this->imageModel = new ImageModel();
         }
         //LLAMA AL LOGIN
         function Login(){
@@ -100,7 +102,8 @@
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $marks = $this->marksModel->GetMarks();
                 $products = $this->productsModel->GetProducts();
-                $this->view->ShowVerify($products, $marks);
+                $images = $this->imageModel->GetImagen();
+                $this->view->ShowVerify($products, $marks, $images);
             }else{
                 $this->view->ShowLogin();
             }

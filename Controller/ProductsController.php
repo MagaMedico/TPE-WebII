@@ -4,8 +4,9 @@
     require_once "./View/LoginView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
-    require_once "Helper.php";
+    require_once "./Model/ImageModel.php";
     require_once "./Model/CommentModel.php";
+    require_once "Helper.php";
 
     class ProductsController extends Helper{
 
@@ -15,6 +16,7 @@
         private $loginView;
         private $userModel;
         private $commentModel;
+        private $imageModel;
 
         function __construct(){
             $this->view = new ProductsView();
@@ -23,14 +25,14 @@
             $this->loginView = new LoginView();
             $this->userModel = new UserModel();
             $this->commentModel = new CommentModel();
+            $this->imageModel = new ImageModel();
         }
         //LLAMA AL HOME
         function Home($params = null){
             $logeado = $this->CheckLoggedIn();
             $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
 
-            $data_pagination = $this->pagination($products, $params);
+            $data_pagination = $this->pagination($params);
 
             $productLimit = $data_pagination[0];
             $pagination = $data_pagination[1];
@@ -44,7 +46,8 @@
 
         }
         //PAGINACIÓN
-        function pagination($products, $params){
+        function pagination($params){
+            $products = $this->model->GetProducts();
             $data_pagination = [];
             $productByPage = 3;
             if(isset($params[':ID'])){
@@ -152,9 +155,9 @@
             $logeado = $this->CheckLoggedIn();
             $product_id = $params[':ID'];
             $product = $this->model->GetProductById($product_id);
+            $images = $this->imageModel->GetImagenByProduct($product_id);
             $mark_id = $product->id_marca;
             $mark = $this->marksModel->GetMarkById($mark_id);
-            $average = $this->commentModel->GetAverage($product_id);
             //prepara rango de valoracion de productos.
             $starRank = 5;
             $stars = [];
@@ -166,20 +169,20 @@
                 $usuario = $this->userModel->GetUser($user);
                 $Iduser = $usuario->id;
                 $admin = $_SESSION['ADMIN'];
-                $this->view->ShowItemDetail($product, $mark, $stars, $user, $Iduser, $admin, $average);
+                $this->view->ShowItemDetail($product, $mark, $images, $stars, $user, $Iduser, $admin);
             }else{
-                $this->view->ShowItemDetail($product, $mark, $average);
+                $this->view->ShowItemDetail($product, $mark, $images);
             }
         }
         //BORRA UNA IMAGEN
         function DeleteImg($params = null){
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
-                $product_id = $params[':ID'];
-                $filepath = $this->model->SearchFilepath($product_id);
-                $this->model->DeleteImg($product_id);
-                //busco si otro producto tiene esta misma imagen
-                $imageInUse = $this->model->SearchImageInUse($filepath->imagen);
+                $image_id = $params[':ID'];
+                $filepath = $this->imageModel->SearchFilepath($image_id);
+                $this->imageModel->DeleteImg($image_id);
+                //busco si esta imagen está relacionada a otro producto
+                $imageInUse = $this->imageModel->SearchImageInUse($filepath->imagen);
                 if(!$imageInUse){
                     unlink($filepath->imagen);
                 }

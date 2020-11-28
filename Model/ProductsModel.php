@@ -56,18 +56,7 @@
         function GetProductsByLimit($desde, $productoPorPagina){
             $sentencia = $this->db->prepare("SELECT * FROM producto INNER JOIN marca ON producto.id_marca = marca.id_marca LIMIT $desde,$productoPorPagina");
             $sentencia->execute();
-            return $sentencia->fetchAll(PDO::FETCH_OBJ);
-        }
-        //BORRA LA IMAGEN
-        function DeleteImg($product_id){
-            $sentencia = $this->db->prepare("UPDATE producto SET imagen = NULL WHERE id=?");
-            $sentencia->execute(array($product_id));
-        }
-        //BUSCA FILEPATH DE IMAGEN PARA LUEGO ELIMINARLA DEL SERVIDOR
-        function SearchFilepath($product_id){
-            $sentencia = $this->db->prepare("SELECT imagen FROM producto WHERE id=?");
-            $sentencia->execute(array($product_id));
-            return $sentencia->fetch(PDO::FETCH_OBJ);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);//
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE
         function SearchItemByName($search){
@@ -85,12 +74,6 @@
         function SearchItem($name, $precioMinimo, $precioMaximo){
             $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio BETWEEN ? AND ?");
             $sentencia->execute(array($name, $precioMinimo, $precioMaximo));
-            return $sentencia->fetchAll(PDO::FETCH_OBJ);
-        }
-        //BUSCA SI ESTE FILEPATH ESTA EN USO
-        function SearchImageInUse($filepath){
-            $sentencia = $this->db->prepare("SELECT imagen FROM producto WHERE imagen=?");
-            $sentencia->execute(array($filepath));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
     }

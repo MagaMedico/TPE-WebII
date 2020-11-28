@@ -31,10 +31,4 @@ class CommentModel{
         $sentencia = $this->db->prepare("DELETE FROM comentario WHERE id_comentario=?");
         $sentencia->execute(array($id_comentario));
     }
-    //SACA EL PROMEDIO DE UN PRODUCTO SEGÚN SUS COMENTARIOS
-    function GetAverage($id_producto){
-        $sentencia=$this->db->prepare("SELECT AVG(valoracion) AS promedio FROM comentario WHERE id_producto=?");
-        $sentencia->execute(array($id_producto));
-        return $sentencia->fetch(PDO::FETCH_OBJ);
-    }
 }

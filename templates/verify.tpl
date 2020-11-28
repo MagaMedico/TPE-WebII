@@ -17,7 +17,6 @@
         <caption class="titulo_table">{$title}</caption>
         <thead>
             <tr>
-                <th>imagen</th>
                 <th>producto</th>
                 <th>precio</th>
                 <th>stock</th>
@@ -27,18 +26,24 @@
         <tbody id="tabla">
             {foreach from=$products item=product}
                 <tr>
-                    <td>
-                        <img class="img" src="{$product->imagen}">
-                        {if $product->imagen}
-                            <button  type="button"><a href="deleteImg/{$product->id}"><i class="fas fa-trash"></i></a></button>
-                        {/if}
-                    </td>
                     <td>{$product->nombre}</td>
                     <td>{$product->precio}</td>
                     <td>{$product->stock}</td>
                     <td>{$product->descripcion}</td>
                     <td class="excepcion"><button type="button"><a href="edit/{$product->id}">editar</a></button></td>
                     <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$product->id}">borrar</a></button></td>
+                </tr>
+                <tr>
+                    <td class="td_imag" colspan="4">
+                        {foreach from=$images item=image}
+                            {if $image->id_producto == $product->id}
+                                <img class="img" src="{$image->imagen}">
+                                {if $image->imagen}
+                                    <button  type="button"><a href="deleteImg/{$image->id}"><i class="fas fa-trash"></i></a></button>
+                                {/if}
+                            {/if}
+                        {/foreach}
+                    </td>
                 </tr>
             {/foreach}
         </tbody>
