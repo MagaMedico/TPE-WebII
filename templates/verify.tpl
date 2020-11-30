@@ -38,9 +38,6 @@
                         {foreach from=$images item=image}
                             {if $image->id_producto == $product->id}
                                 <img class="img" src="{$image->imagen}">
-                                {if $image->imagen}
-                                    <button type="button"><a href="deleteImg/{$image->id}"><i class="fas fa-trash"></i></a></button>
-                                {/if}
                             {/if}
                         {/foreach}
                     </td>

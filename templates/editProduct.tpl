@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <!--HTML EDITAR PRODUCTO-->
 <h1>editar producto</h1>
-<form class="form_edit_product" action="update/{$product->id}" method="post">
+<form class="form_edit_product" action="update/{$product->id}" method="post" enctype="multipart/form-data">
 
     <input class="input" type="text" name="edit_product" placeholder="producto" value="{$product->nombre}" required>
     <input class="input" type="number" name="edit_price" placeholder="precio" value="{$product->precio}" required>
@@ -9,9 +9,10 @@
     <input class="input" type="text" name="edit_description" placeholder="descripción" value="{$product->descripcion}" required>
     <div class=" cont_file">
         {foreach from=$images item=image}
-            <img class="img edit_img" src="{$image->imagen}">
-            <input class="btn_file" type="file" name="edit_file" id="imageToUpload"/>
+            <img class="img edit_img" src="{$image->imagen}"> 
+            <button type="button"><a href="deleteImg/{$image->id}"><i class="fas fa-trash"></i></a></button>
         {/foreach}
+        <input class="btn_file" type="file" name="input_file[]" id="imageToUpload" multiple/>
     </div>
     <select name="select_brand">
         {foreach from=$marks item=mark}

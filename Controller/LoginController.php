@@ -11,6 +11,7 @@
 
         private $view;
         private $model;
+        private $productsView;
         private $productsModel;
         private $marksModel;
         private $imageModel;
@@ -18,7 +19,7 @@
         function __construct(){
             $this->view= new LoginView();
             $this->model= new UserModel();
-            $this->productView = new ProductsView();
+            $this->productsView = new ProductsView();
             $this->productsModel = new ProductsModel();
             $this->marksModel = new MarksModel();
             $this->imageModel = new ImageModel();
@@ -27,7 +28,7 @@
         function Login(){
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
-                $this->productView->ShowLocation('admin');
+                $this->productsView->ShowLocation('admin');
             } else {
                 $this->view->ShowLogin();
             }
@@ -63,7 +64,7 @@
         function Logout(){
             session_start();
             session_destroy();
-            header("Location: ".LOGIN);
+            $this->productsView->ShowLocation('login');
         }
         //VERIFICO MI USUARIO
         function VerifyUser(){
@@ -73,25 +74,19 @@
             if(isset($user)){
                 $userFromDB = $this->model->GetUser($user);
                 if(isset($userFromDB) && $userFromDB){
-                    // Existe el usuario
                     if (password_verify($password, $userFromDB->password)){
                         session_start();
-                        /*if(isset($_SESSION['LAST_ACTIVITY']) && (time()-$_SESSION['LAST_ACTIVITY']>1000)){
-                            header("Location: ".LOGOUT);
-                        }*/
                         $_SESSION["EMAIL"] = $userFromDB->email;
                         $_SESSION['ADMIN'] = $userFromDB->admin;
-                        //$_SESSION['LAST_ACTIVITY'] = time();
                         if($userFromDB->admin == 1){
-                            $this->productView->ShowLocation('admin');
+                            $this->productsView->ShowLocation('admin');
                         }else{
-                            $this->productView->ShowLocation('home');
+                            $this->productsView->ShowLocation('home');
                         }
                     }else{
                         $this->view->ShowLogin("Contraseña incorrecta");
                     }
                 }else{
-                    // No existe el user en la DB
                     $this->view->ShowLogin("El usuario no existe");
                 }
             }
@@ -105,7 +100,7 @@
                 $images = $this->imageModel->GetImagen();
                 $this->view->ShowVerify($products, $marks, $images);
             }else{
-                $this->view->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
     }

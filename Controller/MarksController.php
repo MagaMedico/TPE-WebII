@@ -3,20 +3,18 @@
     require_once "./View/MarksView.php";
     require_once "./Model/MarksModel.php";
     require_once "./View/LoginView.php";
-    require_once "Helper.php";
     require_once "./View/ProductsView.php";
+    require_once "Helper.php";
 
     class MarksController extends Helper{
 
         private $marksView;
         private $marksModel;
-        private $loginView;
         private $productsView;
 
         function __construct(){
             $this->marksView = new MarksView();
             $this->marksModel = new MarksModel();
-            $this->loginView = new LoginView();
             $this->productsView = new ProductsView();
         }
         //LLAMA AL HOME DE MARCAS
@@ -35,7 +33,7 @@
                 }
                 $this->productsView->ShowLocation('admin');
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //ELIMINA UNA MARCA POR ID
@@ -46,7 +44,7 @@
                 $this->marksModel->DeleteMark($mark_id);
                 $this->productsView->ShowLocation('admin');
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //LLAMA LA VISTA PARA EDITAR UNA MARCA POR ID
@@ -57,7 +55,7 @@
                 $mark = $this->marksModel->GetMarkById($mark_id);
                 $this->marksView->ShowEditMark($mark);
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //LLAMA A ACTUALIZAR UNA MARCA
@@ -72,7 +70,7 @@
                 }
                 $this->productsView->ShowLocation('admin');
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
     }

@@ -8,12 +8,12 @@
 
         private $view;
         private $model;
-        private $loginView;
+        private $productsView;
 
         function __construct(){
             $this->view= new UserView();
             $this->model= new UserModel();
-            $this->loginView = new LoginView();
+            $this->productsView = new ProductsView();
         }
         //VISTA PARA EL ADMINISTRADOR DE LOS USUARIOS
         function ShowUsers(){
@@ -22,7 +22,7 @@
                 $users = $this->model->GetUsers();
                 $this->view->ShowUsers($users);
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //LLAMA A LA VISTA PARA EDITAR UN USUARIO (SOLO PARA ADMINISTRADORES)
@@ -33,7 +33,7 @@
                 $user = $this->model->GetUserById($id);
                 $this->view->ShowEdit($user);
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //ACTUALIZA LOS DATOS DE UN USUARIO (SOLO PARA ADMINISTRADORES)
@@ -46,7 +46,7 @@
                     if(isset($_POST['selectAdmin'])){
                         $admin = $_POST['selectAdmin'];
                         $this->model->UpdateUser($admin, $id);
-                        header("Location: ".BASE_URL.adminUsers);
+                        $this->productsView->ShowLocation('adminUsers');
                     }
                 }else{
                     $existsAdmin = $this->model->ExistsAdmin();
@@ -60,7 +60,7 @@
                            if(isset($_POST['selectAdmin'])){
                                 $admin = $_POST['selectAdmin'];
                                 $this->model->UpdateUser($admin, $id);
-                                header("Location: ".BASE_URL.adminUsers);
+                                $this->productsView->ShowLocation('adminUsers');
                             }
                         }else{
                             $this->view->ShowEdit($user, "No se pueden cambiar permisos, ya que estás haciendo uso de este administrador.");
@@ -71,7 +71,7 @@
                     }
                 }
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
         //ELIMINA UN USUARIO (SOLO PARA ADMINISTRADORES)
@@ -82,7 +82,7 @@
                 $typeOfUser = $this->model->GetUserById($id);
                 if($typeOfUser->admin == 0){
                     $this->model->DeleteUser($id);
-                    header("Location: ".BASE_URL.adminUsers);
+                    $this->productsView->ShowLocation('adminUsers');
                 }else{
                     $existsAdmin = $this->model->ExistsAdmin();
                     $numberOfAdmin = 0;
@@ -91,14 +91,14 @@
                     }
                     if($numberOfAdmin != 1 && $numberOfAdmin != 0){
                         $this->model->DeleteUser($id);
-                        header("Location: ".BASE_URL.adminUsers);
+                        $this->productsView->ShowLocation('adminUsers');
                     }else{
                         $users = $this->model->GetUsers();
                         $this->view->ShowUsers($users, "No se puede eliminar este usuario ya que es el ultimo administrador del sistema.");
                     }
                 }
             }else{
-                $this->loginView->ShowLogin();
+                $this->productsView->ShowLocation('login');
             }
         }
     }

@@ -36,14 +36,6 @@ class ImageModel {
         $sentencia->execute(array($filepath));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
-    //EDITAR UNA IMAGEN
-    function UpdateImg($fileTemp, $id){
-        $name = basename($_FILES["edit_file"]["name"]);
-        $filepath = "img/". $name;
-        move_uploaded_file($fileTemp, $filepath);
-        $sentencia = $this->db->prepare("UPDATE imagen SET imagen=? WHERE id=?");
-        $sentencia->execute(array($filepath));
-    }
     //AGREGAR UNA IMAGEN
     function InsertImg($fileTemp, $name, $id_product){
         $filepath = "img/". $name;

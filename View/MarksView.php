@@ -15,13 +15,11 @@
         function ShowMarks($marks){
             $this->smarty->assign('titulo', $this->title);
             $this->smarty->assign('marks', $marks);
-            // muestro el template 
             $this->smarty->display('templates/marks.tpl');
         }
         //VISTA PARA EDITAR UNA MARCA
         function ShowEditMark($mark){
             $this->smarty->assign('mark', $mark);
-            // muestro el template 
             $this->smarty->display('templates/editMark.tpl');  
         }
     }

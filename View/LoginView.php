@@ -26,7 +26,6 @@ class LoginView{
         $this->smarty->assign('products', $products);
         $this->smarty->assign('marks', $marks);
         $this->smarty->assign('images', $images);
-        // muestro el template
         $this->smarty->display('templates/verify.tpl');
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
     require_once "./View/ProductsView.php";
-    require_once "./View/LoginView.php";
     require_once "./Model/ProductsModel.php";
     require_once "./Model/MarksModel.php";
+    require_once "./Model/UserModel.php";
     require_once "./Model/ImageModel.php";
     require_once "./Model/CommentModel.php";
     require_once "Helper.php";
@@ -13,7 +13,6 @@
         private $view;
         private $model;
         private $marksModel;
-        private $loginView;
         private $userModel;
         private $commentModel;
         private $imageModel;
@@ -22,7 +21,6 @@
             $this->view = new ProductsView();
             $this->model = new ProductsModel();
             $this->marksModel = new MarksModel();
-            $this->loginView = new LoginView();
             $this->userModel = new UserModel();
             $this->commentModel = new CommentModel();
             $this->imageModel = new ImageModel();
@@ -87,7 +85,7 @@
                 $this->view->ShowLocation('admin');
 
             }else{
-                $this->loginView->Login();
+                $this->view->ShowLocation('login');
             }
         }
         //ELIMINA UN PRODUCTO POR ID
@@ -95,12 +93,17 @@
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $product_id = $params[':ID'];
+                $images = $this->imageModel->GetImagenByProduct($product_id);
                 $this->model->DeleteProduct($product_id);
-                //$this->DeleteImg(); cuando borramos un producto se borran las img de la db
-                //pero no de la carpeta local
+                for($i=0; $i<count($images); $i++){
+                    $imageInUse = $this->imageModel->SearchImageInUse($images[$i]->imagen);
+                    if(!$imageInUse){
+                        unlink($images[$i]->imagen);
+                    }
+                }
                 $this->view->ShowLocation('admin');
             }else{
-                $this->loginView->ShowLogin();
+                $this->view->ShowLocation('login');
             }
         }
         //LLAMA LA VISTA PARA EDITAR UN PRODUCTO POR ID
@@ -113,7 +116,7 @@
                 $images = $this->imageModel->GetImagenByProduct($product_id);
                 $this->view->ShowEditProduct($product, $marks, $images);
             }else{
-                $this->loginView->ShowLogin();
+                $this->view->ShowLocation('login');
             }
         }
         //LLAMA A ACTUALIZAR UN PRODUCTO
@@ -129,14 +132,15 @@
                     $description = $_POST['edit_description'];
                     $brand = $_POST['select_brand'];
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
-                    //necesito el id de la imagen para hacer el update
-                    $fileTemp = $_FILES['edit_file']['tmp_name'];
-                    var_dump($fileTemp);
-                    $this->imageModel->UpdateImg($fileTemp, 101);
+                    $fileTemp = $_FILES['input_file']['tmp_name'];
+                    for($i=0; $i<count($_FILES['input_file']['tmp_name']); $i++){
+                        $name = basename($_FILES["input_file"]["name"][$i]);
+                        $this->imageModel->InsertImg($fileTemp[$i], $name, $product_id);
+                    }
                 }
                 $this->view->ShowLocation('admin');
             }else{
-                $this->loginView->ShowLogin();
+                $this->view->ShowLocation('login');
             }
         }
         //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
@@ -185,8 +189,8 @@
                     unlink($filepath->imagen);
                 }
                 $this->view->ShowLocation('admin');
-            }else{
-                $this->loginView->ShowLogin();
+            } else {
+                $this->view->ShowLocation('login');
             }
         }
         //BUSCA ITEMS
