@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2020 a las 21:59:24
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.33
+-- Tiempo de generación: 30-11-2020 a las 01:14:30
+-- Versión del servidor: 10.4.16-MariaDB
+-- Versión de PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,38 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `valoracion`, `id_usuario`, `id_producto`) VALUES
-(2, 'insertado desde postman', 3, 1, 2);
+(2, 'insertado desde postman', 3, 1, 2),
+(37, 'dvsvs', 2, 1, 4),
+(39, 'wdaa', 2, 1, 5),
+(40, 'ascs', 1, 1, 5),
+(54, 'sdvsvsvs', 5, 1, 1),
+(55, 'sacaca', 2, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id` int(50) NOT NULL,
+  `imagen` varchar(200) NOT NULL,
+  `id_producto` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id`, `imagen`, `id_producto`) VALUES
+(9, 'img/aros4.jpg', 1),
+(10, 'img/aros2.jpg', 2),
+(11, 'img/aros3.jpg', 1),
+(13, 'img/aros2.jpg', 1),
+(14, 'img/aros2.jpg', 1),
+(29, 'img/aros2.jpg', 1),
+(30, 'img/aros2.jpg', 1),
+(31, 'img/aros2.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -62,8 +93,7 @@ INSERT INTO `marca` (`id_marca`, `marca`, `categoria`) VALUES
 (1, 'donadonna', 'Bijouterie Online'),
 (2, 'Lunera acero', 'bijouterie mayorista'),
 (3, 'gotergood', 'pulseras y brazaletes para hombres'),
-(4, 'Rapsodia', 'variedad de accesorios'),
-(5, 'Tiffany & Co.', 'agregada desde la pagina');
+(4, 'Rapsodia', 'variedad de accesorios');
 
 -- --------------------------------------------------------
 
@@ -77,7 +107,6 @@ CREATE TABLE `producto` (
   `precio` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
-  `imagen` varchar(50) NOT NULL,
   `id_marca` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -85,15 +114,14 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `imagen`, `id_marca`) VALUES
-(1, 'pulsera', 205, 23, 'pulsera elegante', 'img/pulsera1.jpg', 4),
-(2, 'aros', 100, 20, 'aros perfecto para fiesta de noche', 'img/aros2.jpg', 2),
-(3, 'pulsera de cuentas', 200, 15, 'colores bien brillantes', 'img/pulsera4.jpg', 5),
-(4, 'colita fringes', 100, 8, 'ajuste delicado', '', 4),
-(5, 'aros square', 300, 5, 'ideal para ir a una quinta', '', 1),
-(7, 'collar bull', 300, 5, 'genial para todos los dias', 'img/pulsera7.jpg', 1),
-(8, 'Collar zafiro', 240, 23, 'el colla de la marca', '', 4),
-(9, 'aros hanna', 12122, 12, 'agregado desde la pagina', '', 5);
+INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `id_marca`) VALUES
+(1, 'pulsera', 205, 23, 'pulsera elegante', 4),
+(2, 'aros', 100, 20, 'aros perfecto para fiesta de noche', 2),
+(4, 'colita fringes', 100, 8, 'ajuste delicado', 4),
+(5, 'aros square', 300, 5, 'ideal para ir a una quinta', 1),
+(7, 'collar bull', 300, 5, 'genial para todos los dias', 1),
+(16, 'collar bull', 12, 12, '12', 3),
+(17, 'sccaca', 12, 12, '211', 2);
 
 -- --------------------------------------------------------
 
@@ -114,8 +142,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `email`, `password`, `admin`) VALUES
 (1, 'magamedico@gmail.com', '$2y$10$zJCL282zDJdwSfggMMHSNuikf0hxDZiwz9KckRW/G8D/ACxo8buq2', 1),
-(3, 'nuevo@publico', '$2y$10$2zE98Ld1qoyvldSyucCKYOda2CcVVvUAYUIBJyeyMZlzg8f.haE8i', 0),
-(4, 'usuario@publico', '$2y$10$tAs6KneNjG6.v4Pz1O/93eiPxZZhWeszzHM5zBPz13ZHpu1R9RnGu', 0);
+(4, 'usuario@hotmail.com', '$2y$10$tAs6KneNjG6.v4Pz1O/93eiPxZZhWeszzHM5zBPz13ZHpu1R9RnGu', 0),
+(5, 'marinacaseres1997@hotmail.com', '$2y$10$BSX0ctLE8ubJKWfW8HDCCORbEkTChHeH2VZ8akqQ4F7AWCK4N40lK', 1);
 
 --
 -- Índices para tablas volcadas
@@ -130,6 +158,13 @@ ALTER TABLE `comentario`
   ADD KEY `id_producto` (`id_producto`);
 
 --
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producto` (`id_producto`);
+
+--
 -- Indices de la tabla `marca`
 --
 ALTER TABLE `marca`
@@ -140,7 +175,9 @@ ALTER TABLE `marca`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_marca` (`id_marca`);
+  ADD KEY `id_marca` (`id_marca`),
+  ADD KEY `id` (`id`),
+  ADD KEY `id_2` (`id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -156,7 +193,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -168,13 +211,13 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -186,6 +229,12 @@ ALTER TABLE `usuario`
 ALTER TABLE `comentario`
   ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
