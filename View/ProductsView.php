@@ -26,14 +26,13 @@
             $this->smarty->assign('pagination', $pagination);
             $this->smarty->assign('page', $page);
             $this->smarty->assign('user', $user);
-            // muestro el template
             $this->smarty->display('templates/products.tpl');
         }
         //VISTA PARA EDITAR UN PRODUCTO
-        function ShowEditProduct($product, $marks){
+        function ShowEditProduct($product, $marks, $images){
             $this->smarty->assign('product', $product);
             $this->smarty->assign('marks', $marks);
-            // muestro el template
+            $this->smarty->assign('images', $images);
             $this->smarty->display('templates/editProduct.tpl');
         }
         //VISTA DE UN PRODUCTO EN DETALLE - TABLA PRODUCTO Y TABLA DE LA MARCA
@@ -46,7 +45,6 @@
             $this->smarty->assign('user', $user);
             $this->smarty->assign('Iduser', $Iduser);
             $this->smarty->assign('admin', $admin);
-            // muestro el template
             $this->smarty->display('templates/itemDetail.tpl');
         }
         //VEO LO BUSCADO
