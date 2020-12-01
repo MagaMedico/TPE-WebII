@@ -1,4 +1,4 @@
-<h1>Busca por marca o por nombre y precio:</h1>
+<h1>Busca por marca, nombre o precio:</h1>
 <form action="filterMark" method="post">
   <p>Seleciona una marca:
     <select name="select_brand">

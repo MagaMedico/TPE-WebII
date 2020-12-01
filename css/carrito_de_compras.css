@@ -31,7 +31,6 @@
     color: orange;
 }
 
-
 /*VALORACION POR ESTRELLAS*/
 
 .clasificacion {
@@ -55,7 +54,6 @@
 .input_star:checked~label {
     color: orange;
 }
-
 
 /*VISTA DE ESTRELLAS EN LOS COMENTARIOS*/
 
@@ -92,7 +90,6 @@
     word-break: break-all;
     hyphens: auto;
 }
-
 
 /**/
 
@@ -164,7 +161,6 @@ th, td {
     margin-bottom: 5%;
 }
 
-
 /*LOGOUT USER*/
 
 .contenedor_logout_user {
@@ -185,7 +181,6 @@ th, td {
 button {
     margin: 0 2%;
 }
-
 
 /*BOTON DE LA TABLA (EDITAR Y BORRAR)*/
 
@@ -215,19 +210,11 @@ form {
     text-align: center;
 }
 
-.form_edit_product {
-    margin: 2% 0;
-    text-align: center;
-    display: flex;
-    align-items: baseline;
-    padding-left: 10px;
-}
-
 .input {
     text-align: center;
     width: 10%;
     height: 20%;
-    margin: auto 1%;
+    margin: auto;
 }
 
 input, button {
@@ -239,15 +226,28 @@ select {
     height: 33px;
 }
 
-
-/*CONTENEDOR DE FILE*/
-
-.cont_file {
-    margin: 0;
-    width: 150px;
-    justify-items: center;
+.select_brand{
+    margin-top: 0.8%;
 }
 
+/*CONTENEDOR DE FILE*/
+.form_edit_product {
+    margin: 2% 0;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.cont1_form_edit_product{
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.cont_file {
+    width: 70%;
+    padding: 5px 0;
+    margin: auto;
+}
 
 /*BOTON DE SELECIONAR UNA IMAGEN*/
 
@@ -258,13 +258,16 @@ select {
     text-align: center;
 }
 
-
 /*IMAGEN DE EDITAR PRODUCTO*/
 
 .edit_img {
-    margin: 0 10px;
+    margin-top: 2%;
 }
 
+.btn_delete_img{
+    margin: 0;
+    margin-right: 2%;
+}
 
 /*MENSAJE DE ALERTA DE ELIMINADO DE UNA MARCA*/
 
