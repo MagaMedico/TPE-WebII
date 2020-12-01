@@ -12,7 +12,7 @@
 
     // rutas
     //HOME
-    $r->addRoute("home/:ID", "GET", "ProductsController", "Home");
+    $r->addRoute("home/:PAGE", "GET", "ProductsController", "Home");
     $r->addRoute("mark", "GET", "MarksController", "HomeMarks");
     $r->addRoute("filterMark", "POST", "ProductsController", "FilterProductsByMark");
     $r->addRoute("itemDetail/:ID", "GET", "ProductsController", "ItemDetail");
@@ -40,7 +40,7 @@
     $r->addRoute("updateUser/:ID", "POST", "UserController", "UpdateUser");
     $r->addRoute("deleteUser/:ID", "GET", "UserController", "DeleteUser");
     //ELIMINA IMAGEN
-    $r->addRoute("deleteImg/:ID", "GET", "ProductsController", "DeleteImg");
+    $r->addRoute(":PRODUCT/deleteImg/:ID", "GET", "ProductsController", "DeleteImg");
     //Ruta por defecto.
     $r->setDefaultRoute("ProductsController", "Home");
 

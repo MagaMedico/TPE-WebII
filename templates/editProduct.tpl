@@ -7,13 +7,7 @@
     <input class="input" type="number" name="edit_price" placeholder="precio" value="{$product->precio}" required>
     <input class="input" type="number" name="edit_stock" placeholder="stock" value="{$product->stock}" required>
     <input class="input" type="text" name="edit_description" placeholder="descripción" value="{$product->descripcion}" required>
-    <div class=" cont_file">
-        {foreach from=$images item=image}
-            <img class="img edit_img" src="{$image->imagen}"> 
-            <button type="button"><a href="deleteImg/{$image->id}"><i class="fas fa-trash"></i></a></button>
-        {/foreach}
-        <input class="btn_file" type="file" name="input_file[]" id="imageToUpload" multiple/>
-    </div>
+
     <select name="select_brand">
         {foreach from=$marks item=mark}
             {if $mark->id_marca == $product->id_marca}
@@ -23,6 +17,13 @@
             {/if}
         {/foreach}
     </select>
+     <div class=" cont_file">
+        {foreach from=$images item=image}
+            <img class="img edit_img" src="{$image->imagen}">
+            <button type="button"><a href="{$product->id}/deleteImg/{$image->id}"><i class="fas fa-trash"></i></a></button>
+        {/foreach}
+        <input type="file" name="input_file[]" id="imageToUpload" multiple/>
+    </div>
 
     <button class="btn" type="submit">actualizar</button>
 </form>

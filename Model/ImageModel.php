@@ -37,9 +37,7 @@ class ImageModel {
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
     //AGREGAR UNA IMAGEN
-    function InsertImg($fileTemp, $name, $id_product){
-        $filepath = "img/". $name;
-        move_uploaded_file($fileTemp, $filepath);
+    function InsertImg($filepath, $id_product){
         $sentencia = $this->db->prepare("INSERT INTO imagen(imagen, id_producto) VALUES(?,?)");
         $sentencia->execute(array($filepath, $id_product));
     }

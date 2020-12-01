@@ -48,8 +48,8 @@
             $products = $this->model->GetProducts();
             $data_pagination = [];
             $productByPage = 3;
-            if(isset($params[':ID'])){
-                $page = $params[':ID'];
+            if(isset($params[':PAGE'])){
+                $page = $params[':PAGE'];
             }else{
                 $page = 1;
             }
@@ -132,12 +132,17 @@
                     $description = $_POST['edit_description'];
                     $brand = $_POST['select_brand'];
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
+                }
                     $fileTemp = $_FILES['input_file']['tmp_name'];
                     for($i=0; $i<count($_FILES['input_file']['tmp_name']); $i++){
                         $name = basename($_FILES["input_file"]["name"][$i]);
-                        $this->imageModel->InsertImg($fileTemp[$i], $name, $product_id);
+                        if($name){
+                           $filepath = "img/". $name;
+                            move_uploaded_file($fileTemp[$i], $filepath);
+                            $this->imageModel->InsertImg($filepath, $product_id);
+                        }
                     }
-                }
+
                 $this->view->ShowLocation('admin');
             }else{
                 $this->view->ShowLocation('login');
@@ -188,7 +193,8 @@
                 if(!$imageInUse){
                     unlink($filepath->imagen);
                 }
-                $this->view->ShowLocation('admin');
+                $product_id = $params[':PRODUCT'];
+                $this->view->ShowLocation('edit/'. $product_id);
             } else {
                 $this->view->ShowLocation('login');
             }
