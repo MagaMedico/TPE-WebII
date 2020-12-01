@@ -20,7 +20,6 @@
         <caption class="titulo_table">{$title}</caption>
         <thead>
             <tr>
-                <th class="excepcion"></th>
                 <th>producto</th>
                 <th>precio</th>
                 <th>stock</th>
@@ -31,7 +30,6 @@
         <tbody id="tabla">
             {foreach from=$products item=product}
                 <tr>
-                    <td class="td_imag excepcion"><img class="img" src="{$product->imagen}"></td>
                     <td>{$product->nombre}</td>
                     <td>{$product->precio}</td>
                     <td>{$product->stock}</td>

@@ -149,12 +149,12 @@
             }
         }
         //LLAMA AL FILTRO DE LOS PRODUCTOS POR MARCA
-        function FilterProductsByMark(){
+        function FilterProductsByMark($params = null){
             if (isset($_POST['select_brand'])) {
                 $mark_id = $_POST['select_brand'];
                 $products = $this->model->GetProductsByMark($mark_id);
                 $marks = $this->marksModel->GetMarks();
-                $this->view->ShowSearch($products, $marks);
+                $this->view->ShowSearch($products, $marks, $user = null, $mark_id);
             }
         }
         //LLAMA A LA VISTA EN DETALLE DE UN PRODUCTO

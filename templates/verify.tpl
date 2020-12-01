@@ -21,6 +21,7 @@
                 <th>precio</th>
                 <th>stock</th>
                 <th>descripción</th>
+                <th>marca</th>
             </tr>
         </thead>
         <tbody id="tabla">
@@ -30,8 +31,9 @@
                     <td>{$product->precio}</td>
                     <td>{$product->stock}</td>
                     <td>{$product->descripcion}</td>
-                    <td class="excepcion"><button type="button"><a href="edit/{$product->id}">editar</a></button></td>
-                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$product->id}">borrar</a></button></td>
+                    <td>{$product->marca}</td>
+                    <td class="excepcion"><button type="button"><a href="edit/{$product->id}"><i class="fas fa-edit"></i></a></button></td>
+                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="delete/{$product->id}"><i class="fas fa-trash"></i></a></button></td>
                 </tr>
                 <tr>
                     <td class="td_imag" colspan="4">
@@ -68,8 +70,8 @@
                 <tr>
                     <td>{$mark->marca}</td>
                     <td>{$mark->categoria}</td>
-                    <td class="excepcion"><button  type="button"><a href="editMark/{$mark->id_marca}">editar</a></button></td>
-                    <td class="excepcion"><button  type="button"><a href="deleteMark/{$mark->id_marca}">borrar</a></button></td>
+                    <td class="excepcion"><button  type="button"><a href="editMark/{$mark->id_marca}"><i class="fas fa-edit"></i></a></button></td>
+                    <td class="excepcion"><button  type="button"><a href="deleteMark/{$mark->id_marca}"><i class="fas fa-trash"></i></a></button></td>
                 </tr>
             {/foreach}
         </tbody>

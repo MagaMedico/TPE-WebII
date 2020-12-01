@@ -89,7 +89,10 @@
                     foreach($existsAdmin as $admin){
                         $numberOfAdmin++;
                     }
-                    if($numberOfAdmin != 1 && $numberOfAdmin != 0){
+                    if($typeOfUser->email == $_SESSION['EMAIL']){
+                        $users = $this->model->GetUsers();
+                        $this->view->ShowUsers($users, "No se puede eliminar este usuario ya que está haciendo uso de este.");
+                    }else if($numberOfAdmin != 1 && $numberOfAdmin != 0){
                         $this->model->DeleteUser($id);
                         $this->productsView->ShowLocation('adminUsers');
                     }else{

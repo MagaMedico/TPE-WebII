@@ -10,7 +10,7 @@
         }
         //BUSCO TODOS LOS PRODUCTOS
         function GetProducts(){
-            $sentencia = $this->db->prepare("SELECT * FROM producto");
+            $sentencia = $this->db->prepare("SELECT * FROM producto INNER JOIN marca ON producto.id_marca = marca.id_marca");
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }

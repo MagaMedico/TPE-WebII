@@ -115,6 +115,8 @@
     justify-content: space-between;
 }
 
+
+
 .titulo_table {
     padding: 2% 0;
     margin: 2% 0;
@@ -185,10 +187,14 @@ button {
 /*BOTON DE LA TABLA (EDITAR Y BORRAR)*/
 
 td.excepcion button {
-    width: 80px;
+    width: 30px;
     height: 35px;
     background-color: rgb(241, 239, 239);
     border: solid 1px rgb(230, 230, 230);
+}
+
+td.excepcion button.verMas{
+    width: 80px;
 }
 
 button a {
@@ -204,6 +210,8 @@ button {
     text-transform: capitalize;
     font-size: 10px;
 }
+
+/**/
 
 form {
     margin: 2% 0;

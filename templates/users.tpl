@@ -33,8 +33,8 @@
                     {else}
                         <td>No</td>
                     {/if}
-                    <td class="excepcion"><button type="button"><a href="editUser/{$user->id}">editar</a></button></td>
-                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="deleteUser/{$user->id}">borrar</a></button></td>
+                    <td class="excepcion"><button type="button"><a href="editUser/{$user->id}"><i class="fas fa-edit"></i></a></button></td>
+                    <td class="excepcion"><button id="btn_borrar" type="button"><a href="deleteUser/{$user->id}"><i class="fas fa-trash"></i></a></button></td>
                 </tr>
             {/foreach}
         </tbody>

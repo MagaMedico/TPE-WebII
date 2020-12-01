@@ -39,7 +39,7 @@
                     <td>{$product->stock}</td>
                     <td>{$product->descripcion}</td>
                     <td>{$product->marca}</td>
-                    <td class="excepcion"><button type="button"><a href="itemDetail/{$product->id}">ver más</a></button></td>
+                    <td class="excepcion"><button class="verMas" type="button"><a href="itemDetail/{$product->id}">ver más</a></button></td>
                 </tr>
             {/foreach}
         </tbody>
