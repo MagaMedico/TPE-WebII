@@ -1,6 +1,6 @@
 <form action="search" method="post">
-    <p>Escribi un nombre o descripción y/o selecciona un precio:
-        <input type="text" name="input_name" placeholder="Producto o descripción">
+    <p>Escribi un nombre y/o selecciona un precio:
+        <input type="text" name="input_name" placeholder="Nombre del producto">
         <select name="select_price">
             <option> </option>
             <option>0-200</option>
