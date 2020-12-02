@@ -91,7 +91,7 @@
                 }
             }
         }
-        //MUESTRA LA PAGUINA DONDE SE PUEDE MODIFICAR LOS PRODUCTOS Y MARCAS(esta función es llamada action 'admin';)
+        //MUESTRA LA PAGINA DONDE SE PUEDE MODIFICAR LOS PRODUCTOS Y MARCAS
         function ShowAdmin(){
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){

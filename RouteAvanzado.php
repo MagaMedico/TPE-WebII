@@ -10,7 +10,6 @@
 
     $r = new Router();
 
-    // rutas
     //HOME
     $r->addRoute("home/:PAGE", "GET", "ProductsController", "Home");
     $r->addRoute("mark", "GET", "MarksController", "HomeMarks");

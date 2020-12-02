@@ -30,7 +30,7 @@
             $logeado = $this->CheckLoggedIn();
             $marks = $this->marksModel->GetMarks();
 
-            $data_pagination = $this->pagination($params);
+            $data_pagination = $this->Pagination($params);
 
             $productLimit = $data_pagination[0];
             $pagination = $data_pagination[1];
@@ -44,7 +44,7 @@
 
         }
         //PAGINACIÓN
-        function pagination($params){
+        function Pagination($params){
             $products = $this->model->GetProducts();
             $data_pagination = [];
             $productByPage = 3;

@@ -1,10 +1,7 @@
 <?php
 
 class APIView {
-
-    /**
-     * Responde en formato JSON
-     */
+    
     public function response($data, $status) {
         header("Content-Type: application/json");
         header("HTTP/1.1 " . $status . " " . $this->requestStatus($status));

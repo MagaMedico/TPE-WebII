@@ -14,9 +14,7 @@ class ApiCommentController extends ApiController {
         $comments = $this->model->GetCommentByProduct($id_product);
         if (!empty($comments)) {
             $this->view->response($comments, 200);
-        }// else {
-            //$this->view->response("Los comentarios del producto con el id=$id_product no existen", 404);
-        //}
+        }
     }
 
     public function InsertComment($params = null){
@@ -26,8 +24,6 @@ class ApiCommentController extends ApiController {
 
             if (!empty($idComment)) {
                 $this->view->response($this->model->GetComment($idComment), 201);
-            } else {
-                $this->view->response("El comentario no se pudo insertar", 404);
             }
         }
     }

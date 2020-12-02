@@ -7,7 +7,7 @@ class ImageModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=carrito_de_compras;charset=utf8', 'root', '');
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    //BUSCO TODAS LAS Imagenes
+    //BUSCO TODAS LAS IMAGENES
     function GetImagen(){
         $sentencia = $this->db->prepare("SELECT * FROM imagen");
         $sentencia->execute();

@@ -41,7 +41,7 @@
             $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id=?");
             $sentencia->execute(array($id));
         }
-        //BUSCA SI TODABIA EXISTE ALMENOS UN ADMINISTRADOR
+        //BUSCA SI EXISTE ALMENOS UN ADMINISTRADOR
         function ExistsAdmin(){
             $sentencia = $this->db->prepare("SELECT admin FROM usuario WHERE admin=?");
             $sentencia->execute(array(1));

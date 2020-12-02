@@ -10,12 +10,12 @@ class LoginView{
         $this->smarty = new Smarty();
     }
     //MUESTRA EL LOGIN
-    function ShowLogin($message = NULL){
+    function ShowLogin($message = null){
         $this->smarty->assign('message', $message);
         $this->smarty->display('templates/login.tpl');
     }
     //MUESTRA EL FORMULARIO DE REGISTRO
-    function ShowRegister($message = NULL, $user = NULL){
+    function ShowRegister($message = null, $user = null){
         $this->smarty->assign('message', $message);
         $this->smarty->assign('user', $user);
         $this->smarty->display('templates/register.tpl');

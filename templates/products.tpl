@@ -29,11 +29,6 @@
         <tbody id="tabla">
             {foreach from=$products item=product}
                 <tr>
-               <!--{foreach from=$images item=image}
-                    {if $image->id_producto == $product->id}
-                        <td class="td_imag excepcion"><img class="img" src="{$image->imagen}"></td>
-                    {/if}
-                {/foreach}-->
                     <td>{$product->nombre}</td>
                     <td>{$product->precio}</td>
                     <td>{$product->stock}</td>

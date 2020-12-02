@@ -25,7 +25,7 @@
                 $this->productsView->ShowLocation('login');
             }
         }
-        //LLAMA A LA VISTA PARA EDITAR UN USUARIO (SOLO PARA ADMINISTRADORES)
+        //LLAMA A LA VISTA PARA EDITAR UN USUARIO
         function EditUser($params = null){
             $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
@@ -36,7 +36,7 @@
                 $this->productsView->ShowLocation('login');
             }
         }
-        //ACTUALIZA LOS DATOS DE UN USUARIO (SOLO PARA ADMINISTRADORES)
+        //ACTUALIZA LOS DATOS DE UN USUARIO
         function UpdateUser($params = null){
             $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
@@ -74,7 +74,7 @@
                 $this->productsView->ShowLocation('login');
             }
         }
-        //ELIMINA UN USUARIO (SOLO PARA ADMINISTRADORES)
+        //ELIMINA UN USUARIO
         function DeleteUser($params = null){
             $logeado = $this->CheckLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){

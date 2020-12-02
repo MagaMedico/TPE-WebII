@@ -50,7 +50,7 @@
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE
         function SearchItemByName($search){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=?");
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre OR descripcion LIKE '%' ? '%' ");
             $sentencia->execute(array($search));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
@@ -62,7 +62,7 @@
         }
         //BUSCO ITEMS SEGÚN UN NOMBRE Y UN PRECIO
         function SearchItem($name, $precioMinimo, $precioMaximo){
-            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre=? AND precio BETWEEN ? AND ?");
+            $sentencia = $this->db->prepare("SELECT * FROM producto WHERE nombre OR descripcion LIKE '%' ? '%' AND precio BETWEEN ? AND ?");
             $sentencia->execute(array($name, $precioMinimo, $precioMaximo));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2020 a las 01:14:30
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 02-12-2020 a las 04:12:13
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,12 +40,9 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `valoracion`, `id_usuario`, `id_producto`) VALUES
-(2, 'insertado desde postman', 3, 1, 2),
-(37, 'dvsvs', 2, 1, 4),
-(39, 'wdaa', 2, 1, 5),
-(40, 'ascs', 1, 1, 5),
-(54, 'sdvsvsvs', 5, 1, 1),
-(55, 'sacaca', 2, 1, 2);
+(62, 'Excelente producto!', 5, 1, 1),
+(65, 'Super delicados!', 3, 1, 5),
+(66, 'Me encantaron, los recomiendo al 100%', 5, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -64,14 +61,12 @@ CREATE TABLE `imagen` (
 --
 
 INSERT INTO `imagen` (`id`, `imagen`, `id_producto`) VALUES
-(9, 'img/aros4.jpg', 1),
-(10, 'img/aros2.jpg', 2),
-(11, 'img/aros3.jpg', 1),
-(13, 'img/aros2.jpg', 1),
-(14, 'img/aros2.jpg', 1),
-(29, 'img/aros2.jpg', 1),
-(30, 'img/aros2.jpg', 1),
-(31, 'img/aros2.jpg', 1);
+(140, 'img/collar.jpg', 7),
+(141, 'img/collar2.jpg', 7),
+(142, 'img/collar3.jpg', 7),
+(143, 'img/aros2.jpg', 5),
+(144, 'img/aros3.jpg', 5),
+(145, 'img/colita.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -116,12 +111,14 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `id_marca`) VALUES
 (1, 'pulsera', 205, 23, 'pulsera elegante', 4),
-(2, 'aros', 100, 20, 'aros perfecto para fiesta de noche', 2),
 (4, 'colita fringes', 100, 8, 'ajuste delicado', 4),
-(5, 'aros square', 300, 5, 'ideal para ir a una quinta', 1),
+(5, 'aros square', 300, 11, 'ideal para ir a una quinta', 1),
 (7, 'collar bull', 300, 5, 'genial para todos los dias', 1),
-(16, 'collar bull', 12, 12, '12', 3),
-(17, 'sccaca', 12, 12, '211', 2);
+(58, 'Collar Square', 350, 16, 'Ideal para fiesta de noche', 2),
+(59, 'Aros Hanna', 500, 5, 'Aros abridores de oro', 3),
+(60, 'Pulsera T&M', 450, 18, 'Ideal para una entrevista', 3),
+(61, 'Anillos', 150, 14, 'Anillos de pareja', 1),
+(62, 'Tobillera', 420, 22, 'Ideal para la playa', 2);
 
 -- --------------------------------------------------------
 
@@ -193,31 +190,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
