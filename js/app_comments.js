@@ -56,9 +56,8 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-let id_producto = document.querySelector('#input_IdProducto').value;
-
 function getComments() {
+    let id_producto = document.querySelector('#input_IdProducto').value;
     fetch('api/product/' + id_producto + '/comments')
     .then(response => response.json())
     .then(comments => app.comments = comments)

@@ -41,8 +41,8 @@
             $logeado = $this->checkLoggedIn();
             if($logeado && $_SESSION['ADMIN'] == 1){
                 $id = $params[':ID'];
-                $typeOfUser = $this->model->GetUserById($id);
-                if($typeOfUser->admin == 0){
+                $user = $this->model->GetUserById($id);
+                if($user->admin == 0){
                     if(isset($_POST['selectAdmin'])){
                         $admin = $_POST['selectAdmin'];
                         $this->model->UpdateUser($admin, $id);
@@ -55,7 +55,6 @@
                         $numberOfAdmin++;
                     }
                     if($numberOfAdmin != 1 && $numberOfAdmin != 0){
-                        $user = $this->model->GetUserById($id);
                         if($user->email != $_SESSION['EMAIL']){
                            if(isset($_POST['selectAdmin'])){
                                 $admin = $_POST['selectAdmin'];
@@ -66,7 +65,6 @@
                             $this->view->ShowEdit($user, "No se pueden cambiar permisos, ya que estás haciendo uso de este administrador.");
                         }
                     }else{
-                        $user = $this->model->GetUserById($id);
                         $this->view->ShowEdit($user, "No se pueden quitar permisos ya que es el ultimo administrador del sistema.");
                     }
                 }

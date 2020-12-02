@@ -79,9 +79,11 @@
                     $fileTemp = $_FILES['input_file']['tmp_name'];
                     for($i=0; $i<count($_FILES['input_file']['tmp_name']); $i++){
                         $name = basename($_FILES["input_file"]["name"][$i]);
-                        $filepath = "img/". $name;
-                        move_uploaded_file($fileTemp[$i], $filepath);
-                        $this->imageModel->InsertImg($filepath, $id_product);
+                        if($name){
+                            $filepath = "img/". $name;
+                            move_uploaded_file($fileTemp[$i], $filepath);
+                            $this->imageModel->InsertImg($filepath, $id_product);
+                        }
                     }
                 }
                 $this->view->ShowLocation('admin');
@@ -133,16 +135,16 @@
                     $description = $_POST['edit_description'];
                     $brand = $_POST['select_brand'];
                     $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
-                }
                     $fileTemp = $_FILES['input_file']['tmp_name'];
                     for($i=0; $i<count($_FILES['input_file']['tmp_name']); $i++){
                         $name = basename($_FILES["input_file"]["name"][$i]);
                         if($name){
-                           $filepath = "img/". $name;
+                        $filepath = "img/". $name;
                             move_uploaded_file($fileTemp[$i], $filepath);
                             $this->imageModel->InsertImg($filepath, $product_id);
                         }
                     }
+                }
                 $this->view->ShowLocation('admin');
             }else{
                 $this->view->ShowLocation('login');
