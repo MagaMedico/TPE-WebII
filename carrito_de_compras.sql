@@ -40,9 +40,9 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `valoracion`, `id_usuario`, `id_producto`) VALUES
-(62, 'Excelente producto!', 5, 1, 1),
-(65, 'Super delicados!', 3, 1, 5),
-(66, 'Me encantaron, los recomiendo al 100%', 5, 1, 5);
+(1, 'Excelente producto!', 5, 1, 1),
+(2, 'Super delicados!', 3, 1, 1),
+(3, 'Me encantaron, los recomiendo al 100%', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -61,12 +61,12 @@ CREATE TABLE `imagen` (
 --
 
 INSERT INTO `imagen` (`id`, `imagen`, `id_producto`) VALUES
-(140, 'img/collar.jpg', 7),
-(141, 'img/collar2.jpg', 7),
-(142, 'img/collar3.jpg', 7),
-(143, 'img/aros2.jpg', 5),
-(144, 'img/aros3.jpg', 5),
-(145, 'img/colita.jpg', 4);
+(1, 'img/collar.jpg', 1),
+(2, 'img/collar2.jpg', 1),
+(3, 'img/collar3.jpg', 1),
+(4, 'img/aros2.jpg', 2),
+(5, 'img/aros3.jpg', 2),
+(6, 'img/colita.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -111,14 +111,14 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id`, `nombre`, `precio`, `stock`, `descripcion`, `id_marca`) VALUES
 (1, 'pulsera', 205, 23, 'pulsera elegante', 4),
-(4, 'colita fringes', 100, 8, 'ajuste delicado', 4),
-(5, 'aros square', 300, 11, 'ideal para ir a una quinta', 1),
-(7, 'collar bull', 300, 5, 'genial para todos los dias', 1),
-(58, 'Collar Square', 350, 16, 'Ideal para fiesta de noche', 2),
-(59, 'Aros Hanna', 500, 5, 'Aros abridores de oro', 3),
-(60, 'Pulsera T&M', 450, 18, 'Ideal para una entrevista', 3),
-(61, 'Anillos', 150, 14, 'Anillos de pareja', 1),
-(62, 'Tobillera', 420, 22, 'Ideal para la playa', 2);
+(2, 'colita fringes', 100, 8, 'ajuste delicado', 4),
+(3, 'aros square', 300, 11, 'ideal para ir a una quinta', 1),
+(4, 'collar bull', 300, 5, 'genial para todos los dias', 1),
+(5, 'Collar Square', 350, 16, 'Ideal para fiesta de noche', 2),
+(6, 'Aros Hanna', 500, 5, 'Aros abridores de oro', 3),
+(7, 'Pulsera T&M', 450, 18, 'Ideal para una entrevista', 3),
+(8, 'Anillos', 150, 14, 'Anillos de pareja', 1),
+(9, 'Tobillera', 420, 22, 'Ideal para la playa', 2);
 
 -- --------------------------------------------------------
 
@@ -139,8 +139,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `email`, `password`, `admin`) VALUES
 (1, 'magamedico@gmail.com', '$2y$10$zJCL282zDJdwSfggMMHSNuikf0hxDZiwz9KckRW/G8D/ACxo8buq2', 1),
-(4, 'usuario@hotmail.com', '$2y$10$tAs6KneNjG6.v4Pz1O/93eiPxZZhWeszzHM5zBPz13ZHpu1R9RnGu', 0),
-(5, 'marinacaseres1997@hotmail.com', '$2y$10$BSX0ctLE8ubJKWfW8HDCCORbEkTChHeH2VZ8akqQ4F7AWCK4N40lK', 1);
+(2, 'usuario@hotmail.com', '$2y$10$tAs6KneNjG6.v4Pz1O/93eiPxZZhWeszzHM5zBPz13ZHpu1R9RnGu', 0),
+(3, 'marinacaseres1997@hotmail.com', '$2y$10$BSX0ctLE8ubJKWfW8HDCCORbEkTChHeH2VZ8akqQ4F7AWCK4N40lK', 1);
 
 --
 -- Índices para tablas volcadas
@@ -190,31 +190,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

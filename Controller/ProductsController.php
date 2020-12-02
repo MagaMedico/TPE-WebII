@@ -79,11 +79,12 @@
                     $fileTemp = $_FILES['input_file']['tmp_name'];
                     for($i=0; $i<count($_FILES['input_file']['tmp_name']); $i++){
                         $name = basename($_FILES["input_file"]["name"][$i]);
-                        $this->imageModel->InsertImg($fileTemp[$i], $name, $id_product);
+                        $filepath = "img/". $name;
+                        move_uploaded_file($fileTemp[$i], $filepath);
+                        $this->imageModel->InsertImg($filepath, $id_product);
                     }
                 }
                 $this->view->ShowLocation('admin');
-
             }else{
                 $this->view->ShowLocation('login');
             }
@@ -142,7 +143,6 @@
                             $this->imageModel->InsertImg($filepath, $product_id);
                         }
                     }
-
                 $this->view->ShowLocation('admin');
             }else{
                 $this->view->ShowLocation('login');
