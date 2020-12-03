@@ -50,10 +50,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     getComments();
 
-    document.querySelector("#btn_comment").addEventListener('click', function(e){
-        e.preventDefault();
-        addComment();
-    });
+    try{
+        document.querySelector("#btn_comment").addEventListener('click', function(e){
+            e.preventDefault();
+            addComment();
+        });
+    }catch(error){}
 });
 
 function getComments() {

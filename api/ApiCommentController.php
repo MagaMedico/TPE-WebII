@@ -12,8 +12,10 @@ class ApiCommentController extends ApiController {
     public function GetComments($params = null) {
         $id_product = $params[':ID'];
         $comments = $this->model->GetCommentByProduct($id_product);
-        if (!empty($comments)) {
+        if (!empty($comments) || sizeof($comments) == 0) {
             $this->view->response($comments, 200);
+        }else{
+            $this->view->response($comments, 404);
         }
     }
 
